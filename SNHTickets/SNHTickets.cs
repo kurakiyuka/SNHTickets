@@ -71,12 +71,28 @@ namespace SNHTickets
             req_login.ContentLength = postBytes.Length;
 
             //POST数据
-            Stream stream_login = req_login.GetRequestStream();
-            stream_login.Write(postBytes, 0, postBytes.Length);
-            stream_login.Close();
+            try
+            {
+                Stream stream_login = req_login.GetRequestStream();
+                stream_login.Write(postBytes, 0, postBytes.Length);
+                stream_login.Close();
+            }
+            catch (Exception ex)
+            {
+                log_process(ex.ToString());
+            }
 
             //读取返回数据
-            HttpWebResponse resp_login = (HttpWebResponse)req_login.GetResponse();
+            HttpWebResponse resp_login;
+            try
+            {
+                resp_login = (HttpWebResponse)req_login.GetResponse();
+            }
+            catch (WebException ex)
+            {
+                resp_login = (HttpWebResponse)ex.Response;
+                log_process(ex.ToString());
+            }
 
             //检查返回的数据内是否包含相应的cookies，如果是，说明登录成功
             Dictionary<String, Boolean> cookieCheckDict = new Dictionary<String, Boolean>();
