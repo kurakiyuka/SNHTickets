@@ -87,6 +87,8 @@ namespace SNHTickets
             try
             {
                 resp_login = (HttpWebResponse)req_login.GetResponse();
+                StreamReader sr = new StreamReader(resp_login.GetResponseStream());
+                String resultHTML = sr.ReadToEnd();
             }
             catch (WebException ex)
             {
