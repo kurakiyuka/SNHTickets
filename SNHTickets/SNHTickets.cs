@@ -6,6 +6,7 @@ using System.Text;
 using System.Windows.Forms;
 using SNHTickets.Flow;
 using SNHTickets.Util;
+using SNHTickets.Events;
 
 namespace SNHTickets
 {
@@ -29,6 +30,8 @@ namespace SNHTickets
         //编码器
         ASCIIEncoding encoding;
 
+        Order order;
+
         public SNHTickets()
         {
             InitializeComponent();            
@@ -39,6 +42,8 @@ namespace SNHTickets
             dirPostData = new Dictionary<String, String>();
             cookies = new CookieContainer();
             encoding = new ASCIIEncoding();
+            order = new Order();
+            order.OrderResultEvent += LogToRight2;
         }
 
         private void MakeHttpWebRequsetHeader(HttpWebRequest req)
@@ -51,6 +56,8 @@ namespace SNHTickets
 
         private void login(object sender, EventArgs e)
         {
+            
+           
             dirPostData.Clear();
             //构建登录要使用的POST数据
             dirPostData.Add("username", snh_username.Text);
@@ -76,7 +83,7 @@ namespace SNHTickets
             }
             catch (Exception ex)
             {
-                log_process(ex.ToString());
+                MessageBox.Show(ex.ToString());
             }
 
             //读取返回数据
@@ -89,8 +96,7 @@ namespace SNHTickets
             }
             catch (WebException ex)
             {
-                resp_login = (HttpWebResponse)ex.Response;
-                log_process(ex.ToString());
+                resp_login = (HttpWebResponse)ex.Response;               
             }
 
             //检查返回的数据内是否包含相应的cookies，如果是，说明登录成功
@@ -118,28 +124,32 @@ namespace SNHTickets
             Boolean loginOK = allCookiesFound;
             if (loginOK)
             {
-                log_success("帐号：" + snh_username.Text + "登录成功");
+                LogToRight("帐号：" + snh_username.Text + "登录成功");
             }
             else
             {
-                log_process("帐号：" + snh_username.Text + "登录失败");
+                LogToLeft("帐号：" + snh_username.Text + "登录失败");
             }
         }
 
         private void buy_loop(object sender, EventArgs e)
         {
-            Buy.Commit(495, cookies);
+            order.Commit(368, cookies);
         }
 
-        private void log_process(String str)
+        private void LogToLeft(String str)
         {
             rtb_process.AppendText(DateTime.Now.ToString() + ' ' + str + '\n');
             rtb_process.ScrollToCaret();
         }
-
-        private void log_success(String str)
+        private void LogToRight(String str)
         {
             rtb_success.AppendText(DateTime.Now.ToString() + ' ' + str + '\n');
+            rtb_success.ScrollToCaret();
+        }
+        private void LogToRight2(Object sender, Order.OrderResultEventArgs e)
+        {
+            rtb_success.AppendText(DateTime.Now.ToString() + ' ' + e.resultStr + '\n');
             rtb_success.ScrollToCaret();
         }
     }

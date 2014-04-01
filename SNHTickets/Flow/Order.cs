@@ -6,19 +6,39 @@ using SNHTickets.Util;
 
 namespace SNHTickets.Flow
 {
-    class Buy
+    public class Order
     {
         //把商品加入购物车使用的URL
         static String snh_add_to_cart_url = "http://shop.snh48.com/flow.php?step=add_to_cart";
         //最后提交订单的URL
         static String snh_commit_url = "http://shop.snh48.com/flow.php?step=done";
 
-        public static void Commit(int goods_id, CookieContainer cookieCon)
+        public delegate void OrderResultEventHandler(Object sender, OrderResultEventArgs e);
+        public event OrderResultEventHandler OrderResultEvent;
+
+        public class OrderResultEventArgs : EventArgs
         {
-            for (int i = 0; i < 12; i++ )
+            public readonly String resultStr;
+            public OrderResultEventArgs(String resultStr)
+            {
+                this.resultStr = resultStr;
+            }
+        }
+
+        protected virtual void OrderComplete(OrderResultEventArgs e)
+        {
+            if (OrderResultEvent != null)
+            {
+                OrderResultEvent(this, e);
+            }
+        }
+        
+        public void Commit(int goods_id, CookieContainer cookieCon)
+        {
+            for (int i = 0; i < 3; i++ )
             {               
                 HttpWebRequest req_buy = (HttpWebRequest)WebRequest.Create(snh_add_to_cart_url);
-                String postData = "goods={\"quick\":1,\"spec\":[],\"goods_id\":" + goods_id + ",\"number\":\"5\",\"parent\":0}";
+                String postData = "goods={\"quick\":1,\"spec\":[],\"goods_id\":" + goods_id + ",\"number\":\"1\",\"parent\":0}";
                 ASCIIEncoding encoder = new ASCIIEncoding();
                 Byte[] postBytes = encoder.GetBytes(postData);
 
@@ -47,6 +67,8 @@ namespace SNHTickets.Flow
                 resultHTML = sr.ReadToEnd();
 
                 goods_id++;
+                OrderResultEventArgs e = new OrderResultEventArgs(goods_id.ToString());
+                OrderComplete(e);
             }
         }
     }
