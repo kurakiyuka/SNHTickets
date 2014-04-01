@@ -119,7 +119,7 @@
             this.btn_buy.TabIndex = 7;
             this.btn_buy.Text = "抢票";
             this.btn_buy.UseVisualStyleBackColor = true;
-            this.btn_buy.Click += new System.EventHandler(this.buy);
+            this.btn_buy.Click += new System.EventHandler(this.buy_loop);
             // 
             // SNHTickets
             // 

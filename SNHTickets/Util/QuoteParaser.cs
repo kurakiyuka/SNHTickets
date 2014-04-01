@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Web;
 
-namespace SNHTickets.DataPreHandler
+namespace SNHTickets.Util
 {
     class QuoteParaser
     {

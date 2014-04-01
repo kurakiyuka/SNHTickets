@@ -4,7 +4,8 @@ using System.IO;
 using System.Net;
 using System.Text;
 using System.Windows.Forms;
-using SNHTickets.DataPreHandler;
+using SNHTickets.Flow;
+using SNHTickets.Util;
 
 namespace SNHTickets
 {
@@ -14,14 +15,10 @@ namespace SNHTickets
         String snh_login_url = "http://shop.snh48.com/user.php";
         //登录时需要提交的返回URL
         String snh_login_back_act_url = "http://shop.snh48.com/index.php&submit=";
-        //把商品加入购物车使用的URL
-        String snh_add_to_cart_url = "http://shop.snh48.com/flow.php?step=add_to_cart";
         //整个购物流程的URL，用的可能是单页模式
         //String snh_flow_url = "http://shop.snh48.com/flow.php";
         //更新购物车功能没有step=xxx，直接向flow.php提交数据
         //String snh_update_cart_url = "http://shop.snh48.com/flow.php";
-        //最后提交订单的URL
-        String snh_commit_url = "http://shop.snh48.com/flow.php?step=done";
 
         //用于提交的数据字典
         Dictionary<String, String> dirPostData;
@@ -129,37 +126,9 @@ namespace SNHTickets
             }
         }
 
-        private void buy(object sender, EventArgs e)
+        private void buy_loop(object sender, EventArgs e)
         {
-            HttpWebRequest req_buy = (HttpWebRequest)WebRequest.Create(snh_add_to_cart_url);
-            MakeHttpWebRequsetHeader(req_buy);
-
-            String postdata = "goods={\"quick\":1,\"spec\":[],\"goods_id\":370,\"number\":\"1\",\"parent\":0}";
-            byte[] postBytes = encoding.GetBytes(postdata);
-            req_buy.ContentLength = postBytes.Length;
-
-            Stream stream_buy = req_buy.GetRequestStream();
-            stream_buy.Write(postBytes, 0, postBytes.Length);
-            stream_buy.Close();
-
-            HttpWebResponse resp_buy = (HttpWebResponse)req_buy.GetResponse();
-            StreamReader sr = new StreamReader(resp_buy.GetResponseStream());
-            String resultHTML = sr.ReadToEnd();
-
-            req_buy = (HttpWebRequest)WebRequest.Create(snh_commit_url);
-            MakeHttpWebRequsetHeader(req_buy);
-
-            postdata = "shipping=5&payment=23&postscript=&how_oos=0&step=done&x=79&y=27";
-            postBytes = encoding.GetBytes(postdata);
-            req_buy.ContentLength = postBytes.Length;
-
-            stream_buy = req_buy.GetRequestStream();
-            stream_buy.Write(postBytes, 0, postBytes.Length);
-            stream_buy.Close();
-
-            resp_buy = (HttpWebResponse)req_buy.GetResponse();
-            sr = new StreamReader(resp_buy.GetResponseStream());
-            resultHTML = sr.ReadToEnd();
+            Buy.Commit(370, cookies);
         }
 
         private void log_process(String str)
