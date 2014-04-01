@@ -128,7 +128,7 @@ namespace SNHTickets
 
         private void buy_loop(object sender, EventArgs e)
         {
-            Buy.Commit(370, cookies);
+            Buy.Commit(495, cookies);
         }
 
         private void log_process(String str)
