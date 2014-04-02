@@ -37,6 +37,8 @@
             this.rtb_process = new System.Windows.Forms.RichTextBox();
             this.rtb_success = new System.Windows.Forms.RichTextBox();
             this.btn_buy = new System.Windows.Forms.Button();
+            this.lb_setting = new System.Windows.Forms.LinkLabel();
+            this.lb_acconts = new System.Windows.Forms.LinkLabel();
             this.SuspendLayout();
             // 
             // lb_username
@@ -121,12 +123,36 @@
             this.btn_buy.UseVisualStyleBackColor = true;
             this.btn_buy.Click += new System.EventHandler(this.buy_loop);
             // 
+            // lb_setting
+            // 
+            this.lb_setting.AutoSize = true;
+            this.lb_setting.Location = new System.Drawing.Point(712, 11);
+            this.lb_setting.Name = "lb_setting";
+            this.lb_setting.Size = new System.Drawing.Size(61, 19);
+            this.lb_setting.TabIndex = 8;
+            this.lb_setting.TabStop = true;
+            this.lb_setting.Text = "全局设置";
+            this.lb_setting.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lb_setting_LinkClicked);
+            // 
+            // lb_acconts
+            // 
+            this.lb_acconts.AutoSize = true;
+            this.lb_acconts.Location = new System.Drawing.Point(641, 11);
+            this.lb_acconts.Name = "lb_acconts";
+            this.lb_acconts.Size = new System.Drawing.Size(61, 19);
+            this.lb_acconts.TabIndex = 9;
+            this.lb_acconts.TabStop = true;
+            this.lb_acconts.Text = "添加帐号";
+            this.lb_acconts.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lb_acconts_LinkClicked);
+            // 
             // SNHTickets
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(784, 562);
+            this.Controls.Add(this.lb_acconts);
+            this.Controls.Add(this.lb_setting);
             this.Controls.Add(this.btn_buy);
             this.Controls.Add(this.rtb_success);
             this.Controls.Add(this.rtb_process);
@@ -141,6 +167,7 @@
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MaximizeBox = false;
             this.Name = "SNHTickets";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SNH48刷票器";
             this.Load += new System.EventHandler(this.SNHTickets_Load);
             this.ResumeLayout(false);
@@ -158,6 +185,8 @@
         private System.Windows.Forms.RichTextBox rtb_process;
         private System.Windows.Forms.RichTextBox rtb_success;
         private System.Windows.Forms.Button btn_buy;
+        private System.Windows.Forms.LinkLabel lb_setting;
+        private System.Windows.Forms.LinkLabel lb_acconts;
     }
 }
 

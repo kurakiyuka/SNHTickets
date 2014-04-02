@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using SNHTickets.Flow;
+using SNHTickets.Panels;
 
 namespace SNHTickets
 {
@@ -43,6 +44,20 @@ namespace SNHTickets
         {
             rtb_success.AppendText(DateTime.Now.ToString() + ' ' + e.resultStr + '\n');
             rtb_success.ScrollToCaret();
+        }
+
+        private void lb_setting_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            GlobalSetting gsForm = new GlobalSetting();
+            gsForm.StartPosition = FormStartPosition.CenterParent;
+            gsForm.ShowDialog();
+        }
+
+        private void lb_acconts_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            AccontsInfo aiForm = new AccontsInfo();
+            aiForm.StartPosition = FormStartPosition.CenterParent;
+            aiForm.ShowDialog();
         }
     }
 }
