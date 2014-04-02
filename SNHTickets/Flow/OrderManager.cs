@@ -6,12 +6,16 @@ using SNHTickets.Util;
 
 namespace SNHTickets.Flow
 {
-    public class Order
+    public class OrderManager
     {
         //把商品加入购物车使用的URL
         static String snh_add_to_cart_url = "http://shop.snh48.com/flow.php?step=add_to_cart";
         //最后提交订单的URL
         static String snh_commit_url = "http://shop.snh48.com/flow.php?step=done";
+        //整个购物流程的URL，用的可能是单页模式
+        //String snh_flow_url = "http://shop.snh48.com/flow.php";
+        //更新购物车功能没有step=xxx，直接向flow.php提交数据
+        //String snh_update_cart_url = "http://shop.snh48.com/flow.php";
 
         public delegate void OrderResultEventHandler(Object sender, OrderResultEventArgs e);
         public event OrderResultEventHandler OrderResultEvent;
@@ -35,10 +39,10 @@ namespace SNHTickets.Flow
         
         public void Commit(int goods_id, CookieContainer cookieCon)
         {
-            for (int i = 0; i < 3; i++ )
+            for (int i = 0; i < 1; i++ )
             {               
                 HttpWebRequest req_buy = (HttpWebRequest)WebRequest.Create(snh_add_to_cart_url);
-                String postData = "goods={\"quick\":1,\"spec\":[],\"goods_id\":" + goods_id + ",\"number\":\"1\",\"parent\":0}";
+                String postData = "goods={\"quick\":1,\"spec\":[],\"goods_id\":" + goods_id + ",\"number\":\"100\",\"parent\":0}";
                 ASCIIEncoding encoder = new ASCIIEncoding();
                 Byte[] postBytes = encoder.GetBytes(postData);
 
@@ -65,10 +69,10 @@ namespace SNHTickets.Flow
                 resp_buy = (HttpWebResponse)req_buy.GetResponse();
                 sr = new StreamReader(resp_buy.GetResponseStream());
                 resultHTML = sr.ReadToEnd();
-
-                goods_id++;
+               
                 OrderResultEventArgs e = new OrderResultEventArgs(goods_id.ToString());
                 OrderComplete(e);
+                goods_id++;
             }
         }
     }

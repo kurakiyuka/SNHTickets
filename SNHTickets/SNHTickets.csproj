@@ -49,8 +49,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Events\LogManager.cs" />
-    <Compile Include="Flow\Order.cs" />
+    <Compile Include="Flow\LoginManager.cs" />
+    <Compile Include="Flow\OrderManager.cs" />
     <Compile Include="Util\HWRMaker.cs" />
     <Compile Include="Util\QuoteParaser.cs" />
     <Compile Include="SNHTickets.cs">
@@ -83,7 +83,9 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Events\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
