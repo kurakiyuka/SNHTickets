@@ -37,14 +37,20 @@
             this.rtb_process = new System.Windows.Forms.RichTextBox();
             this.rtb_success = new System.Windows.Forms.RichTextBox();
             this.btn_buy = new System.Windows.Forms.Button();
-            this.lb_setting = new System.Windows.Forms.LinkLabel();
-            this.lb_acconts = new System.Windows.Forms.LinkLabel();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.AccountsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.AddAccoutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ClearAccoutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.TaskToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.BuyTaskToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.SettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // lb_username
             // 
             this.lb_username.AutoSize = true;
-            this.lb_username.Location = new System.Drawing.Point(20, 20);
+            this.lb_username.Location = new System.Drawing.Point(20, 45);
             this.lb_username.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lb_username.Name = "lb_username";
             this.lb_username.Size = new System.Drawing.Size(48, 19);
@@ -54,7 +60,7 @@
             // lb_password
             // 
             this.lb_password.AutoSize = true;
-            this.lb_password.Location = new System.Drawing.Point(20, 80);
+            this.lb_password.Location = new System.Drawing.Point(20, 90);
             this.lb_password.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lb_password.Name = "lb_password";
             this.lb_password.Size = new System.Drawing.Size(35, 19);
@@ -63,7 +69,7 @@
             // 
             // snh_username
             // 
-            this.snh_username.Location = new System.Drawing.Point(100, 20);
+            this.snh_username.Location = new System.Drawing.Point(100, 45);
             this.snh_username.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.snh_username.Name = "snh_username";
             this.snh_username.Size = new System.Drawing.Size(245, 25);
@@ -71,7 +77,7 @@
             // 
             // snh_pw
             // 
-            this.snh_pw.Location = new System.Drawing.Point(100, 80);
+            this.snh_pw.Location = new System.Drawing.Point(100, 90);
             this.snh_pw.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.snh_pw.Name = "snh_pw";
             this.snh_pw.Size = new System.Drawing.Size(245, 25);
@@ -79,7 +85,7 @@
             // 
             // btn_login
             // 
-            this.btn_login.Location = new System.Drawing.Point(100, 140);
+            this.btn_login.Location = new System.Drawing.Point(66, 140);
             this.btn_login.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btn_login.Name = "btn_login";
             this.btn_login.Size = new System.Drawing.Size(100, 33);
@@ -114,7 +120,7 @@
             // 
             // btn_buy
             // 
-            this.btn_buy.Location = new System.Drawing.Point(520, 140);
+            this.btn_buy.Location = new System.Drawing.Point(217, 140);
             this.btn_buy.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btn_buy.Name = "btn_buy";
             this.btn_buy.Size = new System.Drawing.Size(100, 33);
@@ -123,27 +129,62 @@
             this.btn_buy.UseVisualStyleBackColor = true;
             this.btn_buy.Click += new System.EventHandler(this.buy_loop);
             // 
-            // lb_setting
+            // menuStrip1
             // 
-            this.lb_setting.AutoSize = true;
-            this.lb_setting.Location = new System.Drawing.Point(712, 11);
-            this.lb_setting.Name = "lb_setting";
-            this.lb_setting.Size = new System.Drawing.Size(61, 19);
-            this.lb_setting.TabIndex = 8;
-            this.lb_setting.TabStop = true;
-            this.lb_setting.Text = "全局设置";
-            this.lb_setting.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lb_setting_LinkClicked);
+            this.menuStrip1.Font = new System.Drawing.Font("Microsoft YaHei", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.AccountsToolStripMenuItem,
+            this.TaskToolStripMenuItem,
+            this.SettingsToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(784, 27);
+            this.menuStrip1.TabIndex = 10;
+            this.menuStrip1.Text = "menuStrip1";
             // 
-            // lb_acconts
+            // AccountsToolStripMenuItem
             // 
-            this.lb_acconts.AutoSize = true;
-            this.lb_acconts.Location = new System.Drawing.Point(641, 11);
-            this.lb_acconts.Name = "lb_acconts";
-            this.lb_acconts.Size = new System.Drawing.Size(61, 19);
-            this.lb_acconts.TabIndex = 9;
-            this.lb_acconts.TabStop = true;
-            this.lb_acconts.Text = "添加帐号";
-            this.lb_acconts.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lb_acconts_LinkClicked);
+            this.AccountsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.AddAccoutToolStripMenuItem,
+            this.ClearAccoutToolStripMenuItem});
+            this.AccountsToolStripMenuItem.Name = "AccountsToolStripMenuItem";
+            this.AccountsToolStripMenuItem.Size = new System.Drawing.Size(47, 23);
+            this.AccountsToolStripMenuItem.Text = "帐号";
+            // 
+            // AddAccoutToolStripMenuItem
+            // 
+            this.AddAccoutToolStripMenuItem.Name = "AddAccoutToolStripMenuItem";
+            this.AddAccoutToolStripMenuItem.Size = new System.Drawing.Size(130, 24);
+            this.AddAccoutToolStripMenuItem.Text = "添加帐号";
+            this.AddAccoutToolStripMenuItem.Click += new System.EventHandler(this.AddAccoutToolStripMenuItem_Click);
+            // 
+            // ClearAccoutToolStripMenuItem
+            // 
+            this.ClearAccoutToolStripMenuItem.Name = "ClearAccoutToolStripMenuItem";
+            this.ClearAccoutToolStripMenuItem.Size = new System.Drawing.Size(130, 24);
+            this.ClearAccoutToolStripMenuItem.Text = "清空帐号";
+            // 
+            // TaskToolStripMenuItem
+            // 
+            this.TaskToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.BuyTaskToolStripMenuItem});
+            this.TaskToolStripMenuItem.Name = "TaskToolStripMenuItem";
+            this.TaskToolStripMenuItem.Size = new System.Drawing.Size(47, 23);
+            this.TaskToolStripMenuItem.Text = "任务";
+            // 
+            // BuyTaskToolStripMenuItem
+            // 
+            this.BuyTaskToolStripMenuItem.Name = "BuyTaskToolStripMenuItem";
+            this.BuyTaskToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
+            this.BuyTaskToolStripMenuItem.Text = "抢票任务";
+            this.BuyTaskToolStripMenuItem.Click += new System.EventHandler(this.BuyTaskToolStripMenuItem_Click);
+            // 
+            // SettingsToolStripMenuItem
+            // 
+            this.SettingsToolStripMenuItem.Name = "SettingsToolStripMenuItem";
+            this.SettingsToolStripMenuItem.Size = new System.Drawing.Size(47, 23);
+            this.SettingsToolStripMenuItem.Text = "设置";
+            this.SettingsToolStripMenuItem.Click += new System.EventHandler(this.SettingsToolStripMenuItem_Click);
             // 
             // SNHTickets
             // 
@@ -151,8 +192,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(784, 562);
-            this.Controls.Add(this.lb_acconts);
-            this.Controls.Add(this.lb_setting);
             this.Controls.Add(this.btn_buy);
             this.Controls.Add(this.rtb_success);
             this.Controls.Add(this.rtb_process);
@@ -161,15 +200,19 @@
             this.Controls.Add(this.snh_username);
             this.Controls.Add(this.lb_password);
             this.Controls.Add(this.lb_username);
+            this.Controls.Add(this.menuStrip1);
             this.Font = new System.Drawing.Font("Microsoft YaHei", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.ForeColor = System.Drawing.SystemColors.ControlText;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MaximizeBox = false;
             this.Name = "SNHTickets";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SNH48刷票器";
             this.Load += new System.EventHandler(this.SNHTickets_Load);
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -185,8 +228,13 @@
         private System.Windows.Forms.RichTextBox rtb_process;
         private System.Windows.Forms.RichTextBox rtb_success;
         private System.Windows.Forms.Button btn_buy;
-        private System.Windows.Forms.LinkLabel lb_setting;
-        private System.Windows.Forms.LinkLabel lb_acconts;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem AccountsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem AddAccoutToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ClearAccoutToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem TaskToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem BuyTaskToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem SettingsToolStripMenuItem;
     }
 }
 

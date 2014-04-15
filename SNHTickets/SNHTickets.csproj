@@ -72,6 +72,12 @@
     <Compile Include="Panels\AccontsInfo.Designer.cs">
       <DependentUpon>AccontsInfo.cs</DependentUpon>
     </Compile>
+    <Compile Include="Panels\BuyTaskSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Panels\BuyTaskSetting.Designer.cs">
+      <DependentUpon>BuyTaskSetting.cs</DependentUpon>
+    </Compile>
     <Compile Include="Panels\GlobalSetting.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -92,6 +98,9 @@
     <EmbeddedResource Include="Panels\AccontsInfo.resx">
       <DependentUpon>AccontsInfo.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Panels\BuyTaskSetting.resx">
+      <DependentUpon>BuyTaskSetting.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Panels\GlobalSetting.resx">
       <DependentUpon>GlobalSetting.cs</DependentUpon>
     </EmbeddedResource>
@@ -108,6 +117,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <None Include="app.config" />
+    <None Include="ClassDiagram1.cd" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

@@ -46,18 +46,25 @@ namespace SNHTickets
             rtb_success.ScrollToCaret();
         }
 
-        private void lb_setting_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void AddAccoutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AccontsInfo aiForm = new AccontsInfo();
+            aiForm.StartPosition = FormStartPosition.CenterParent;
+            aiForm.ShowDialog();
+        }
+
+        private void SettingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             GlobalSetting gsForm = new GlobalSetting();
             gsForm.StartPosition = FormStartPosition.CenterParent;
             gsForm.ShowDialog();
         }
 
-        private void lb_acconts_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void BuyTaskToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AccontsInfo aiForm = new AccontsInfo();
-            aiForm.StartPosition = FormStartPosition.CenterParent;
-            aiForm.ShowDialog();
+            BuyTaskSetting btsForm = new BuyTaskSetting();
+            btsForm.StartPosition = FormStartPosition.CenterParent;
+            btsForm.ShowDialog();
         }
     }
 }

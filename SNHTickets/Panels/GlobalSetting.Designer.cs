@@ -172,7 +172,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.Name = "GlobalSetting";
-            this.Text = "GlobalSetting";
+            this.Text = "设置";
             this.Load += new System.EventHandler(this.GlobalSetting_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
