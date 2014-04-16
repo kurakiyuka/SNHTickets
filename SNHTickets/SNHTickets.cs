@@ -34,15 +34,16 @@ namespace SNHTickets
 
         private void login(object sender, EventArgs e)
         {
-            
+
         }
 
         private void buy_loop(object sender, EventArgs e)
         {
             TaskHandler th = new TaskHandler("123", 1, accountsList);
+            th.OrderResultEvent += LogToRight;
             th.Start();
         }
-        
+
         private void LogToRight(Object sender, TaskHandler.OrderResultEventArgs e)
         {
             rtb_success.AppendText(DateTime.Now.ToString() + ' ' + e.resultStr + '\n');

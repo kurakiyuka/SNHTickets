@@ -108,16 +108,4 @@
     <level>none</level>
     <importance>1</importance>
   </account>
-  <account>
-    <username>ydxh013</username>
-    <password>qwert123</password>
-    <level>none</level>
-    <importance>1</importance>
-  </account>
-  <account>
-    <username>ydxh014</username>
-    <password>qwert123</password>
-    <level>none</level>
-    <importance>1</importance>
-  </account>
 </accounts> 

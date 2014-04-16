@@ -22,7 +22,8 @@ namespace SNHTickets.Flow
 
         public void Buy()
         {
-
+            BuyManager buyManager = new BuyManager();
+            buyManager.Buy("511", 1, cookieCon);
         }
     }
 }
