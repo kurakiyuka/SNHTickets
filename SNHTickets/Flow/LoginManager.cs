@@ -19,43 +19,20 @@ namespace SNHTickets.Flow
         //用于提交的数据字符串
         String strPostData;
         //cookie容器
-        CookieContainer cookies;
+        public CookieContainer cookieCon { get; set; }
         //编码器
         ASCIIEncoding encoding;
-
         //登录是否成功
         Boolean loginSuccess;
-
-        public delegate void LoginResultEventHandler(Object sender, LoginResultEventArgs e);
-        public event LoginResultEventHandler LoginResultEvent;
-
-        public class LoginResultEventArgs : EventArgs
-        {
-            public readonly String resultStr;
-            public readonly CookieContainer cookieCon;
-            public LoginResultEventArgs(String resultStr, CookieContainer cookieCon)
-            {
-                this.resultStr = resultStr;
-                this.cookieCon = cookieCon;
-            }
-        }
-
-        public virtual void LoginComplete(LoginResultEventArgs e)
-        {
-            if (LoginResultEvent != null)
-            {
-                LoginResultEvent(this, e);
-            }
-        }
 
         public LoginManager()
         {
             dirPostData = new Dictionary<String, String>();
-            cookies = new CookieContainer();
+            cookieCon = new CookieContainer();
             encoding = new ASCIIEncoding();
         }
 
-        public void Login(String username, String password)
+        public Boolean Login(String username, String password)
         {
             dirPostData.Clear();
             //构建登录要使用的POST数据
@@ -71,7 +48,7 @@ namespace SNHTickets.Flow
 
             //创建HttpWebRequest对象，设置Header
             HttpWebRequest req_login = (HttpWebRequest)WebRequest.Create(snh_login_url);
-            HWRMaker.makeHeader(req_login, cookies, postBytes.Length);
+            HWRMaker.makeHeader(req_login, cookieCon, postBytes.Length);
 
             //POST数据
             try
@@ -121,17 +98,7 @@ namespace SNHTickets.Flow
             }
 
             loginSuccess = allCookiesFound;
-
-            if (this.loginSuccess)
-            {
-                LoginResultEventArgs e = new LoginResultEventArgs("S", cookies);
-                LoginComplete(e);
-            }
-            else
-            {
-                LoginResultEventArgs e = new LoginResultEventArgs("F", cookies);
-                LoginComplete(e);
-            }
+            return loginSuccess;
         }
     }
 }

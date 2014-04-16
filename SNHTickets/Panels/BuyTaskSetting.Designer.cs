@@ -77,6 +77,7 @@
             this.cb_model.Name = "cb_model";
             this.cb_model.Size = new System.Drawing.Size(121, 27);
             this.cb_model.TabIndex = 3;
+            this.cb_model.SelectedIndex = 0;
             // 
             // lb_accounts_num
             // 
