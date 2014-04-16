@@ -9,9 +9,9 @@ using System.Windows.Forms;
 
 namespace SNHTickets.Panels
 {
-    public partial class AccontsInfo : Form
+    public partial class AccountsInfo : Form
     {
-        public AccontsInfo()
+        public AccountsInfo()
         {
             InitializeComponent();
         }

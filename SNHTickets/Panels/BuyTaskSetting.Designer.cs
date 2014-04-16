@@ -71,12 +71,12 @@
             this.cb_model.Items.AddRange(new object[] {
             "捡漏模式",
             "定量模式",
-            "狂买模式"});
+            "买满模式",
+            "癫狂模式"});
             this.cb_model.Location = new System.Drawing.Point(95, 60);
             this.cb_model.Name = "cb_model";
             this.cb_model.Size = new System.Drawing.Size(121, 27);
             this.cb_model.TabIndex = 3;
-            this.cb_model.SelectedIndex = 0;
             // 
             // lb_accounts_num
             // 
@@ -129,10 +129,11 @@
             this.Controls.Add(this.tb_id);
             this.Controls.Add(this.lb_id);
             this.Font = new System.Drawing.Font("Microsoft YaHei", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.Name = "BuyTaskSetting";
             this.Text = "设置购买任务";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.BuyTaskSetting_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 

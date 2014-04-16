@@ -1,6 +1,6 @@
 ﻿namespace SNHTickets.Panels
 {
-    partial class AccontsInfo
+    partial class AccountsInfo
     {
         /// <summary>
         /// Required designer variable.

@@ -1,11 +1,12 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
 
 namespace SNHTickets.Util
 {
     class HWRMaker
     {
         //为一个Http请求构建Header和其他准备性的数据
-        public static void makeHeader(HttpWebRequest hwRequest, CookieContainer cookieCon, int length)
+        public static void makeHeader(HttpWebRequest hwRequest, CookieContainer cookieCon, Int32 length)
         {
             hwRequest.CookieContainer = cookieCon;
             hwRequest.Method = "POST";

@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
+using System.Xml;
 using SNHTickets.Flow;
 using SNHTickets.Panels;
 
@@ -9,10 +11,11 @@ namespace SNHTickets
     {
         OrderManager orderManager;
         LoginManager loginManager;
+        List<Account> accountsList;
 
         public SNHTickets()
         {
-            InitializeComponent();            
+            InitializeComponent();
         }
 
         private void SNHTickets_Load(object sender, EventArgs e)
@@ -22,6 +25,19 @@ namespace SNHTickets
 
             loginManager = new LoginManager();
             loginManager.LoginResultEvent += LogLoginResult;
+
+            accountsList = new List<Account>();
+            XmlDocument accountsXMLDoc = new XmlDocument();
+            accountsXMLDoc.Load(@"..\..\Properties\Accounts.xml");
+            foreach (XmlNode node in accountsXMLDoc.GetElementsByTagName("account"))
+            {
+                Account account = new Account();
+                account.username = node.SelectSingleNode("username").InnerText.ToString();
+                account.password = node.SelectSingleNode("password").InnerText.ToString();
+                account.level = node.SelectSingleNode("level").InnerText.ToString();
+                account.importance = Int32.Parse(node.SelectSingleNode("importance").InnerText);
+                accountsList.Add(account);
+            }
         }
 
         private void login(object sender, EventArgs e)
@@ -46,13 +62,15 @@ namespace SNHTickets
             rtb_success.ScrollToCaret();
         }
 
+        //添加帐户菜单
         private void AddAccoutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AccontsInfo aiForm = new AccontsInfo();
+            AccountsInfo aiForm = new AccountsInfo();
             aiForm.StartPosition = FormStartPosition.CenterParent;
             aiForm.ShowDialog();
         }
 
+        //参数设置菜单
         private void SettingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             GlobalSetting gsForm = new GlobalSetting();
@@ -60,6 +78,7 @@ namespace SNHTickets
             gsForm.ShowDialog();
         }
 
+        //购买任务菜单
         private void BuyTaskToolStripMenuItem_Click(object sender, EventArgs e)
         {
             BuyTaskSetting btsForm = new BuyTaskSetting();

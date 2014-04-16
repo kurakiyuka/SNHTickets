@@ -64,13 +64,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Flow\Account.cs" />
     <Compile Include="Flow\LoginManager.cs" />
     <Compile Include="Flow\OrderManager.cs" />
-    <Compile Include="Panels\AccontsInfo.cs">
+    <Compile Include="Panels\AccountsInfo.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Panels\AccontsInfo.Designer.cs">
-      <DependentUpon>AccontsInfo.cs</DependentUpon>
+    <Compile Include="Panels\AccountsInfo.Designer.cs">
+      <DependentUpon>AccountsInfo.cs</DependentUpon>
     </Compile>
     <Compile Include="Panels\BuyTaskSetting.cs">
       <SubType>Form</SubType>
@@ -95,8 +96,8 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Panels\AccontsInfo.resx">
-      <DependentUpon>AccontsInfo.cs</DependentUpon>
+    <EmbeddedResource Include="Panels\AccountsInfo.resx">
+      <DependentUpon>AccountsInfo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Panels\BuyTaskSetting.resx">
       <DependentUpon>BuyTaskSetting.cs</DependentUpon>
@@ -117,7 +118,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <None Include="app.config" />
-    <None Include="ClassDiagram1.cd" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -152,6 +152,9 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Properties\Accounts.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

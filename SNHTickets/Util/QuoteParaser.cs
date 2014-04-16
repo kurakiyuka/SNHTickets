@@ -1,16 +1,17 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Web;
 
 namespace SNHTickets.Util
 {
     class QuoteParaser
     {
-        public static string quoteParas(Dictionary<string, string> paras)
+        public static string quoteParas(Dictionary<String, String> paras)
         {
-            string quotedParas = "";
-            bool isFirst = true;
-            string val = "";
-            foreach (string para in paras.Keys)
+            String quotedParas = "";
+            Boolean isFirst = true;
+            String val = "";
+            foreach (String para in paras.Keys)
             {
                 if (paras.TryGetValue(para, out val))
                 {

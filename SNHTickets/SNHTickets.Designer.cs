@@ -175,7 +175,7 @@
             // BuyTaskToolStripMenuItem
             // 
             this.BuyTaskToolStripMenuItem.Name = "BuyTaskToolStripMenuItem";
-            this.BuyTaskToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
+            this.BuyTaskToolStripMenuItem.Size = new System.Drawing.Size(130, 24);
             this.BuyTaskToolStripMenuItem.Text = "抢票任务";
             this.BuyTaskToolStripMenuItem.Click += new System.EventHandler(this.BuyTaskToolStripMenuItem_Click);
             // 

@@ -23,6 +23,9 @@ namespace SNHTickets.Flow
         //编码器
         ASCIIEncoding encoding;
 
+        //登录是否成功
+        Boolean loginSuccess;
+
         public delegate void LoginResultEventHandler(Object sender, LoginResultEventArgs e);
         public event LoginResultEventHandler LoginResultEvent;
 
@@ -117,9 +120,9 @@ namespace SNHTickets.Flow
                 allCookiesFound = allCookiesFound && foundCurCookie;
             }
 
-            Boolean loginOK = allCookiesFound;
-            
-            if (loginOK)
+            loginSuccess = allCookiesFound;
+
+            if (this.loginSuccess)
             {
                 LoginResultEventArgs e = new LoginResultEventArgs("S", cookies);
                 LoginComplete(e);
