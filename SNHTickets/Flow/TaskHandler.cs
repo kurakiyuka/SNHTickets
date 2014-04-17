@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Threading;
+using System.Windows.Forms;
 
 namespace SNHTickets.Flow
 {
@@ -10,13 +10,16 @@ namespace SNHTickets.Flow
         String id;
         //抢票模式
         Int32 mode;
+        //抢票需要的帐号数量
+        Int32 accounts_num;
         //帐号列表
         List<Account> accountsList;
 
-        public TaskHandler(String id, Int32 mode, List<Account> accountsList)
+        public TaskHandler(String id, Int32 mode, Int32 accounts_num, List<Account> accountsList)
         {
             this.id = id;
             this.mode = mode;
+            this.accounts_num = accounts_num;
             this.accountsList = accountsList;
         }
 
@@ -25,10 +28,12 @@ namespace SNHTickets.Flow
 
         public class OrderResultEventArgs : EventArgs
         {
-            public readonly String resultStr;
-            public OrderResultEventArgs(String resultStr)
+            public readonly String account;
+            public readonly Boolean buyResult;
+            public OrderResultEventArgs(String account, Boolean buyResult)
             {
-                this.resultStr = resultStr;
+                this.account = account;
+                this.buyResult = buyResult;
             }
         }
 
@@ -42,23 +47,28 @@ namespace SNHTickets.Flow
 
         public void Start()
         {
-            if (mode == 1)
+            if (mode == 0)
             {
+                String mode0Username;
+                String mode0Password;
                 foreach (Account account in accountsList)
                 {
                     if (account.importance == 1)
                     {
-                        account.Login();
-                        account.Buy();
-                        OrderResultEventArgs e = new OrderResultEventArgs(account.username);
-                        OrderComplete(e);
-                        Thread.Sleep(1000);
+                        mode0Username = account.username;
                     }
                 }
             }
             else
             {
             }
+        }
+
+        private void delayTime(Int32 secend)
+        {
+            DateTime tempTime = DateTime.Now;
+            while (tempTime.AddSeconds(secend).CompareTo(DateTime.Now) > 0)
+            Application.DoEvents();
         }
     }
 }

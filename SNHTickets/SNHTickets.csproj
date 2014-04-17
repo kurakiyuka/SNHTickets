@@ -67,6 +67,7 @@
     <Compile Include="Flow\Account.cs" />
     <Compile Include="Flow\BuyManager.cs" />
     <Compile Include="Flow\LoginManager.cs" />
+    <Compile Include="Flow\Task.cs" />
     <Compile Include="Flow\TaskHandler.cs" />
     <Compile Include="Panels\AccountsInfo.cs">
       <SubType>Form</SubType>

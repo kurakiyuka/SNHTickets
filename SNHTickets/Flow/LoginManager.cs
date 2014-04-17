@@ -18,7 +18,7 @@ namespace SNHTickets.Flow
         Dictionary<String, String> dirPostData;
         //用于提交的数据字符串
         String strPostData;
-        //cookie容器
+        //cookies容器
         public CookieContainer cookieCon { get; set; }
         //编码器
         ASCIIEncoding encoding;
