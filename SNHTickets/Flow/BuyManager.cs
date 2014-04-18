@@ -20,7 +20,7 @@ namespace SNHTickets.Flow
          * type：区分是实物商品还是门票，这影响到后面提交订单时，shipping参数的值，-1表示门票，5表示实物
          * cookieCon：登录成功返回的cookie
          */
-        public Int32 Buy(String id, Int32 amount, Int32 type, CookieContainer cookieCon)
+        public Int32 Buy(String id, Int32 amount, String type, CookieContainer cookieCon)
         {
             //加入购物车
             HttpWebRequest req_buy = (HttpWebRequest)WebRequest.Create(snh_add_to_cart_url);

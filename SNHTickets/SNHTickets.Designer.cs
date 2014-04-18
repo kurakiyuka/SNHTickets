@@ -181,7 +181,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(9, 48);
+            this.label4.Location = new System.Drawing.Point(9, 37);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(74, 19);
             this.label4.TabIndex = 15;
@@ -190,10 +190,10 @@
             // rtb_tasklist
             // 
             this.rtb_tasklist.BackColor = System.Drawing.SystemColors.Window;
-            this.rtb_tasklist.Location = new System.Drawing.Point(13, 75);
+            this.rtb_tasklist.Location = new System.Drawing.Point(13, 63);
             this.rtb_tasklist.Name = "rtb_tasklist";
             this.rtb_tasklist.ReadOnly = true;
-            this.rtb_tasklist.Size = new System.Drawing.Size(377, 96);
+            this.rtb_tasklist.Size = new System.Drawing.Size(377, 110);
             this.rtb_tasklist.TabIndex = 16;
             this.rtb_tasklist.Text = "";
             // 

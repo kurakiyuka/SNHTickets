@@ -36,17 +36,10 @@ namespace SNHTickets.Flow
             }
         }
 
-        public Boolean Buy()
+        public Int32 Buy(String id, Int32 amount, String type, CookieContainer cookieCon)
         {
             BuyManager buyManager = new BuyManager();
-            if (buyManager.Buy("535", 1, -1, cookieCon) > 0)
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
+            return buyManager.Buy(id, amount, type, cookieCon);       
         }
     }
 }

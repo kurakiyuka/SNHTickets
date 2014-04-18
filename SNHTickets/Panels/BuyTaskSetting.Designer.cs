@@ -31,12 +31,15 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BuyTaskSetting));
             this.lb_id = new System.Windows.Forms.Label();
             this.tb_id = new System.Windows.Forms.TextBox();
-            this.lb_model = new System.Windows.Forms.Label();
-            this.cb_model = new System.Windows.Forms.ComboBox();
-            this.lb_accounts_num = new System.Windows.Forms.Label();
-            this.tb_accouts_num = new System.Windows.Forms.TextBox();
-            this.btn_add = new System.Windows.Forms.Button();
-            this.rtb_task = new System.Windows.Forms.RichTextBox();
+            this.lb_mode = new System.Windows.Forms.Label();
+            this.cb_mode = new System.Windows.Forms.ComboBox();
+            this.lb_accountsNum = new System.Windows.Forms.Label();
+            this.tb_accountsNum = new System.Windows.Forms.TextBox();
+            this.btn_addTask = new System.Windows.Forms.Button();
+            this.rtb_taskList = new System.Windows.Forms.RichTextBox();
+            this.cb_type = new System.Windows.Forms.ComboBox();
+            this.lb_type = new System.Windows.Forms.Label();
+            this.btn_fin = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lb_id
@@ -56,78 +59,111 @@
             this.tb_id.Size = new System.Drawing.Size(100, 25);
             this.tb_id.TabIndex = 1;
             // 
-            // lb_model
+            // lb_mode
             // 
-            this.lb_model.AutoSize = true;
-            this.lb_model.Location = new System.Drawing.Point(15, 60);
-            this.lb_model.Name = "lb_model";
-            this.lb_model.Size = new System.Drawing.Size(61, 19);
-            this.lb_model.TabIndex = 2;
-            this.lb_model.Text = "购买模式";
+            this.lb_mode.AutoSize = true;
+            this.lb_mode.Location = new System.Drawing.Point(15, 105);
+            this.lb_mode.Name = "lb_mode";
+            this.lb_mode.Size = new System.Drawing.Size(61, 19);
+            this.lb_mode.TabIndex = 4;
+            this.lb_mode.Text = "购买模式";
             // 
-            // cb_model
+            // cb_mode
             // 
-            this.cb_model.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cb_model.FormattingEnabled = true;
-            this.cb_model.Items.AddRange(new object[] {
+            this.cb_mode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cb_mode.FormattingEnabled = true;
+            this.cb_mode.Items.AddRange(new object[] {
             "捡漏模式",
             "定量模式",
             "买满模式",
             "癫狂模式"});
-            this.cb_model.Location = new System.Drawing.Point(95, 60);
-            this.cb_model.Name = "cb_model";
-            this.cb_model.Size = new System.Drawing.Size(121, 27);
-            this.cb_model.TabIndex = 3;
-            this.cb_model.SelectedIndex = 0;
+            this.cb_mode.Location = new System.Drawing.Point(95, 105);
+            this.cb_mode.Name = "cb_mode";
+            this.cb_mode.Size = new System.Drawing.Size(121, 27);
+            this.cb_mode.TabIndex = 5;
             // 
-            // lb_accounts_num
+            // lb_accountsNum
             // 
-            this.lb_accounts_num.AutoSize = true;
-            this.lb_accounts_num.Location = new System.Drawing.Point(15, 105);
-            this.lb_accounts_num.Name = "lb_accounts_num";
-            this.lb_accounts_num.Size = new System.Drawing.Size(48, 19);
-            this.lb_accounts_num.TabIndex = 4;
-            this.lb_accounts_num.Text = "帐号数";
+            this.lb_accountsNum.AutoSize = true;
+            this.lb_accountsNum.Location = new System.Drawing.Point(15, 150);
+            this.lb_accountsNum.Name = "lb_accountsNum";
+            this.lb_accountsNum.Size = new System.Drawing.Size(48, 19);
+            this.lb_accountsNum.TabIndex = 6;
+            this.lb_accountsNum.Text = "帐号数";
             // 
-            // tb_accouts_num
+            // tb_accountsNum
             // 
-            this.tb_accouts_num.Location = new System.Drawing.Point(95, 105);
-            this.tb_accouts_num.Name = "tb_accouts_num";
-            this.tb_accouts_num.Size = new System.Drawing.Size(100, 25);
-            this.tb_accouts_num.TabIndex = 5;
+            this.tb_accountsNum.Location = new System.Drawing.Point(95, 150);
+            this.tb_accountsNum.Name = "tb_accountsNum";
+            this.tb_accountsNum.Size = new System.Drawing.Size(100, 25);
+            this.tb_accountsNum.TabIndex = 7;
             // 
-            // btn_add
+            // btn_addTask
             // 
-            this.btn_add.Location = new System.Drawing.Point(69, 152);
-            this.btn_add.Name = "btn_add";
-            this.btn_add.Size = new System.Drawing.Size(75, 34);
-            this.btn_add.TabIndex = 6;
-            this.btn_add.Text = "添加";
-            this.btn_add.UseVisualStyleBackColor = true;
-            this.btn_add.Click += new System.EventHandler(this.btn_add_Click);
+            this.btn_addTask.Location = new System.Drawing.Point(20, 197);
+            this.btn_addTask.Name = "btn_addTask";
+            this.btn_addTask.Size = new System.Drawing.Size(75, 34);
+            this.btn_addTask.TabIndex = 9;
+            this.btn_addTask.Text = "添加";
+            this.btn_addTask.UseVisualStyleBackColor = true;
+            this.btn_addTask.Click += new System.EventHandler(this.btn_addTask_Click);
             // 
-            // rtb_task
+            // rtb_taskList
             // 
-            this.rtb_task.BackColor = System.Drawing.SystemColors.Info;
-            this.rtb_task.Location = new System.Drawing.Point(260, 15);
-            this.rtb_task.Name = "rtb_task";
-            this.rtb_task.ReadOnly = true;
-            this.rtb_task.Size = new System.Drawing.Size(312, 186);
-            this.rtb_task.TabIndex = 7;
-            this.rtb_task.Text = "";
+            this.rtb_taskList.BackColor = System.Drawing.SystemColors.Info;
+            this.rtb_taskList.Location = new System.Drawing.Point(234, 15);
+            this.rtb_taskList.Name = "rtb_taskList";
+            this.rtb_taskList.ReadOnly = true;
+            this.rtb_taskList.Size = new System.Drawing.Size(338, 216);
+            this.rtb_taskList.TabIndex = 8;
+            this.rtb_taskList.Text = "";
+            // 
+            // cb_type
+            // 
+            this.cb_type.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cb_type.FormattingEnabled = true;
+            this.cb_type.Items.AddRange(new object[] {
+            "门票",
+            "实物"});
+            this.cb_type.Location = new System.Drawing.Point(95, 60);
+            this.cb_type.Name = "cb_type";
+            this.cb_type.Size = new System.Drawing.Size(121, 27);
+            this.cb_type.TabIndex = 3;
+            // 
+            // lb_type
+            // 
+            this.lb_type.AutoSize = true;
+            this.lb_type.Location = new System.Drawing.Point(15, 60);
+            this.lb_type.Name = "lb_type";
+            this.lb_type.Size = new System.Drawing.Size(61, 19);
+            this.lb_type.TabIndex = 2;
+            this.lb_type.Text = "商品类型";
+            // 
+            // btn_fin
+            // 
+            this.btn_fin.Location = new System.Drawing.Point(120, 197);
+            this.btn_fin.Name = "btn_fin";
+            this.btn_fin.Size = new System.Drawing.Size(75, 34);
+            this.btn_fin.TabIndex = 10;
+            this.btn_fin.Text = "完成";
+            this.btn_fin.UseVisualStyleBackColor = true;
+            this.btn_fin.Click += new System.EventHandler(this.btn_fin_Click);
             // 
             // BuyTaskSetting
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(584, 213);
-            this.Controls.Add(this.rtb_task);
-            this.Controls.Add(this.btn_add);
-            this.Controls.Add(this.tb_accouts_num);
-            this.Controls.Add(this.lb_accounts_num);
-            this.Controls.Add(this.cb_model);
-            this.Controls.Add(this.lb_model);
+            this.ClientSize = new System.Drawing.Size(584, 246);
+            this.Controls.Add(this.btn_fin);
+            this.Controls.Add(this.cb_type);
+            this.Controls.Add(this.lb_type);
+            this.Controls.Add(this.rtb_taskList);
+            this.Controls.Add(this.btn_addTask);
+            this.Controls.Add(this.tb_accountsNum);
+            this.Controls.Add(this.lb_accountsNum);
+            this.Controls.Add(this.cb_mode);
+            this.Controls.Add(this.lb_mode);
             this.Controls.Add(this.tb_id);
             this.Controls.Add(this.lb_id);
             this.Font = new System.Drawing.Font("Microsoft YaHei", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -147,11 +183,14 @@
 
         private System.Windows.Forms.Label lb_id;
         private System.Windows.Forms.TextBox tb_id;
-        private System.Windows.Forms.Label lb_model;
-        private System.Windows.Forms.ComboBox cb_model;
-        private System.Windows.Forms.Label lb_accounts_num;
-        private System.Windows.Forms.TextBox tb_accouts_num;
-        private System.Windows.Forms.Button btn_add;
-        private System.Windows.Forms.RichTextBox rtb_task;
+        private System.Windows.Forms.Label lb_mode;
+        private System.Windows.Forms.ComboBox cb_mode;
+        private System.Windows.Forms.Label lb_accountsNum;
+        private System.Windows.Forms.TextBox tb_accountsNum;
+        private System.Windows.Forms.Button btn_addTask;
+        private System.Windows.Forms.RichTextBox rtb_taskList;
+        private System.Windows.Forms.ComboBox cb_type;
+        private System.Windows.Forms.Label lb_type;
+        private System.Windows.Forms.Button btn_fin;
     }
 }

@@ -12,6 +12,7 @@ namespace SNHTickets
     {
         public List<Account> accountsList;
         public List<ArrayList> taskList;
+        Task th;
 
         public SNHTickets()
         {
@@ -41,7 +42,8 @@ namespace SNHTickets
 
             foreach (ArrayList task in taskList)
             {
-                Task th = new Task(task[0].ToString(), Int32.Parse(task[1].ToString()), Int32.Parse(task[2].ToString()), accountsList);
+                //arrayList的内容顺序是：商品id，商品类型（门票、实物），模式编号，帐号个数，商品标题，模式全名
+                th = new Task(task[0].ToString(), task[1].ToString(), Int32.Parse(task[2].ToString()), Int32.Parse(task[3].ToString()), accountsList);
                 th.OrderResultEvent += onOrderResultEvent;
                 th.Start();
             }
@@ -62,7 +64,7 @@ namespace SNHTickets
 
         private void btn_stop_Click(object sender, EventArgs e)
         {
-
+            th.status = false;
         }
 
         private void logToProcess(String msg)
@@ -99,7 +101,8 @@ namespace SNHTickets
             btsForm.ShowDialog();
             foreach (ArrayList task in taskList)
             {
-                rtb_tasklist.Text += task[0].ToString() + ' ' + task[1].ToString() + ' ' + task[2].ToString() + '\n';
+                //arrayList的内容顺序是：商品id，商品类型（门票、实物），模式编号，帐号个数，商品标题，模式全名
+                rtb_tasklist.Text += task[4].ToString() + ' ' + task[5].ToString() + ' ' + task[3].ToString() + "个帐号抢" + '\n';
             }
         }
     }
