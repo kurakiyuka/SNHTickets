@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BuyTaskSetting));
             this.lb_id = new System.Windows.Forms.Label();
             this.tb_id = new System.Windows.Forms.TextBox();
             this.lb_model = new System.Windows.Forms.Label();
@@ -130,9 +131,11 @@
             this.Controls.Add(this.tb_id);
             this.Controls.Add(this.lb_id);
             this.Font = new System.Drawing.Font("Microsoft YaHei", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.Name = "BuyTaskSetting";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "设置购买任务";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.BuyTaskSetting_FormClosing);
             this.ResumeLayout(false);

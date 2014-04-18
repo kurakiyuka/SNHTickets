@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using System.Xml;
@@ -10,7 +11,7 @@ namespace SNHTickets
     public partial class SNHTickets : Form
     {
         public List<Account> accountsList;
-        public List<Task> taskList;
+        public List<ArrayList> taskList;
 
         public SNHTickets()
         {
@@ -19,6 +20,7 @@ namespace SNHTickets
 
         private void SNHTickets_Load(object sender, EventArgs e)
         {
+            //读取帐号列表，这块暂时写死在XML文件里，以后再做可设置
             accountsList = new List<Account>();
             XmlDocument accountsXMLDoc = new XmlDocument();
             accountsXMLDoc.Load(@"..\..\Properties\Accounts.xml");
@@ -31,17 +33,47 @@ namespace SNHTickets
 
         private void buy_loop(object sender, EventArgs e)
         {
-            foreach (Task task in taskList)
+            if (taskList == null)
             {
-                TaskHandler th = new TaskHandler(task.id, task.model, task.accounts_num, accountsList);
-                th.OrderResultEvent += LogToRight;
+                MessageBox.Show("请先设置任务", "提示");
+                return;
+            }
+
+            foreach (ArrayList task in taskList)
+            {
+                Task th = new Task(task[0].ToString(), Int32.Parse(task[1].ToString()), Int32.Parse(task[2].ToString()), accountsList);
+                th.OrderResultEvent += onOrderResultEvent;
                 th.Start();
             }
         }
 
-        private void LogToRight(Object sender, TaskHandler.OrderResultEventArgs e)
+        private void onOrderResultEvent(Object sender, Task.OrderResultEventArgs e)
         {
-            rtb_success.AppendText(DateTime.Now.ToString() + ' ' + e.account + ' ' + e.buyResult.ToString() + '\n');
+            if (e.errorCode != 0)
+            {
+                logToProcess(DateTime.Now.ToString() + ' ' + e.account + ' ' + e.errorMessage.ToString());
+            }
+            else
+            {
+                logToSuccess(DateTime.Now.ToString() + ' ' + e.account + ' ' + e.errorMessage.ToString());
+            }
+        }
+
+
+        private void btn_stop_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void logToProcess(String msg)
+        {
+            rtb_process.AppendText(msg + '\n');
+            rtb_process.ScrollToCaret();
+        }
+
+        private void logToSuccess(String msg)
+        {
+            rtb_success.AppendText(msg + '\n');
             rtb_success.ScrollToCaret();
         }
 
@@ -49,7 +81,6 @@ namespace SNHTickets
         private void AddAccoutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AccountsInfo aiForm = new AccountsInfo();
-            aiForm.StartPosition = FormStartPosition.CenterParent;
             aiForm.ShowDialog();
         }
 
@@ -57,7 +88,6 @@ namespace SNHTickets
         private void SettingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             GlobalSetting gsForm = new GlobalSetting();
-            gsForm.StartPosition = FormStartPosition.CenterParent;
             gsForm.ShowDialog();
         }
 
@@ -66,11 +96,10 @@ namespace SNHTickets
         {
             BuyTaskSetting btsForm = new BuyTaskSetting();
             btsForm.Owner = this;
-            btsForm.StartPosition = FormStartPosition.CenterParent;
             btsForm.ShowDialog();
-            foreach (Task task in taskList)
+            foreach (ArrayList task in taskList)
             {
-                rtb_tasklist.Text += task.id + ' ' + task.model.ToString() + ' ' + task.accounts_num.ToString() + '\n';
+                rtb_tasklist.Text += task[0].ToString() + ' ' + task[1].ToString() + ' ' + task[2].ToString() + '\n';
             }
         }
     }

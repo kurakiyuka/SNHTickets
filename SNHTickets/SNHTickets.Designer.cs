@@ -206,6 +206,7 @@
             this.btn_stop.TabIndex = 17;
             this.btn_stop.Text = "中止";
             this.btn_stop.UseVisualStyleBackColor = true;
+            this.btn_stop.Click += new System.EventHandler(this.btn_stop_Click);
             // 
             // SNHTickets
             // 
@@ -232,7 +233,7 @@
             this.MaximizeBox = false;
             this.Name = "SNHTickets";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "SNH48刷票器";
+            this.Text = "SNH48抢票器";
             this.Load += new System.EventHandler(this.SNHTickets_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();

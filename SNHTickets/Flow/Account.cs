@@ -6,7 +6,7 @@ namespace SNHTickets.Flow
     public class Account
     {
         public String username { get; set; }
-        private String password;
+        public String password { get; set; }
         public String level { get; set; }
         public Int32 importance { get; set; }
         public CookieContainer cookieCon { get; set; }

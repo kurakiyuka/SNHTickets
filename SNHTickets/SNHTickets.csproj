@@ -68,7 +68,6 @@
     <Compile Include="Flow\BuyManager.cs" />
     <Compile Include="Flow\LoginManager.cs" />
     <Compile Include="Flow\Task.cs" />
-    <Compile Include="Flow\TaskHandler.cs" />
     <Compile Include="Panels\AccountsInfo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -98,6 +97,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Util\SNHHttpRequest.cs" />
     <EmbeddedResource Include="Panels\AccountsInfo.resx">
       <DependentUpon>AccountsInfo.cs</DependentUpon>
     </EmbeddedResource>

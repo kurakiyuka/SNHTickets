@@ -1,23 +1,27 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using SNHTickets.Flow;
 
 namespace SNHTickets.Panels
 {
     public partial class BuyTaskSetting : Form
     {
-        List<Task> taskList;
+        List<ArrayList> taskList;
 
         public BuyTaskSetting()
         {
             InitializeComponent();
-            taskList = new List<Task>();
+            taskList = new List<ArrayList>();
         }
 
         private void btn_add_Click(object sender, EventArgs e)
         {
-            taskList.Add(new Task(tb_id.Text, cb_model.SelectedIndex, Int32.Parse(tb_accouts_num.Text)));
+            ArrayList arrayList = new ArrayList();
+            arrayList.Add(tb_id.Text);
+            arrayList.Add(cb_model.SelectedIndex);
+            arrayList.Add(Int32.Parse(tb_accouts_num.Text));
+            taskList.Add(arrayList);
             rtb_task.AppendText(tb_id.Text + ' ' + cb_model.SelectedItem.ToString() + ' ' + tb_accouts_num.Text + '\n');
         }
 
