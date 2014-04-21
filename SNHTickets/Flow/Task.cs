@@ -104,8 +104,8 @@ namespace SNHTickets.Flow
                                 errorCode = account.Buy(id, 5, type, account.cookieCon);
                                 OrderResultEventArgs ev = new OrderResultEventArgs(account.username, errorCode, errorCodeList[errorCode]);
                                 OrderComplete(ev);
-                                delayTime(2);
                             }
+                            //这里有BUG
                             accountsNum--;
                             if (accountsNum > 0)
                             {
@@ -115,6 +115,28 @@ namespace SNHTickets.Flow
                             {
                                 return;
                             }
+                        }
+                    }
+                }
+            }
+            //买满模式，一般用在开票的时候，指定一定数量的大号参与购买，一张一张买，买到上限为止
+            else if (mode == 2)
+            {
+                foreach (Account account in accountsList)
+                {
+                    if (account.importance > 100 && status)
+                    {
+                        if (account.Login())
+                        {
+                            Int32 errorCode = 0;
+                            //一次性抢限购数量上限的数量
+                            while (errorCode != 888 && status)
+                            {
+                                errorCode = account.Buy(id, 1, type, account.cookieCon);
+                                OrderResultEventArgs ev = new OrderResultEventArgs(account.username, errorCode, errorCodeList[errorCode]);
+                                OrderComplete(ev);
+                            }
+                            return;
                         }
                     }
                 }
