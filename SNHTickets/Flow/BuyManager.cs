@@ -43,6 +43,7 @@ namespace SNHTickets.Flow
             /* 
              * 错误代码类型
              * 888：已经购买达到上限
+             * 3：商品已经下架
              * 2：库存不足
              * 0：加入购物车成功
              */
@@ -74,7 +75,7 @@ namespace SNHTickets.Flow
                 }
                 else
                 {
-                    //自定义的一个errorCode，表示下单不成功
+                    //自定义的一个errorCode，表示因为其他原因而加入购物车成功，但是提交订单不成功的
                     errorCode = 1000;
                     return errorCode;
                 }

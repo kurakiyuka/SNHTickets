@@ -46,6 +46,8 @@
             this.label4 = new System.Windows.Forms.Label();
             this.rtb_tasklist = new System.Windows.Forms.RichTextBox();
             this.btn_stop = new System.Windows.Forms.Button();
+            this.UsageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ChangeContactToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -90,6 +92,7 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.AccountsToolStripMenuItem,
             this.TaskToolStripMenuItem,
+            this.UsageToolStripMenuItem,
             this.SettingsToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
@@ -130,7 +133,7 @@
             // BuyTaskToolStripMenuItem
             // 
             this.BuyTaskToolStripMenuItem.Name = "BuyTaskToolStripMenuItem";
-            this.BuyTaskToolStripMenuItem.Size = new System.Drawing.Size(130, 24);
+            this.BuyTaskToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
             this.BuyTaskToolStripMenuItem.Text = "抢票任务";
             this.BuyTaskToolStripMenuItem.Click += new System.EventHandler(this.BuyTaskToolStripMenuItem_Click);
             // 
@@ -208,6 +211,20 @@
             this.btn_stop.UseVisualStyleBackColor = true;
             this.btn_stop.Click += new System.EventHandler(this.btn_stop_Click);
             // 
+            // UsageToolStripMenuItem
+            // 
+            this.UsageToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ChangeContactToolStripMenuItem});
+            this.UsageToolStripMenuItem.Name = "UsageToolStripMenuItem";
+            this.UsageToolStripMenuItem.Size = new System.Drawing.Size(47, 23);
+            this.UsageToolStripMenuItem.Text = "工具";
+            // 
+            // ChangeContactToolStripMenuItem
+            // 
+            this.ChangeContactToolStripMenuItem.Name = "ChangeContactToolStripMenuItem";
+            this.ChangeContactToolStripMenuItem.Size = new System.Drawing.Size(169, 24);
+            this.ChangeContactToolStripMenuItem.Text = "修改订单联系人";
+            // 
             // SNHTickets
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
@@ -261,6 +278,8 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.RichTextBox rtb_tasklist;
         private System.Windows.Forms.Button btn_stop;
+        private System.Windows.Forms.ToolStripMenuItem UsageToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ChangeContactToolStripMenuItem;
     }
 }
 

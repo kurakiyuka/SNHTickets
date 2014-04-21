@@ -24,16 +24,17 @@ namespace SNHTickets.Flow
         {
             { 1000, "购买失败" },
             { 888, "购买达到上限" },
+            { 3, "商品下架" },
             { 2, "库存不足" },
             { 0, "成功" }
         };
 
-        public Task(String id, String type, Int32 mode, Int32 accouts_num, List<Account> accountsList, Boolean status = false)
+        public Task(String id, String type, Int32 mode, Int32 accountsNum, List<Account> accountsList, Boolean status = false)
         {
             this.id = id;
             this.type = type;
             this.mode = mode;
-            this.accountsNum = accouts_num;
+            this.accountsNum = accountsNum;
             this.accountsList = accountsList;
         }
 
@@ -64,6 +65,7 @@ namespace SNHTickets.Flow
         public void Start()
         {
             status = true;
+            //捡漏模式，只有小号参与捡漏，而且每次固定只使用一个号，一张一张抢
             if (mode == 0)
             {
                 foreach (Account account in accountsList)
@@ -73,6 +75,7 @@ namespace SNHTickets.Flow
                         if (account.Login())
                         {
                             Int32 errorCode = 0;
+                            //只要不是帐号已经买满了数量，就循环不断的买
                             while (errorCode != 888 && status)
                             {
                                 errorCode = account.Buy(id, 1, type, account.cookieCon);
@@ -81,6 +84,37 @@ namespace SNHTickets.Flow
                                 delayTime(2);
                             }
                             continue;
+                        }
+                    }
+                }
+            }
+            //定量模式，一般用在开票的时候，指定一定数量的小号参与购买，限购多少就买多少
+            else if (mode == 1)
+            {
+                foreach (Account account in accountsList)
+                {
+                    if (account.importance == 1 && status)
+                    {
+                        if (account.Login())
+                        {
+                            Int32 errorCode = 0;
+                            //一次性抢限购数量上限的数量
+                            while (errorCode != 888 && status)
+                            {
+                                errorCode = account.Buy(id, 5, type, account.cookieCon);
+                                OrderResultEventArgs ev = new OrderResultEventArgs(account.username, errorCode, errorCodeList[errorCode]);
+                                OrderComplete(ev);
+                                delayTime(2);
+                            }
+                            accountsNum--;
+                            if (accountsNum > 0)
+                            {
+                                continue;
+                            }
+                            else
+                            {
+                                return;
+                            }
                         }
                     }
                 }

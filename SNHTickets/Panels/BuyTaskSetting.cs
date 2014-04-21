@@ -18,7 +18,7 @@ namespace SNHTickets.Panels
             taskList = new List<ArrayList>();
         }
 
-        //点击“添加”后，先根据id去取商品的标题，并且此时不能再进行添加
+        //点击“添加”后，先根据id去取商品的标题，过程是异步的，故此时禁止再次添加
         private void btn_addTask_Click(object sender, EventArgs e)
         {
             btn_addTask.Enabled = false;
@@ -35,6 +35,10 @@ namespace SNHTickets.Panels
             if (e.title.IndexOf("星梦剧院") < 0)
             {
                 cb_type.SelectedIndex = 1;
+            }
+            else
+            {
+                cb_type.SelectedIndex = 0;
             }
             arrayList.Add(tb_id.Text);
             //选择门票，则type为-1，选择实物，则type为5，这个type在购物时影响所选择的运送方式，-1表示无需物流，5表示快递
