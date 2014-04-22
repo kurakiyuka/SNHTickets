@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using SNHTickets.Flow;
 using SNHTickets.Util;
 
 namespace SNHTickets.Panels
@@ -9,13 +10,27 @@ namespace SNHTickets.Panels
     public partial class BuyTaskSetting : Form
     {
         List<ArrayList> taskList;
+        public List<Account> accountsList { get; set; }
 
         public BuyTaskSetting()
         {
             InitializeComponent();
             cb_mode.SelectedIndex = 0;
-            cb_type.SelectedIndex = 0;
+            cb_type.SelectedIndex = 0;           
             taskList = new List<ArrayList>();
+        }
+
+        private void BuyTaskSetting_Load(object sender, EventArgs e)
+        {
+            //在帐号列表中只展示各个大号，所有小号合并显示为“小号们”，因为抢票的时候用哪个大号去抢是有要求的，而哪个小号去抢是无所谓的
+            foreach (Account ac in accountsList)
+            {
+                if (ac.importance > 1)
+                {
+                    cb_accounts.Items.Add(ac.username);
+                }              
+            }
+            cb_accounts.Items.Add("小号们");
         }
 
         //点击“添加”后，先根据id去取商品的标题，过程是异步的，故此时禁止再次添加
@@ -70,6 +85,6 @@ namespace SNHTickets.Panels
         {
             SNHTickets form = (SNHTickets)this.Owner;
             form.taskList = taskList;
-        }      
+        }    
     }
 }

@@ -34,7 +34,7 @@ namespace SNHTickets
 
         private void buy_loop(object sender, EventArgs e)
         {
-            if (taskList == null)
+            if (taskList == null || taskList.Count == 0)
             {
                 MessageBox.Show("请先设置任务", "提示");
                 return;
@@ -79,26 +79,27 @@ namespace SNHTickets
             rtb_success.ScrollToCaret();
         }
 
-        //添加帐户菜单
+        //添加帐户对话框
         private void AddAccoutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AccountsInfo aiForm = new AccountsInfo();
             aiForm.ShowDialog();
         }
 
-        //参数设置菜单
+        //参数设置对话框
         private void SettingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             GlobalSetting gsForm = new GlobalSetting();
             gsForm.ShowDialog();
         }
 
-        //购买任务菜单
+        //购买任务对话框
         private void BuyTaskToolStripMenuItem_Click(object sender, EventArgs e)
         {
             BuyTaskSetting btsForm = new BuyTaskSetting();
+            btsForm.accountsList = accountsList;
             btsForm.Owner = this;
-            btsForm.ShowDialog();
+            btsForm.ShowDialog();          
             foreach (ArrayList task in taskList)
             {
                 //arrayList的内容顺序是：商品id，商品类型（门票、实物），模式编号，帐号个数，商品标题，模式全名

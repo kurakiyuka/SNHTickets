@@ -40,6 +40,8 @@
             this.cb_type = new System.Windows.Forms.ComboBox();
             this.lb_type = new System.Windows.Forms.Label();
             this.btn_fin = new System.Windows.Forms.Button();
+            this.lb_account = new System.Windows.Forms.Label();
+            this.cb_accounts = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // lb_id
@@ -73,10 +75,10 @@
             this.cb_mode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cb_mode.FormattingEnabled = true;
             this.cb_mode.Items.AddRange(new object[] {
-            "捡漏模式",
-            "定量模式",
-            "买满模式",
-            "癫狂模式"});
+            "捡漏",
+            "小号定量购买",
+            "大号购买",
+            "大小号一起买"});
             this.cb_mode.Location = new System.Drawing.Point(95, 105);
             this.cb_mode.Name = "cb_mode";
             this.cb_mode.Size = new System.Drawing.Size(121, 27);
@@ -100,7 +102,7 @@
             // 
             // btn_addTask
             // 
-            this.btn_addTask.Location = new System.Drawing.Point(20, 197);
+            this.btn_addTask.Location = new System.Drawing.Point(141, 194);
             this.btn_addTask.Name = "btn_addTask";
             this.btn_addTask.Size = new System.Drawing.Size(75, 34);
             this.btn_addTask.TabIndex = 9;
@@ -111,10 +113,10 @@
             // rtb_taskList
             // 
             this.rtb_taskList.BackColor = System.Drawing.SystemColors.Info;
-            this.rtb_taskList.Location = new System.Drawing.Point(234, 15);
+            this.rtb_taskList.Location = new System.Drawing.Point(19, 246);
             this.rtb_taskList.Name = "rtb_taskList";
             this.rtb_taskList.ReadOnly = true;
-            this.rtb_taskList.Size = new System.Drawing.Size(338, 216);
+            this.rtb_taskList.Size = new System.Drawing.Size(446, 216);
             this.rtb_taskList.TabIndex = 8;
             this.rtb_taskList.Text = "";
             // 
@@ -141,7 +143,7 @@
             // 
             // btn_fin
             // 
-            this.btn_fin.Location = new System.Drawing.Point(120, 197);
+            this.btn_fin.Location = new System.Drawing.Point(244, 194);
             this.btn_fin.Name = "btn_fin";
             this.btn_fin.Size = new System.Drawing.Size(75, 34);
             this.btn_fin.TabIndex = 10;
@@ -149,12 +151,32 @@
             this.btn_fin.UseVisualStyleBackColor = true;
             this.btn_fin.Click += new System.EventHandler(this.btn_fin_Click);
             // 
+            // lb_account
+            // 
+            this.lb_account.AutoSize = true;
+            this.lb_account.Location = new System.Drawing.Point(240, 105);
+            this.lb_account.Name = "lb_account";
+            this.lb_account.Size = new System.Drawing.Size(61, 19);
+            this.lb_account.TabIndex = 11;
+            this.lb_account.Text = "购买帐号";
+            // 
+            // cb_accounts
+            // 
+            this.cb_accounts.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cb_accounts.FormattingEnabled = true;
+            this.cb_accounts.Location = new System.Drawing.Point(320, 105);
+            this.cb_accounts.Name = "cb_accounts";
+            this.cb_accounts.Size = new System.Drawing.Size(121, 27);
+            this.cb_accounts.TabIndex = 12;
+            // 
             // BuyTaskSetting
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(584, 246);
+            this.ClientSize = new System.Drawing.Size(483, 476);
+            this.Controls.Add(this.cb_accounts);
+            this.Controls.Add(this.lb_account);
             this.Controls.Add(this.btn_fin);
             this.Controls.Add(this.cb_type);
             this.Controls.Add(this.lb_type);
@@ -174,6 +196,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "设置购买任务";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.BuyTaskSetting_FormClosing);
+            this.Load += new System.EventHandler(this.BuyTaskSetting_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -192,5 +215,7 @@
         private System.Windows.Forms.ComboBox cb_type;
         private System.Windows.Forms.Label lb_type;
         private System.Windows.Forms.Button btn_fin;
+        private System.Windows.Forms.Label lb_account;
+        private System.Windows.Forms.ComboBox cb_accounts;
     }
 }
