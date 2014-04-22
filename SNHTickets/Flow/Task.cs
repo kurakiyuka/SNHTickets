@@ -81,7 +81,7 @@ namespace SNHTickets.Flow
                                 errorCode = account.Buy(id, 1, type, account.cookieCon);
                                 OrderResultEventArgs ev = new OrderResultEventArgs(account.username, errorCode, errorCodeList[errorCode]);
                                 OrderComplete(ev);
-                                delayTime(2);
+                                delayTime(1);
                             }
                             continue;
                         }
@@ -104,6 +104,7 @@ namespace SNHTickets.Flow
                                 errorCode = account.Buy(id, 5, type, account.cookieCon);
                                 OrderResultEventArgs ev = new OrderResultEventArgs(account.username, errorCode, errorCodeList[errorCode]);
                                 OrderComplete(ev);
+                                delayTime(1);
                             }
                             //这里有BUG
                             accountsNum--;
