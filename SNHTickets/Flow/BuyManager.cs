@@ -14,6 +14,9 @@ namespace SNHTickets.Flow
         //最后提交订单的URL
         String snh_commit_url = "http://shop.snh48.com/flow.php?step=done";
 
+        Int32 errorCode;
+        String resultHTML = null;
+
         /*
          * id：商品id
          * amount：一次性购买的商品数量
@@ -30,18 +33,38 @@ namespace SNHTickets.Flow
 
             HWRMaker.makeHeader(req_buy, cookieCon, postBytes.Length);
 
-            Stream stream_buy = req_buy.GetRequestStream();
-            stream_buy.Write(postBytes, 0, postBytes.Length);
-            stream_buy.Close();
+            try
+            {
+                Stream stream_buy = req_buy.GetRequestStream();
+                stream_buy.Write(postBytes, 0, postBytes.Length);
+                stream_buy.Close();
+            }
+            catch (Exception ex)
+            {
+                ex.ToString();
+                //自定义的一个errorCode，表示网络错误
+                return 1001;
+            }
 
-            HttpWebResponse resp_buy = (HttpWebResponse)req_buy.GetResponse();
-            StreamReader sr = new StreamReader(resp_buy.GetResponseStream());
-            //把商品加入购物车的返回值中有形如"error":xxx的内容
-            String resultHTML = sr.ReadToEnd();
+            try
+            {
+                HttpWebResponse resp_buy = (HttpWebResponse)req_buy.GetResponse();
+                StreamReader sr = new StreamReader(resp_buy.GetResponseStream());
+                //把商品加入购物车的返回值中有形如"error":xxx的内容
+                resultHTML = sr.ReadToEnd();
+            }
+            catch (Exception ex)
+            {
+                ex.ToString();
+                return 1001;
+            }
+
             //获取错误代码
-            Int32 errorCode = Int32.Parse(resultHTML.Substring(resultHTML.IndexOf(":") + 1, resultHTML.IndexOf(",") - resultHTML.IndexOf(":") - 1));
+            errorCode = Int32.Parse(resultHTML.Substring(resultHTML.IndexOf(":") + 1, resultHTML.IndexOf(",") - resultHTML.IndexOf(":") - 1));
+            
             /* 
              * 错误代码类型
+             * 999：未登录
              * 888：已经购买达到上限
              * 3：商品已经下架
              * 2：库存不足
@@ -60,14 +83,31 @@ namespace SNHTickets.Flow
 
                 HWRMaker.makeHeader(req_buy, cookieCon, postBytes.Length);
 
-                stream_buy = req_buy.GetRequestStream();
-                stream_buy.Write(postBytes, 0, postBytes.Length);
-                stream_buy.Close();
+                try
+                {
+                    Stream stream_buy = req_buy.GetRequestStream();
+                    stream_buy.Write(postBytes, 0, postBytes.Length);
+                    stream_buy.Close();
+                }
+                catch (Exception ex)
+                {
+                    ex.ToString();
+                    return 1001;
+                }
 
-                resp_buy = (HttpWebResponse)req_buy.GetResponse();
-                sr = new StreamReader(resp_buy.GetResponseStream());
-                //提交订单后的返回值是一个网页
-                resultHTML = sr.ReadToEnd();
+                try
+                {
+                    HttpWebResponse resp_buy = (HttpWebResponse)req_buy.GetResponse();
+                    StreamReader sr = new StreamReader(resp_buy.GetResponseStream());
+                    //提交订单后的返回值是一个网页
+                    resultHTML = sr.ReadToEnd();
+                }
+                catch (Exception ex)
+                {
+                    ex.ToString();
+                    return 1001;
+                }
+                
                 //如果网页里面有“您的订单已提交成功，请记住您的订单号”文字，说明订单提交成功
                 if (resultHTML.IndexOf("您的订单已提交成功") > 0)
                 {

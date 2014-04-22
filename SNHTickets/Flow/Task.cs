@@ -22,7 +22,9 @@ namespace SNHTickets.Flow
         //错误代码列表
         Dictionary<Int32, String> errorCodeList = new Dictionary<int, string>()
         {
+            { 1001, "网络错误" },
             { 1000, "购买失败" },
+            { 999, "未登录"},
             { 888, "购买达到上限" },
             { 3, "商品下架" },
             { 2, "库存不足" },
@@ -81,7 +83,7 @@ namespace SNHTickets.Flow
                                 errorCode = account.Buy(id, 1, type, account.cookieCon);
                                 OrderResultEventArgs ev = new OrderResultEventArgs(account.username, errorCode, errorCodeList[errorCode]);
                                 OrderComplete(ev);
-                                delayTime(1);
+                                delayTime(1000);
                             }
                             continue;
                         }
@@ -104,7 +106,7 @@ namespace SNHTickets.Flow
                                 errorCode = account.Buy(id, 5, type, account.cookieCon);
                                 OrderResultEventArgs ev = new OrderResultEventArgs(account.username, errorCode, errorCodeList[errorCode]);
                                 OrderComplete(ev);
-                                delayTime(1);
+                                delayTime(1000);
                             }
                             //这里有BUG
                             accountsNum--;
@@ -136,6 +138,7 @@ namespace SNHTickets.Flow
                                 errorCode = account.Buy(id, 1, type, account.cookieCon);
                                 OrderResultEventArgs ev = new OrderResultEventArgs(account.username, errorCode, errorCodeList[errorCode]);
                                 OrderComplete(ev);
+                                delayTime(1000);
                             }
                             return;
                         }
@@ -148,10 +151,10 @@ namespace SNHTickets.Flow
             }
         }
 
-        private void delayTime(Int32 secend)
+        private void delayTime(Int32 millisecends)
         {
             DateTime tempTime = DateTime.Now;
-            while (tempTime.AddSeconds(secend).CompareTo(DateTime.Now) > 0)
+            while (tempTime.AddMilliseconds(millisecends).CompareTo(DateTime.Now) > 0)
             {
                 Application.DoEvents();
             }
