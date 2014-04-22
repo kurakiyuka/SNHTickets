@@ -12,6 +12,8 @@ namespace SNHTickets.Flow
         private String type;
         //抢票模式
         private Int32 mode;
+        //抢票的帐号
+        private String accountUserName;
         //抢票需要的帐号数量
         private Int32 accountsNum;
         //帐号列表
@@ -31,11 +33,12 @@ namespace SNHTickets.Flow
             { 0, "成功" }
         };
 
-        public Task(String id, String type, Int32 mode, Int32 accountsNum, List<Account> accountsList, Boolean status = false)
+        public Task(String id, String type, Int32 mode, String accountUserName, Int32 accountsNum, List<Account> accountsList, Boolean status = false)
         {
             this.id = id;
             this.type = type;
             this.mode = mode;
+            this.accountUserName = accountUserName;
             this.accountsNum = accountsNum;
             this.accountsList = accountsList;
         }
@@ -67,87 +70,88 @@ namespace SNHTickets.Flow
         public void Start()
         {
             status = true;
-            //捡漏模式，只有小号参与捡漏，而且每次固定只使用一个号，一张一张抢
-            if (mode == 0)
+            switch (mode)
             {
-                foreach (Account account in accountsList)
-                {
-                    if (account.importance == 1 && status)
+                case 0:
+                    //捡漏模式，只有小号参与捡漏，而且每次固定只使用一个号，一张一张抢
+                    foreach (Account account in accountsList)
                     {
-                        if (account.Login())
+                        if (account.importance == 1 && status)
                         {
-                            Int32 errorCode = 0;
-                            //只要不是帐号已经买满了数量，就循环不断的买
-                            while (errorCode != 888 && status)
+                            if (account.Login())
                             {
-                                errorCode = account.Buy(id, 1, type, account.cookieCon);
-                                OrderResultEventArgs ev = new OrderResultEventArgs(account.username, errorCode, errorCodeList[errorCode]);
-                                OrderComplete(ev);
-                                delayTime(1000);
-                            }
-                            continue;
-                        }
-                    }
-                }
-            }
-            //定量模式，一般用在开票的时候，指定一定数量的小号参与购买，限购多少就买多少
-            else if (mode == 1)
-            {
-                foreach (Account account in accountsList)
-                {
-                    if (account.importance == 1 && status)
-                    {
-                        if (account.Login())
-                        {
-                            Int32 errorCode = 0;
-                            //一次性抢限购数量上限的数量
-                            while (errorCode != 888 && status)
-                            {
-                                errorCode = account.Buy(id, 5, type, account.cookieCon);
-                                OrderResultEventArgs ev = new OrderResultEventArgs(account.username, errorCode, errorCodeList[errorCode]);
-                                OrderComplete(ev);
-                                delayTime(1000);
-                            }
-                            //这里有BUG
-                            accountsNum--;
-                            if (accountsNum > 0)
-                            {
+                                Int32 errorCode = 0;
+                                //只要不是帐号已经买满了数量，就循环不断的买
+                                while (errorCode != 888 && status)
+                                {
+                                    errorCode = account.Buy(id, 1, type, account.cookieCon);
+                                    OrderResultEventArgs ev = new OrderResultEventArgs(account.username, errorCode, errorCodeList[errorCode]);
+                                    OrderComplete(ev);
+                                    delayTime(1000);
+                                }
                                 continue;
                             }
-                            else
+                        }
+                    }
+                    break;
+
+                case 1:
+                    //定量模式，一般用在开票的时候，指定一定数量的小号参与购买，限购多少就买多少
+                    foreach (Account account in accountsList)
+                    {
+                        if (account.importance == 1 && status)
+                        {
+                            if (account.Login())
                             {
+                                Int32 errorCode = 0;
+                                //一次性抢限购数量上限的数量
+                                while (errorCode != 888 && status)
+                                {
+                                    errorCode = account.Buy(id, 5, type, account.cookieCon);
+                                    OrderResultEventArgs ev = new OrderResultEventArgs(account.username, errorCode, errorCodeList[errorCode]);
+                                    OrderComplete(ev);
+                                    delayTime(1000);
+                                }
+                                //这里有BUG
+                                accountsNum--;
+                                if (accountsNum > 0)
+                                {
+                                    continue;
+                                }
+                                else
+                                {
+                                    return;
+                                }
+                            }
+                        }
+                    }
+                    break;
+
+                case 2:
+                    //买满模式，一般用在开票的时候，指定一定数量的大号参与购买，一张一张买，买到上限为止
+                    foreach (Account account in accountsList)
+                    {
+                        if (account.importance > 100 && status)
+                        {
+                            if (account.Login())
+                            {
+                                Int32 errorCode = 0;
+                                //一次性抢限购数量上限的数量
+                                while (errorCode != 888 && status)
+                                {
+                                    errorCode = account.Buy(id, 1, type, account.cookieCon);
+                                    OrderResultEventArgs ev = new OrderResultEventArgs(account.username, errorCode, errorCodeList[errorCode]);
+                                    OrderComplete(ev);
+                                    delayTime(1000);
+                                }
                                 return;
                             }
                         }
                     }
-                }
-            }
-            //买满模式，一般用在开票的时候，指定一定数量的大号参与购买，一张一张买，买到上限为止
-            else if (mode == 2)
-            {
-                foreach (Account account in accountsList)
-                {
-                    if (account.importance > 100 && status)
-                    {
-                        if (account.Login())
-                        {
-                            Int32 errorCode = 0;
-                            //一次性抢限购数量上限的数量
-                            while (errorCode != 888 && status)
-                            {
-                                errorCode = account.Buy(id, 1, type, account.cookieCon);
-                                OrderResultEventArgs ev = new OrderResultEventArgs(account.username, errorCode, errorCodeList[errorCode]);
-                                OrderComplete(ev);
-                                delayTime(1000);
-                            }
-                            return;
-                        }
-                    }
-                }
-            }
-            else
-            {
-                return;
+                    break;
+
+                default:
+                    break;
             }
         }
 

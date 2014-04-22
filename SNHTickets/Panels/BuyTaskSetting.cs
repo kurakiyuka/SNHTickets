@@ -66,12 +66,13 @@ namespace SNHTickets.Panels
                 arrayList.Add(5);
             }
             arrayList.Add(cb_mode.SelectedIndex);
+            arrayList.Add(cb_accounts.SelectedItem.ToString());
             arrayList.Add(Int32.Parse(tb_accountsNum.Text));
             arrayList.Add(e.title);
             arrayList.Add(cb_mode.SelectedItem.ToString());
-            //arrayList的内容顺序是：商品id，商品类型（门票、实物），模式编号，帐号个数，商品标题，模式全名
+            //arrayList的内容顺序是：商品id，商品类型（门票、实物），模式编号，帐号名称，帐号个数，商品标题，模式全名
             taskList.Add(arrayList);
-            rtb_taskList.AppendText(e.title + ' ' + cb_mode.SelectedItem.ToString() + ' ' + tb_accountsNum.Text + "个帐号抢" + '\n');
+            rtb_taskList.AppendText(e.title + '，' + cb_mode.SelectedItem.ToString() + '，' + cb_accounts.SelectedItem.ToString() + '，' + tb_accountsNum.Text + "个帐号抢" + '\n');
             btn_addTask.Enabled = true;
         }
 

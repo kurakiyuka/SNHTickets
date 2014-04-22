@@ -42,8 +42,8 @@ namespace SNHTickets
 
             foreach (ArrayList task in taskList)
             {
-                //arrayList的内容顺序是：商品id，商品类型（门票、实物），模式编号，帐号个数，商品标题，模式全名
-                th = new Task(task[0].ToString(), task[1].ToString(), Int32.Parse(task[2].ToString()), Int32.Parse(task[3].ToString()), accountsList);
+                //arrayList的内容顺序是：商品id，商品类型（门票、实物），模式编号，帐号名称，帐号个数，商品标题，模式全名
+                th = new Task(task[0].ToString(), task[1].ToString(), Int32.Parse(task[2].ToString()), task[3].ToString(), Int32.Parse(task[4].ToString()), accountsList);
                 th.OrderResultEvent += onOrderResultEvent;
                 th.Start();
             }
@@ -102,8 +102,8 @@ namespace SNHTickets
             btsForm.ShowDialog();          
             foreach (ArrayList task in taskList)
             {
-                //arrayList的内容顺序是：商品id，商品类型（门票、实物），模式编号，帐号个数，商品标题，模式全名
-                rtb_tasklist.Text += task[4].ToString() + ' ' + task[5].ToString() + ' ' + task[3].ToString() + "个帐号抢" + '\n';
+                //arrayList的内容顺序是：商品id，商品类型（门票、实物），模式编号，帐号名称，帐号个数，商品标题，模式全名
+                rtb_tasklist.Text += task[5].ToString() + '，' + task[6].ToString() + '，' + task[3].ToString() + '，' + task[4].ToString() + "个帐号抢" + '\n';
             }
         }
     }
