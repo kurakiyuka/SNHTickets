@@ -11,7 +11,7 @@ namespace SNHTickets
     public partial class SNHTickets : Form
     {
         public List<Account> accountsList;
-        public List<ArrayList> taskList;
+        public List<Task> taskList;
         Task th;
 
         public SNHTickets()
@@ -27,7 +27,11 @@ namespace SNHTickets
             accountsXMLDoc.Load(@"..\..\Properties\Accounts.xml");
             foreach (XmlNode node in accountsXMLDoc.GetElementsByTagName("account"))
             {
-                Account account = new Account(node.SelectSingleNode("username").InnerText.ToString(), node.SelectSingleNode("password").InnerText.ToString(), node.SelectSingleNode("level").InnerText.ToString(), Int32.Parse(node.SelectSingleNode("importance").InnerText));
+                Account account = new Account();
+                account.username = node.SelectSingleNode("username").InnerText.ToString();
+                account.password = node.SelectSingleNode("password").InnerText.ToString();
+                account.level = node.SelectSingleNode("level").InnerText.ToString();
+                account.importance = Int32.Parse(node.SelectSingleNode("importance").InnerText);
                 accountsList.Add(account);
             }
         }
@@ -40,10 +44,9 @@ namespace SNHTickets
                 return;
             }
 
-            foreach (ArrayList task in taskList)
+            foreach (Task task in taskList)
             {
-                //arrayList的内容顺序是：商品id，商品类型（门票、实物），模式编号，帐号名称，帐号个数，商品标题，模式全名
-                th = new Task(task[0].ToString(), task[1].ToString(), Int32.Parse(task[2].ToString()), task[3].ToString(), Int32.Parse(task[4].ToString()), accountsList);
+                th = task;
                 th.OrderResultEvent += onOrderResultEvent;
                 th.Start();
             }
@@ -100,11 +103,17 @@ namespace SNHTickets
             btsForm.accountsList = accountsList;
             btsForm.Owner = this;
             btsForm.ShowDialog();          
-            foreach (ArrayList task in taskList)
+            foreach (Task task in taskList)
             {
-                //arrayList的内容顺序是：商品id，商品类型（门票、实物），模式编号，帐号名称，帐号个数，商品标题，模式全名
-                rtb_tasklist.Text += task[5].ToString() + '，' + task[6].ToString() + '，' + task[3].ToString() + '，' + task[4].ToString() + "个帐号抢" + '\n';
+                rtb_tasklist.Text += task.goodsName + '，' + task.modeName + '，' + task.accountUserName + '，' + task.accountsNum.ToString() + "个帐号抢" + '\n';
             }
+        }
+
+        private void ChangeOrderToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ChangeOrder coForm = new ChangeOrder();
+            coForm.accountsList = accountsList;
+            coForm.ShowDialog();
         }
     }
 }

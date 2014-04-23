@@ -7,17 +7,21 @@ namespace SNHTickets.Flow
     public class Task
     {
         //商品ID
-        private String id;
+        public String id { get; set; }
+        //商品名称
+        public String goodsName { get; set; }
         //商品类型
-        private String type;
-        //抢票模式
-        private Int32 mode;
+        public String type { get; set; }
+        //抢票模式代号
+        public Int32 mode { get; set; }
+        //抢票模式全名
+        public String modeName { get; set; }
         //抢票的帐号
-        private String accountUserName;
+        public String accountUserName { get; set; }
         //抢票需要的帐号数量
-        private Int32 accountsNum;
+        public Int32 accountsNum { get; set; }
         //帐号列表
-        private List<Account> accountsList;
+        public List<Account> accountsList { get; set; }
         //任务状态
         public Boolean status { get; set; }
 
@@ -32,16 +36,6 @@ namespace SNHTickets.Flow
             { 2, "库存不足" },
             { 0, "成功" }
         };
-
-        public Task(String id, String type, Int32 mode, String accountUserName, Int32 accountsNum, List<Account> accountsList, Boolean status = false)
-        {
-            this.id = id;
-            this.type = type;
-            this.mode = mode;
-            this.accountUserName = accountUserName;
-            this.accountsNum = accountsNum;
-            this.accountsList = accountsList;
-        }
 
         public delegate void OrderResultEventHandler(Object sender, OrderResultEventArgs e);
         public event OrderResultEventHandler OrderResultEvent;
