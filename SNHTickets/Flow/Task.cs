@@ -138,11 +138,7 @@ namespace SNHTickets.Flow
                                     OrderComplete(ev);
                                     delayTime(1000);
                                 }
-<<<<<<< HEAD
                                 continue;
-=======
-                                return;
->>>>>>> 3337643a9341a38290c6b184d13894cd5a9043db
                             }
                         }
                     }
