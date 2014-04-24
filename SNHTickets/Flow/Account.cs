@@ -7,18 +7,11 @@ namespace SNHTickets.Flow
     {
         public String username { get; set; }
         public String password { get; set; }
+        //丝瓜等级
         public String level { get; set; }
+        //重要程度，也即大号还是小号
         public Int32 importance { get; set; }
         public CookieContainer cookieCon { get; set; }
-
-        //一个帐号包含用户名，密码，丝瓜等级，重要程度，也即大号还是小号
-        public Account(String username, String password, String level, Int32 importance)
-        {
-            this.username = username;
-            this.password = password;
-            this.level = level;
-            this.importance = importance;
-        }
 
         public Boolean Login()
         {

@@ -38,6 +38,8 @@
             this.ClearAccoutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.TaskToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.BuyTaskToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.UsageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ChangeOrderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.SettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rtb_statics = new System.Windows.Forms.RichTextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -46,8 +48,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.rtb_tasklist = new System.Windows.Forms.RichTextBox();
             this.btn_stop = new System.Windows.Forms.Button();
-            this.UsageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ChangeContactToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -133,9 +133,24 @@
             // BuyTaskToolStripMenuItem
             // 
             this.BuyTaskToolStripMenuItem.Name = "BuyTaskToolStripMenuItem";
-            this.BuyTaskToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
+            this.BuyTaskToolStripMenuItem.Size = new System.Drawing.Size(130, 24);
             this.BuyTaskToolStripMenuItem.Text = "抢票任务";
             this.BuyTaskToolStripMenuItem.Click += new System.EventHandler(this.BuyTaskToolStripMenuItem_Click);
+            // 
+            // UsageToolStripMenuItem
+            // 
+            this.UsageToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ChangeOrderToolStripMenuItem});
+            this.UsageToolStripMenuItem.Name = "UsageToolStripMenuItem";
+            this.UsageToolStripMenuItem.Size = new System.Drawing.Size(47, 23);
+            this.UsageToolStripMenuItem.Text = "工具";
+            // 
+            // ChangeOrderToolStripMenuItem
+            // 
+            this.ChangeOrderToolStripMenuItem.Name = "ChangeOrderToolStripMenuItem";
+            this.ChangeOrderToolStripMenuItem.Size = new System.Drawing.Size(156, 24);
+            this.ChangeOrderToolStripMenuItem.Text = "修改订单信息";
+            this.ChangeOrderToolStripMenuItem.Click += new System.EventHandler(this.ChangeOrderToolStripMenuItem_Click);
             // 
             // SettingsToolStripMenuItem
             // 
@@ -211,20 +226,6 @@
             this.btn_stop.UseVisualStyleBackColor = true;
             this.btn_stop.Click += new System.EventHandler(this.btn_stop_Click);
             // 
-            // UsageToolStripMenuItem
-            // 
-            this.UsageToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ChangeContactToolStripMenuItem});
-            this.UsageToolStripMenuItem.Name = "UsageToolStripMenuItem";
-            this.UsageToolStripMenuItem.Size = new System.Drawing.Size(47, 23);
-            this.UsageToolStripMenuItem.Text = "工具";
-            // 
-            // ChangeContactToolStripMenuItem
-            // 
-            this.ChangeContactToolStripMenuItem.Name = "ChangeContactToolStripMenuItem";
-            this.ChangeContactToolStripMenuItem.Size = new System.Drawing.Size(169, 24);
-            this.ChangeContactToolStripMenuItem.Text = "修改订单联系人";
-            // 
             // SNHTickets
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
@@ -279,7 +280,7 @@
         private System.Windows.Forms.RichTextBox rtb_tasklist;
         private System.Windows.Forms.Button btn_stop;
         private System.Windows.Forms.ToolStripMenuItem UsageToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem ChangeContactToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ChangeOrderToolStripMenuItem;
     }
 }
 
