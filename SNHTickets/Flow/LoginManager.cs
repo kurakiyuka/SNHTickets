@@ -47,13 +47,13 @@ namespace SNHTickets.Flow
             byte[] postBytes = encoding.GetBytes(strPostData);
 
             //创建HttpWebRequest对象，设置Header
-            HttpWebRequest req_login = (HttpWebRequest)WebRequest.Create(snh_login_url);
-            HWRMaker.makeHeader(req_login, cookieCon, postBytes.Length);
+            HttpWebRequest hwReq = (HttpWebRequest)WebRequest.Create(snh_login_url);
+            HWRMaker.makePostHeader(hwReq, cookieCon, postBytes.Length);
 
             //POST数据
             try
             {
-                Stream stream_login = req_login.GetRequestStream();
+                Stream stream_login = hwReq.GetRequestStream();
                 stream_login.Write(postBytes, 0, postBytes.Length);
                 stream_login.Close();
             }
@@ -63,16 +63,16 @@ namespace SNHTickets.Flow
             }
 
             //读取返回数据
-            HttpWebResponse resp_login;
+            HttpWebResponse hwResp;
             try
             {
-                resp_login = (HttpWebResponse)req_login.GetResponse();
-                StreamReader sr = new StreamReader(resp_login.GetResponseStream());
+                hwResp = (HttpWebResponse)hwReq.GetResponse();
+                StreamReader sr = new StreamReader(hwResp.GetResponseStream());
                 String resultHTML = sr.ReadToEnd();
             }
             catch (WebException ex)
             {
-                resp_login = (HttpWebResponse)ex.Response;
+                hwResp = (HttpWebResponse)ex.Response;
             }
 
             //检查返回的数据内是否包含相应的cookies，如果是，说明登录成功
@@ -83,7 +83,7 @@ namespace SNHTickets.Flow
                 cookieCheckDict.Add(cookieToCheck, false);
             }
 
-            foreach (Cookie singleCookie in resp_login.Cookies)
+            foreach (Cookie singleCookie in hwResp.Cookies)
             {
                 if (cookieCheckDict.ContainsKey(singleCookie.Name))
                 {

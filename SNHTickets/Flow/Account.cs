@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Net;
+using SNHTickets.Util;
 
 namespace SNHTickets.Flow
 {
@@ -29,10 +30,34 @@ namespace SNHTickets.Flow
             }
         }
 
-        public Int32 Buy(String id, Int32 amount, String type, CookieContainer cookieCon)
+        public Int32 Buy(String id, Int32 amount, String type, CookieContainer cookieCon = null)
         {
-            BuyManager buyManager = new BuyManager();
-            return buyManager.Buy(id, amount, type, cookieCon);       
+            if (cookieCon == null)
+            {
+                cookieCon = this.cookieCon;
+            }
+            BuyManager buyManager = new BuyManager(cookieCon);
+            return buyManager.Buy(id, amount, type);
+        }
+
+        public Array getOrderInfo(String orderNo, CookieContainer cookieCon = null)
+        {
+            if (cookieCon == null)
+            {
+                cookieCon = this.cookieCon;
+            }
+            WebInteraction wi = new WebInteraction(cookieCon);
+            return wi.getOrderInfo(orderNo);
+        }
+
+        public void ChangeOrderInfo(String orderName, String orderTel, String orderID, CookieContainer cookieCon = null)
+        {
+            if (cookieCon == null)
+            {
+                cookieCon = this.cookieCon;
+            }
+            WebInteraction wi = new WebInteraction(cookieCon);
+            wi.ChangeOrderInfo(orderName, orderTel, orderID);
         }
     }
 }

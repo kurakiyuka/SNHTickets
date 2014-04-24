@@ -39,7 +39,7 @@ namespace SNHTickets.Panels
             btn_addTask.Enabled = false;
             WebInteraction wi = new WebInteraction();
             wi.GetTitleFinEvent += showTaskInWindow;
-            wi.GetTitle(tb_id.Text);
+            wi.getTitle(tb_id.Text);
         }
 
         //得到商品标题后再拼装数据，并且把内容显示在窗口里面

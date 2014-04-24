@@ -32,12 +32,13 @@
             this.label1 = new System.Windows.Forms.Label();
             this.cb_accounts = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.cb_orders = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.tb_name = new System.Windows.Forms.TextBox();
             this.tb_tel = new System.Windows.Forms.TextBox();
             this.btn_change = new System.Windows.Forms.Button();
+            this.tb_order = new System.Windows.Forms.TextBox();
+            this.ll_getOrder = new System.Windows.Forms.LinkLabel();
             this.SuspendLayout();
             // 
             // label1
@@ -57,7 +58,6 @@
             this.cb_accounts.Name = "cb_accounts";
             this.cb_accounts.Size = new System.Drawing.Size(121, 27);
             this.cb_accounts.TabIndex = 1;
-            this.cb_accounts.SelectedIndexChanged += new System.EventHandler(this.cb_accounts_SelectedIndexChanged);
             // 
             // label2
             // 
@@ -67,15 +67,6 @@
             this.label2.Size = new System.Drawing.Size(48, 19);
             this.label2.TabIndex = 2;
             this.label2.Text = "订单号";
-            // 
-            // cb_orders
-            // 
-            this.cb_orders.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cb_orders.FormattingEnabled = true;
-            this.cb_orders.Location = new System.Drawing.Point(80, 60);
-            this.cb_orders.Name = "cb_orders";
-            this.cb_orders.Size = new System.Drawing.Size(121, 27);
-            this.cb_orders.TabIndex = 3;
             // 
             // label3
             // 
@@ -117,6 +108,25 @@
             this.btn_change.TabIndex = 8;
             this.btn_change.Text = "修改";
             this.btn_change.UseVisualStyleBackColor = true;
+            this.btn_change.Click += new System.EventHandler(this.btn_change_Click);
+            // 
+            // tb_order
+            // 
+            this.tb_order.Location = new System.Drawing.Point(80, 60);
+            this.tb_order.Name = "tb_order";
+            this.tb_order.Size = new System.Drawing.Size(120, 25);
+            this.tb_order.TabIndex = 9;
+            // 
+            // ll_getOrder
+            // 
+            this.ll_getOrder.AutoSize = true;
+            this.ll_getOrder.Location = new System.Drawing.Point(217, 66);
+            this.ll_getOrder.Name = "ll_getOrder";
+            this.ll_getOrder.Size = new System.Drawing.Size(87, 19);
+            this.ll_getOrder.TabIndex = 10;
+            this.ll_getOrder.TabStop = true;
+            this.ll_getOrder.Text = "获取订单信息";
+            this.ll_getOrder.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ll_getOrder_LinkClicked);
             // 
             // ChangeOrder
             // 
@@ -124,18 +134,19 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(395, 206);
+            this.Controls.Add(this.ll_getOrder);
+            this.Controls.Add(this.tb_order);
             this.Controls.Add(this.btn_change);
             this.Controls.Add(this.tb_tel);
             this.Controls.Add(this.tb_name);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.cb_orders);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.cb_accounts);
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("Microsoft YaHei", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.Name = "ChangeOrder";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
@@ -151,11 +162,12 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cb_accounts;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox cb_orders;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox tb_name;
         private System.Windows.Forms.TextBox tb_tel;
         private System.Windows.Forms.Button btn_change;
+        private System.Windows.Forms.TextBox tb_order;
+        private System.Windows.Forms.LinkLabel ll_getOrder;
     }
 }

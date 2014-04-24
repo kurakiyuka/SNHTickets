@@ -14,8 +14,14 @@ namespace SNHTickets.Flow
         //最后提交订单的URL
         String snh_commit_url = "http://shop.snh48.com/flow.php?step=done";
 
+        CookieContainer cookieCon;
         Int32 errorCode;
         String resultHTML = null;
+
+        public BuyManager(CookieContainer cookieCon)
+        {
+            this.cookieCon = cookieCon;
+        }
 
         /*
          * id：商品id
@@ -23,7 +29,7 @@ namespace SNHTickets.Flow
          * type：区分是实物商品还是门票，这影响到后面提交订单时，shipping参数的值，-1表示门票，5表示实物
          * cookieCon：登录成功返回的cookie
          */
-        public Int32 Buy(String id, Int32 amount, String type, CookieContainer cookieCon)
+        public Int32 Buy(String id, Int32 amount, String type)
         {
             //加入购物车
             HttpWebRequest req_buy = (HttpWebRequest)WebRequest.Create(snh_add_to_cart_url);
@@ -31,7 +37,7 @@ namespace SNHTickets.Flow
             ASCIIEncoding encoder = new ASCIIEncoding();
             Byte[] postBytes = encoder.GetBytes(postData);
 
-            HWRMaker.makeHeader(req_buy, cookieCon, postBytes.Length);
+            HWRMaker.makePostHeader(req_buy, cookieCon, postBytes.Length);
 
             try
             {
@@ -81,7 +87,7 @@ namespace SNHTickets.Flow
                 postData = "shipping=" + type + "&payment=23&postscript=&how_oos=0&step=done&x=79&y=27";
                 postBytes = encoder.GetBytes(postData);
 
-                HWRMaker.makeHeader(req_buy, cookieCon, postBytes.Length);
+                HWRMaker.makePostHeader(req_buy, cookieCon, postBytes.Length);
 
                 try
                 {
