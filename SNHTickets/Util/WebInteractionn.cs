@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace SNHTickets.Util
 {
-    class WebInteraction
+    class WebInteractionn
     {
         //官店地址
         String snh_shop_url = "http://shop.snh48.com/";       
@@ -24,7 +24,7 @@ namespace SNHTickets.Util
         //最终返回值
         String resultString;
 
-        public WebInteraction(CookieContainer cookieCon = null)
+        public WebInteractionn(CookieContainer cookieCon = null)
         {
             this.cookieCon = cookieCon;
             encoding = new ASCIIEncoding();

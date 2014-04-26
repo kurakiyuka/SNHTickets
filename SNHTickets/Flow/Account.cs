@@ -46,7 +46,7 @@ namespace SNHTickets.Flow
             {
                 cookieCon = this.cookieCon;
             }
-            WebInteraction wi = new WebInteraction(cookieCon);
+            WebInteractionn wi = new WebInteractionn(cookieCon);
             return wi.getOrderInfo(orderNo);
         }
 
@@ -56,7 +56,7 @@ namespace SNHTickets.Flow
             {
                 cookieCon = this.cookieCon;
             }
-            WebInteraction wi = new WebInteraction(cookieCon);
+            WebInteractionn wi = new WebInteractionn(cookieCon);
             wi.ChangeOrderInfo(orderName, orderTel, orderID);
         }
     }

@@ -37,13 +37,13 @@ namespace SNHTickets.Panels
         private void btn_addTask_Click(object sender, EventArgs e)
         {
             btn_addTask.Enabled = false;
-            WebInteraction wi = new WebInteraction();
+            WebInteractionn wi = new WebInteractionn();
             wi.GetTitleFinEvent += showTaskInWindow;
             wi.getTitle(tb_id.Text);
         }
 
         //得到商品标题后再拼装数据，并且把内容显示在窗口里面
-        private void showTaskInWindow(object sender, WebInteraction.GetTitleEventArgs e)
+        private void showTaskInWindow(object sender, WebInteractionn.GetTitleEventArgs e)
         {
             //Task类所需要的参数：id，goodsName，type，mode，modeName，accountUserName，accountsNum，accountsList，status
             Task task = new Task();
