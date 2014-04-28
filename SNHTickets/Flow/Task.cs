@@ -101,7 +101,7 @@ namespace SNHTickets.Flow
                                 //一次性抢限购数量上限的数量
                                 while (errorCode != 888 && status)
                                 {
-                                    errorCode = account.Buy(id, 5, type);
+                                    errorCode = account.Buy(id, 2, type);
                                     OrderResultEventArgs ev = new OrderResultEventArgs(account.username, errorCode, errorCodeList[errorCode]);
                                     OrderComplete(ev);
                                     delayTime(1000);
@@ -125,7 +125,7 @@ namespace SNHTickets.Flow
                     //买满模式，一般用在开票的时候，指定一定数量的大号参与购买，一张一张买，买到上限为止
                     foreach (Account account in accountsList)
                     {
-                        if (account.importance > 100 && status)
+                        if (account.importance > 99 && status)
                         {
                             if (account.Login())
                             {
@@ -136,7 +136,7 @@ namespace SNHTickets.Flow
                                     errorCode = account.Buy(id, 1, type);
                                     OrderResultEventArgs ev = new OrderResultEventArgs(account.username, errorCode, errorCodeList[errorCode]);
                                     OrderComplete(ev);
-                                    delayTime(1000);
+                                    //delayTime(1000);
                                 }
                                 continue;
                             }
