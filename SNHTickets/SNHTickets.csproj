@@ -123,8 +123,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Util\WebInteractionn.cs" />
-    <Compile Include="Util\WebInteraction\GetUrlWithoutLogin.cs" />
+    <Compile Include="Util\SNHWebInteraction.cs" />
+    <Compile Include="Util\WebInteraction\GetUrlHtml.cs" />
+    <Compile Include="Util\WebInteraction\GetUrlTitle.cs" />
     <EmbeddedResource Include="Panels\AccountsInfo.resx">
       <DependentUpon>AccountsInfo.cs</DependentUpon>
     </EmbeddedResource>
@@ -185,7 +186,9 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Properties\Accounts.xml" />
+    <Content Include="Properties\Accounts.xml">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -4,15 +4,14 @@ using System.Net;
 using System.Text;
 using System.Web;
 using System.Windows.Forms;
+using SNHTickets.Util.WebInteraction;
 
 namespace SNHTickets.Util
 {
-    class WebInteractionn
+    class SNHWebInteraction
     {
         //官店地址
-        String snh_shop_url = "http://shop.snh48.com/";       
-        //商品URL前缀，加上id就是商品完整的URL
-        String snh_goods_url_prefix = "http://shop.snh48.com/goods.php?id=";
+        String snh_shop_url = "http://shop.snh48.com/";              
         //订单列表RUL
         String snh_order_list_url = "http://shop.snh48.com/user.php?act=order_list";
         //更新订单
@@ -24,7 +23,7 @@ namespace SNHTickets.Util
         //最终返回值
         String resultString;
 
-        public WebInteractionn(CookieContainer cookieCon = null)
+        public SNHWebInteraction(CookieContainer cookieCon = null)
         {
             this.cookieCon = cookieCon;
             encoding = new ASCIIEncoding();
@@ -34,7 +33,7 @@ namespace SNHTickets.Util
         {
             //计算数据长度
             byte[] postBytes = encoding.GetBytes(data);
-
+            
             //创建HttpWebRequest对象，设置Header
             HttpWebRequest hwq = (HttpWebRequest)WebRequest.Create(url);
             HWRMaker.makePostHeader(hwq, cookieCon, postBytes.Length);
@@ -67,68 +66,15 @@ namespace SNHTickets.Util
             return resultString;
         }
 
-        public delegate void GetTitleEventHandler(Object sender, GetTitleEventArgs e);
-        public event GetTitleEventHandler GetTitleFinEvent;
-        public class GetTitleEventArgs : EventArgs
-        {
-            public readonly String title;
-            public GetTitleEventArgs(String title)
-            {
-                this.title = title;
-            }
-        }
-        protected virtual void DispatchGetTitleEvent(GetTitleEventArgs e)
-        {
-            if (GetTitleFinEvent != null)
-            {
-                GetTitleFinEvent(this, e);
-            }
-        }
-
-        //根据商品id来获取商品的名字
-        public void getTitle(String id)
-        {
-            String url = snh_goods_url_prefix + id;
-            WebBrowser web = new WebBrowser();
-            web.Navigate(url);
-            //异步获取网页内容
-            web.DocumentCompleted += web_DocumentCompleted;
-        }
-
-        private void web_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
-        {
-            WebBrowser web = (WebBrowser)sender;
-            HtmlElementCollection ElementCollection = web.Document.GetElementsByTagName("title");
-            String title;
-            //网页title包含多个_字符，如果没有_字符，说明商品有误
-            if (ElementCollection[0].InnerText.IndexOf("_") > 0)
-            {
-                title = ElementCollection[0].InnerText.Substring(0, ElementCollection[0].InnerText.IndexOf("_"));
-            }
-            else
-            {
-                title = "商品有误";
-            }
-            GetTitleEventArgs ev = new GetTitleEventArgs(title);
-            DispatchGetTitleEvent(ev);
-        }
-
         public Array getOrderInfo(String orderNo)
         {
-            HttpWebRequest hwReq = (HttpWebRequest)WebRequest.Create(snh_order_list_url);
-            HWRMaker.makeGetHeader(hwReq, cookieCon);
-            HttpWebResponse hwResp = (HttpWebResponse)hwReq.GetResponse();
-            StreamReader sr = new StreamReader(hwResp.GetResponseStream());
-            String resultHTML = sr.ReadToEnd();
+            GetUrlHtml getUrl = new GetUrlHtml(cookieCon);
+            String resultHTML = getUrl.getUrlHtml(snh_order_list_url);
             Int32 position = resultHTML.IndexOf(orderNo);
             String tempString = resultHTML.Substring(position - 60, 60);
             String orderURL = snh_shop_url + tempString.Substring(tempString.IndexOf("u"), tempString.LastIndexOf("c") - tempString.IndexOf("u") - 2);
             String orderID = orderURL.Substring(orderURL.IndexOf("id=") + 3);
-            hwReq = (HttpWebRequest)WebRequest.Create(orderURL);
-            HWRMaker.makeGetHeader(hwReq, cookieCon);
-            hwResp = (HttpWebResponse)hwReq.GetResponse();
-            sr = new StreamReader(hwResp.GetResponseStream());
-            resultHTML = sr.ReadToEnd();
+            resultHTML = getUrl.getUrlHtml(orderURL);
             tempString = resultHTML.Substring(resultHTML.IndexOf("name=\"consignee\""));
             tempString = tempString.Substring(0, 70);
             int i = tempString.LastIndexOf("ue=");
