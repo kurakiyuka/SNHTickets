@@ -37,6 +37,12 @@
     <importance>102</importance>
   </account>
   <account>
+    <username>巧克力狂热</username>
+    <password>111111</password>
+    <level>none</level>
+    <importance>99</importance>
+  </account>
+  <account>
     <username>qp01</username>
     <password>111111</password>
     <level>none</level>
