@@ -20,6 +20,8 @@ namespace SNHTickets.Flow
         public String accountUserName { get; set; }
         //抢票需要的帐号数量
         public Int32 accountsNum { get; set; }
+        //延时时长
+        public Int32 delayTime { get; set; }
         //帐号列表
         public List<Account> accountsList { get; set; }
         //任务状态
@@ -81,7 +83,7 @@ namespace SNHTickets.Flow
                                     errorCode = account.Buy(id, 1, type);
                                     OrderResultEventArgs ev = new OrderResultEventArgs(account.username, errorCode, errorCodeList[errorCode]);
                                     OrderComplete(ev);
-                                    delayTime(1000);
+                                    delay(this.delayTime);
                                 }
                                 continue;
                             }
@@ -104,7 +106,7 @@ namespace SNHTickets.Flow
                                     errorCode = account.Buy(id, 5, type);
                                     OrderResultEventArgs ev = new OrderResultEventArgs(account.username, errorCode, errorCodeList[errorCode]);
                                     OrderComplete(ev);
-                                    delayTime(300);
+                                    delay(this.delayTime);
                                 }
                                 //这里有BUG
                                 accountsNum--;
@@ -122,10 +124,10 @@ namespace SNHTickets.Flow
                     break;
 
                 case 2:
-                    //买满模式，一般用在开票的时候，指定一定数量的大号参与购买，一张一张买，买到上限为止
+                    //大号购买模式，一般用在开票的时候，指定一定数量的大号参与购买，一张一张买，买到上限为止
                     foreach (Account account in accountsList)
                     {
-                        if (account.importance == 10000 && status)
+                        if (account.username == this.accountUserName && status)
                         {
                             if (account.Login())
                             {
@@ -136,7 +138,7 @@ namespace SNHTickets.Flow
                                     errorCode = account.Buy(id, 1, type);
                                     OrderResultEventArgs ev = new OrderResultEventArgs(account.username, errorCode, errorCodeList[errorCode]);
                                     OrderComplete(ev);
-                                    //delayTime(1000);
+                                    delay(this.delayTime);
                                 }
                                 continue;
                             }
@@ -149,7 +151,7 @@ namespace SNHTickets.Flow
             }
         }
 
-        private void delayTime(Int32 millisecends)
+        private void delay(Int32 millisecends)
         {
             DateTime tempTime = DateTime.Now;
             while (tempTime.AddMilliseconds(millisecends).CompareTo(DateTime.Now) > 0)

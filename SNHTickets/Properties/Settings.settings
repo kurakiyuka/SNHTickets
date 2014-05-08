@@ -3,10 +3,10 @@
   <Profiles />
   <Settings>
     <Setting Name="Stand_Ticket_Limit" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">5</Value>
+      <Value Profile="(Default)">3</Value>
     </Setting>
     <Setting Name="Sit_Ticket_Limit" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">5</Value>
+      <Value Profile="(Default)">3</Value>
     </Setting>
     <Setting Name="VIP_Ticket_D1_Limit" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">1</Value>

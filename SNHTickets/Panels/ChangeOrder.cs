@@ -28,6 +28,7 @@ namespace SNHTickets.Panels
                     cb_accounts.Items.Add(account.username);
                 }
             }
+            cb_accounts.SelectedIndex = 0;
         }
 
         private void ll_getOrder_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
