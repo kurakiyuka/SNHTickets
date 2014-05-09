@@ -18,7 +18,9 @@ namespace SNHTickets.Panels
         {
             InitializeComponent();
             cb_mode.SelectedIndex = 0;
-            cb_type.SelectedIndex = 0;           
+            cb_type.SelectedIndex = 0;
+            //默认是捡漏模式，延时1000ms
+            cb_delay.SelectedIndex = 3;
             taskList = new List<Task>();
         }
 
@@ -33,7 +35,8 @@ namespace SNHTickets.Panels
                 }              
             }
             cb_accounts.Items.Add("小号");
-            cb_accounts.SelectedIndex = 0;
+            //默认选中最后一项，就是“小号”
+            cb_accounts.SelectedIndex = cb_accounts.Items.Count - 1;
         }
 
         //点击“添加”后，先根据id去取商品的标题，过程是异步的，此时禁止再次点添加
@@ -57,7 +60,7 @@ namespace SNHTickets.Panels
         //得到商品标题后再拼装数据，并且把内容显示在窗口里面
         private void showTaskInWindow(object sender, GetUrlTitle.GetUrlTitleEventArgs e)
         {
-            //Task类所需要的参数：id，goodsName，type，mode，modeName，accountUserName，accountsNum，accountsList，status
+            //Task类所需要的参数：id，goodsName，type，mode，modeName，accountUserName，accountsNum，delayTime, accountsList，status
             Task task = new Task();
             task.id = tb_id.Text;
             //返回的完整Title是“星梦剧院5月11日N队公演普通站票_剧场公演票务_SNH48官方周边商品商城”这样的，组成结构是“商品名字_二级分类_一级分类_”，只取商品名字即可
@@ -89,6 +92,7 @@ namespace SNHTickets.Panels
                 btn_addTask.Enabled = true;
                 return;
             }
+            task.delayTime = Int32.Parse(cb_delay.SelectedItem.ToString());
             task.accountsList = accountsList;
             task.status = false;
            

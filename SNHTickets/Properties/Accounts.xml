@@ -4,7 +4,7 @@
     <username>第七项修炼</username>
     <password>qwert123</password>
     <level>gold</level>
-    <importance>10000</importance>
+    <importance>10002</importance>
   </account>
   <account>
     <username>luyuyan</username>
@@ -16,25 +16,25 @@
     <username>helena</username>
     <password>qwert123</password>
     <level>gold</level>
-    <importance>10</importance>
+    <importance>1001</importance>
   </account>
   <account>
     <username>usahana</username>
     <password>000000</password>
     <level>none</level>
-    <importance>1001</importance>
+    <importance>103</importance>
   </account>
   <account>
     <username>kurin</username>
     <password>000000</password>
     <level>none</level>
-    <importance>101</importance>
+    <importance>102</importance>
   </account>
   <account>
     <username>小樱花</username>
     <password>000000</password>
     <level>none</level>
-    <importance>102</importance>
+    <importance>101</importance>
   </account>
   <account>
     <username>巧克力狂热</username>
