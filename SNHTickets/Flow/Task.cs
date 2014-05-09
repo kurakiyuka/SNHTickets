@@ -20,6 +20,8 @@ namespace SNHTickets.Flow
         public String accountUserName { get; set; }
         //抢票需要的帐号数量
         public Int32 accountsNum { get; set; }
+        //总共要抢的数量
+        public Int32 totalNum { get; set; }
         //延时时长
         public Int32 delayTime { get; set; }
         //帐号列表
@@ -103,7 +105,7 @@ namespace SNHTickets.Flow
                                 //一次性抢限购数量上限的数量
                                 while (errorCode != 888 && status)
                                 {
-                                    errorCode = account.Buy(id, 5, type);
+                                    errorCode = account.Buy(id, 3, type);
                                     OrderResultEventArgs ev = new OrderResultEventArgs(account.username, errorCode, errorCodeList[errorCode]);
                                     OrderComplete(ev);
                                     delay(this.delayTime);
