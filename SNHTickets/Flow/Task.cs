@@ -125,7 +125,7 @@ namespace SNHTickets.Flow
                     //买满模式，一般用在开票的时候，指定一定数量的大号参与购买，一张一张买，买到上限为止
                     foreach (Account account in accountsList)
                     {
-                        if (account.importance == 10000 && status)
+                        if (account.importance == 1001 && status)
                         {
                             if (account.Login())
                             {
