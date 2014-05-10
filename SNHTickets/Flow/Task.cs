@@ -55,7 +55,7 @@ namespace SNHTickets.Flow
             }
         }
 
-        protected virtual void OrderComplete(OrderResultEventArgs e)
+        protected virtual void DispatchOrderCompleteEvent(OrderResultEventArgs e)
         {
             if (OrderResultEvent != null)
             {
@@ -82,7 +82,7 @@ namespace SNHTickets.Flow
                                 {
                                     errorCode = account.Buy(id, 1, type);
                                     OrderResultEventArgs ev = new OrderResultEventArgs(account.username, errorCode, errorCodeList[errorCode]);
-                                    OrderComplete(ev);
+                                    DispatchOrderCompleteEvent(ev);
                                     delay(this.delayTime);
                                 }
                                 continue;
@@ -103,9 +103,9 @@ namespace SNHTickets.Flow
                                 //一次性抢限购数量上限的数量
                                 while (errorCode != 888 && status)
                                 {
-                                    errorCode = account.Buy(id, 5, type);
+                                    errorCode = account.Buy(id, 2, type);
                                     OrderResultEventArgs ev = new OrderResultEventArgs(account.username, errorCode, errorCodeList[errorCode]);
-                                    OrderComplete(ev);
+                                    DispatchOrderCompleteEvent(ev);
                                     delay(this.delayTime);
                                 }
                                 //这里有BUG
@@ -137,7 +137,7 @@ namespace SNHTickets.Flow
                                 {
                                     errorCode = account.Buy(id, 1, type);
                                     OrderResultEventArgs ev = new OrderResultEventArgs(account.username, errorCode, errorCodeList[errorCode]);
-                                    OrderComplete(ev);
+                                    DispatchOrderCompleteEvent(ev);
                                     delay(this.delayTime);
                                 }
                                 continue;
