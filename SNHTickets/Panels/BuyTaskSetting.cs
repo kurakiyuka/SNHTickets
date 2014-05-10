@@ -92,6 +92,7 @@ namespace SNHTickets.Panels
                 btn_addTask.Enabled = true;
                 return;
             }
+            task.totalNum = Int32.Parse(tb_totalNum.Text.ToString());
             task.delayTime = Int32.Parse(cb_delay.SelectedItem.ToString());
             task.accountsList = accountsList;
             task.status = false;

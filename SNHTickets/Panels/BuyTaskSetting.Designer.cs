@@ -44,6 +44,8 @@
             this.cb_accounts = new System.Windows.Forms.ComboBox();
             this.lb_delay = new System.Windows.Forms.Label();
             this.cb_delay = new System.Windows.Forms.ComboBox();
+            this.lb_totalNum = new System.Windows.Forms.Label();
+            this.tb_totalNum = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // lb_id
@@ -66,7 +68,7 @@
             // lb_mode
             // 
             this.lb_mode.AutoSize = true;
-            this.lb_mode.Location = new System.Drawing.Point(15, 105);
+            this.lb_mode.Location = new System.Drawing.Point(15, 60);
             this.lb_mode.Name = "lb_mode";
             this.lb_mode.Size = new System.Drawing.Size(61, 19);
             this.lb_mode.TabIndex = 4;
@@ -81,7 +83,7 @@
             "小号定量购买",
             "大号购买",
             "大小号一起买"});
-            this.cb_mode.Location = new System.Drawing.Point(95, 103);
+            this.cb_mode.Location = new System.Drawing.Point(95, 58);
             this.cb_mode.Name = "cb_mode";
             this.cb_mode.Size = new System.Drawing.Size(121, 27);
             this.cb_mode.TabIndex = 5;
@@ -89,25 +91,25 @@
             // lb_accountsNum
             // 
             this.lb_accountsNum.AutoSize = true;
-            this.lb_accountsNum.Location = new System.Drawing.Point(15, 150);
+            this.lb_accountsNum.Location = new System.Drawing.Point(15, 105);
             this.lb_accountsNum.Name = "lb_accountsNum";
             this.lb_accountsNum.Size = new System.Drawing.Size(48, 19);
-            this.lb_accountsNum.TabIndex = 6;
+            this.lb_accountsNum.TabIndex = 8;
             this.lb_accountsNum.Text = "帐号数";
             // 
             // tb_accountsNum
             // 
-            this.tb_accountsNum.Location = new System.Drawing.Point(95, 150);
+            this.tb_accountsNum.Location = new System.Drawing.Point(95, 105);
             this.tb_accountsNum.Name = "tb_accountsNum";
             this.tb_accountsNum.Size = new System.Drawing.Size(100, 25);
-            this.tb_accountsNum.TabIndex = 7;
+            this.tb_accountsNum.TabIndex = 9;
             // 
             // btn_addTask
             // 
             this.btn_addTask.Location = new System.Drawing.Point(141, 194);
             this.btn_addTask.Name = "btn_addTask";
             this.btn_addTask.Size = new System.Drawing.Size(75, 34);
-            this.btn_addTask.TabIndex = 9;
+            this.btn_addTask.TabIndex = 14;
             this.btn_addTask.Text = "添加";
             this.btn_addTask.UseVisualStyleBackColor = true;
             this.btn_addTask.Click += new System.EventHandler(this.btn_addTask_Click);
@@ -119,7 +121,7 @@
             this.rtb_taskList.Name = "rtb_taskList";
             this.rtb_taskList.ReadOnly = true;
             this.rtb_taskList.Size = new System.Drawing.Size(446, 216);
-            this.rtb_taskList.TabIndex = 8;
+            this.rtb_taskList.TabIndex = 16;
             this.rtb_taskList.Text = "";
             // 
             // cb_type
@@ -129,7 +131,7 @@
             this.cb_type.Items.AddRange(new object[] {
             "门票",
             "实物"});
-            this.cb_type.Location = new System.Drawing.Point(95, 58);
+            this.cb_type.Location = new System.Drawing.Point(320, 13);
             this.cb_type.Name = "cb_type";
             this.cb_type.Size = new System.Drawing.Size(121, 27);
             this.cb_type.TabIndex = 3;
@@ -137,7 +139,7 @@
             // lb_type
             // 
             this.lb_type.AutoSize = true;
-            this.lb_type.Location = new System.Drawing.Point(15, 60);
+            this.lb_type.Location = new System.Drawing.Point(240, 15);
             this.lb_type.Name = "lb_type";
             this.lb_type.Size = new System.Drawing.Size(61, 19);
             this.lb_type.TabIndex = 2;
@@ -148,7 +150,7 @@
             this.btn_fin.Location = new System.Drawing.Point(244, 194);
             this.btn_fin.Name = "btn_fin";
             this.btn_fin.Size = new System.Drawing.Size(75, 34);
-            this.btn_fin.TabIndex = 10;
+            this.btn_fin.TabIndex = 15;
             this.btn_fin.Text = "完成";
             this.btn_fin.UseVisualStyleBackColor = true;
             this.btn_fin.Click += new System.EventHandler(this.btn_fin_Click);
@@ -156,20 +158,20 @@
             // lb_account
             // 
             this.lb_account.AutoSize = true;
-            this.lb_account.Location = new System.Drawing.Point(240, 105);
+            this.lb_account.Location = new System.Drawing.Point(240, 60);
             this.lb_account.Name = "lb_account";
             this.lb_account.Size = new System.Drawing.Size(61, 19);
-            this.lb_account.TabIndex = 11;
+            this.lb_account.TabIndex = 6;
             this.lb_account.Text = "购买帐号";
             // 
             // cb_accounts
             // 
             this.cb_accounts.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cb_accounts.FormattingEnabled = true;
-            this.cb_accounts.Location = new System.Drawing.Point(320, 103);
+            this.cb_accounts.Location = new System.Drawing.Point(320, 58);
             this.cb_accounts.Name = "cb_accounts";
             this.cb_accounts.Size = new System.Drawing.Size(121, 27);
-            this.cb_accounts.TabIndex = 12;
+            this.cb_accounts.TabIndex = 7;
             // 
             // lb_delay
             // 
@@ -177,7 +179,7 @@
             this.lb_delay.Location = new System.Drawing.Point(240, 150);
             this.lb_delay.Name = "lb_delay";
             this.lb_delay.Size = new System.Drawing.Size(79, 19);
-            this.lb_delay.TabIndex = 13;
+            this.lb_delay.TabIndex = 12;
             this.lb_delay.Text = "延迟（ms）";
             // 
             // cb_delay
@@ -192,7 +194,23 @@
             this.cb_delay.Location = new System.Drawing.Point(320, 148);
             this.cb_delay.Name = "cb_delay";
             this.cb_delay.Size = new System.Drawing.Size(121, 27);
-            this.cb_delay.TabIndex = 14;
+            this.cb_delay.TabIndex = 13;
+            // 
+            // lb_totalNum
+            // 
+            this.lb_totalNum.AutoSize = true;
+            this.lb_totalNum.Location = new System.Drawing.Point(240, 105);
+            this.lb_totalNum.Name = "lb_totalNum";
+            this.lb_totalNum.Size = new System.Drawing.Size(61, 19);
+            this.lb_totalNum.TabIndex = 10;
+            this.lb_totalNum.Text = "购买总数";
+            // 
+            // tb_totalNum
+            // 
+            this.tb_totalNum.Location = new System.Drawing.Point(320, 105);
+            this.tb_totalNum.Name = "tb_totalNum";
+            this.tb_totalNum.Size = new System.Drawing.Size(100, 25);
+            this.tb_totalNum.TabIndex = 11;
             // 
             // BuyTaskSetting
             // 
@@ -200,6 +218,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(483, 476);
+            this.Controls.Add(this.tb_totalNum);
+            this.Controls.Add(this.lb_totalNum);
             this.Controls.Add(this.cb_delay);
             this.Controls.Add(this.lb_delay);
             this.Controls.Add(this.cb_accounts);
@@ -246,5 +266,7 @@
         private System.Windows.Forms.ComboBox cb_accounts;
         private System.Windows.Forms.Label lb_delay;
         private System.Windows.Forms.ComboBox cb_delay;
+        private System.Windows.Forms.Label lb_totalNum;
+        private System.Windows.Forms.TextBox tb_totalNum;
     }
 }
