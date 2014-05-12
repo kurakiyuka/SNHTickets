@@ -137,7 +137,7 @@ namespace SNHTickets.Flow
                                 //一次性抢限购数量上限的数量
                                 while (errorCode != 888 && status)
                                 {
-                                    errorCode = account.Buy(id, 1, type);
+                                    errorCode = account.Buy(id, 2, type);
                                     OrderResultEventArgs ev = new OrderResultEventArgs(account.username, errorCode, errorCodeList[errorCode]);
                                     DispatchOrderCompleteEvent(ev);
                                     delay(this.delayTime);
