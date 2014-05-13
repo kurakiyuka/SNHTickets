@@ -32,6 +32,7 @@ namespace SNHTickets.Flow
         //错误代码列表
         Dictionary<Int32, String> errorCodeList = new Dictionary<int, string>()
         {
+            { 999995, "帐号被禁" },
             { 1001, "网络错误" },
             { 1000, "购买失败" },
             { 999, "未登录"},

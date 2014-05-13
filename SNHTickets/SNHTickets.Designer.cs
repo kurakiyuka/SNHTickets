@@ -34,6 +34,7 @@
             this.btn_buy = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.AccountsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.RegisterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AddAccoutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ClearAccoutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.TaskToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -103,23 +104,31 @@
             // AccountsToolStripMenuItem
             // 
             this.AccountsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.RegisterToolStripMenuItem,
             this.AddAccoutToolStripMenuItem,
             this.ClearAccoutToolStripMenuItem});
             this.AccountsToolStripMenuItem.Name = "AccountsToolStripMenuItem";
             this.AccountsToolStripMenuItem.Size = new System.Drawing.Size(47, 23);
             this.AccountsToolStripMenuItem.Text = "帐号";
             // 
+            // RegisterToolStripMenuItem
+            // 
+            this.RegisterToolStripMenuItem.Name = "RegisterToolStripMenuItem";
+            this.RegisterToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
+            this.RegisterToolStripMenuItem.Text = "注册帐号";
+            this.RegisterToolStripMenuItem.Click += new System.EventHandler(this.RegisterToolStripMenuItem_Click);
+            // 
             // AddAccoutToolStripMenuItem
             // 
             this.AddAccoutToolStripMenuItem.Name = "AddAccoutToolStripMenuItem";
-            this.AddAccoutToolStripMenuItem.Size = new System.Drawing.Size(130, 24);
+            this.AddAccoutToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
             this.AddAccoutToolStripMenuItem.Text = "添加帐号";
             this.AddAccoutToolStripMenuItem.Click += new System.EventHandler(this.AddAccoutToolStripMenuItem_Click);
             // 
             // ClearAccoutToolStripMenuItem
             // 
             this.ClearAccoutToolStripMenuItem.Name = "ClearAccoutToolStripMenuItem";
-            this.ClearAccoutToolStripMenuItem.Size = new System.Drawing.Size(130, 24);
+            this.ClearAccoutToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
             this.ClearAccoutToolStripMenuItem.Text = "清空帐号";
             // 
             // TaskToolStripMenuItem
@@ -281,6 +290,7 @@
         private System.Windows.Forms.Button btn_stop;
         private System.Windows.Forms.ToolStripMenuItem UsageToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ChangeOrderToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem RegisterToolStripMenuItem;
     }
 }
 

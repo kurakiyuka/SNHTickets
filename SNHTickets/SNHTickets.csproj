@@ -88,11 +88,17 @@
     <Compile Include="Flow\BuyManager.cs" />
     <Compile Include="Flow\LoginManager.cs" />
     <Compile Include="Flow\Task.cs" />
-    <Compile Include="Panels\AccountsInfo.cs">
+    <Compile Include="Panels\Accounts\AccountsInfo.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Panels\AccountsInfo.Designer.cs">
+    <Compile Include="Panels\Accounts\AccountsInfo.Designer.cs">
       <DependentUpon>AccountsInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Panels\Accounts\Register.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Panels\Accounts\Register.Designer.cs">
+      <DependentUpon>Register.cs</DependentUpon>
     </Compile>
     <Compile Include="Panels\BuyTaskSetting.cs">
       <SubType>Form</SubType>
@@ -126,8 +132,11 @@
     <Compile Include="Util\SNHWebInteraction.cs" />
     <Compile Include="Util\WebInteraction\GetUrlHtml.cs" />
     <Compile Include="Util\WebInteraction\GetUrlTitle.cs" />
-    <EmbeddedResource Include="Panels\AccountsInfo.resx">
+    <EmbeddedResource Include="Panels\Accounts\AccountsInfo.resx">
       <DependentUpon>AccountsInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Panels\Accounts\Register.resx">
+      <DependentUpon>Register.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Panels\BuyTaskSetting.resx">
       <DependentUpon>BuyTaskSetting.cs</DependentUpon>

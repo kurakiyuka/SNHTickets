@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using System.Xml;
 using SNHTickets.Flow;
 using SNHTickets.Panels;
+using SNHTickets.Panels.Accounts;
 
 namespace SNHTickets
 {
@@ -82,6 +83,13 @@ namespace SNHTickets
             rtb_success.ScrollToCaret();
         }
 
+        //注册帐号对话框
+        private void RegisterToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Register rgForm = new Register();
+            rgForm.ShowDialog();
+        }
+
         //添加帐户对话框
         private void AddAccoutToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -109,6 +117,7 @@ namespace SNHTickets
             }
         }
 
+        //修改订单信息对话框
         private void ChangeOrderToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ChangeOrder coForm = new ChangeOrder();
