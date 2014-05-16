@@ -22,6 +22,8 @@ namespace SNHTickets.Flow
         public Int32 accountsNum { get; set; }
         //总共要抢的数量
         public Int32 totalNum { get; set; }
+        //单词抢的数量
+        public Int32 onetimeNum { get; set; }
         //延时时长
         public Int32 delayTime { get; set; }
         //帐号列表
@@ -83,7 +85,7 @@ namespace SNHTickets.Flow
                                 //只要不是帐号已经买满了数量，就循环不断的买
                                 while (errorCode != 888 && status)
                                 {
-                                    errorCode = account.Buy(id, 1, type);
+                                    errorCode = account.Buy(id, this.onetimeNum, type);
                                     OrderResultEventArgs ev = new OrderResultEventArgs(account.username, errorCode, errorCodeList[errorCode]);
                                     DispatchOrderCompleteEvent(ev);
                                     delay(this.delayTime);
@@ -106,7 +108,7 @@ namespace SNHTickets.Flow
                                 //一次性抢限购数量上限的数量
                                 while (errorCode != 888 && status)
                                 {
-                                    errorCode = account.Buy(id, 2, type);
+                                    errorCode = account.Buy(id, this.onetimeNum, type);
                                     OrderResultEventArgs ev = new OrderResultEventArgs(account.username, errorCode, errorCodeList[errorCode]);
                                     DispatchOrderCompleteEvent(ev);
                                     delay(this.delayTime);
@@ -138,7 +140,7 @@ namespace SNHTickets.Flow
                                 //一次性抢限购数量上限的数量
                                 while (errorCode != 888 && status)
                                 {
-                                    errorCode = account.Buy(id, 2, type);
+                                    errorCode = account.Buy(id, this.onetimeNum, type);
                                     OrderResultEventArgs ev = new OrderResultEventArgs(account.username, errorCode, errorCodeList[errorCode]);
                                     DispatchOrderCompleteEvent(ev);
                                     delay(this.delayTime);

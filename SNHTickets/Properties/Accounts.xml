@@ -46,7 +46,7 @@
     <username>巧克力水果</username>
     <password>111111</password>
     <level>none</level>
-    <importance>99</importance>
+    <importance>98</importance>
   </account>
   <account>
     <username>巧克力饼干</username>
@@ -55,123 +55,63 @@
     <importance>99</importance>
   </account>
   <account>
-    <username>qp01</username>
-    <password>111111</password>
-    <level>none</level>
-    <importance>1</importance>
-  </account>
-  <account>
-    <username>qp02</username>
-    <password>111111</password>
-    <level>none</level>
-    <importance>1</importance>
-  </account>
-  <account>
     <username>qp03</username>
     <password>111111</password>
     <level>none</level>
     <importance>1</importance>
   </account>
   <account>
-    <username>qp04</username>
-    <password>111111</password>
-    <level>none</level>
+    <username>影视演员</username>
+    <password>yinshiyanyuan</password>
+    <tel>18601548545</tel>
     <importance>1</importance>
   </account>
   <account>
-    <username>qp05</username>
-    <password>111111</password>
-    <level>none</level>
+    <username>仙剑奇侠传</username>
+    <password>xianjian</password>
+    <tel>18647895468</tel>
     <importance>1</importance>
   </account>
   <account>
-    <username>qp06</username>
-    <password>111111</password>
-    <level>none</level>
+    <username>小强不倒</username>
+    <password>justin0320</password>
+    <tel>18092117369</tel>
     <importance>1</importance>
   </account>
   <account>
-    <username>qp07</username>
-    <password>111111</password>
-    <level>none</level>
+    <username>tb66558064</username>
+    <password>66558064</password>
+    <tel>13880927324</tel>
     <importance>1</importance>
   </account>
   <account>
-    <username>qp08</username>
-    <password>111111</password>
-    <level>none</level>
+    <username>hiumgrx93</username>
+    <password>hiumgrx</password>
+    <tel>15821329601</tel>
     <importance>1</importance>
   </account>
   <account>
-    <username>qp09</username>
-    <password>111111</password>
-    <level>none</level>
+    <username>影视演员</username>
+    <password>yinshiyanyuan</password>
+    <tel>18601548545</tel>
     <importance>1</importance>
   </account>
   <account>
-    <username>qp10</username>
-    <password>111111</password>
-    <level>none</level>
+    <username>影视演员</username>
+    <password>yinshiyanyuan</password>
+    <tel>18601548545</tel>
     <importance>1</importance>
   </account>
   <account>
-    <username>qp11</username>
-    <password>111111</password>
-    <level>none</level>
+    <username>影视演员</username>
+    <password>yinshiyanyuan</password>
+    <tel>18601548545</tel>
     <importance>1</importance>
   </account>
   <account>
-    <username>qp12</username>
-    <password>111111</password>
-    <level>none</level>
-    <importance>1</importance>
-  </account>
-  <account>
-    <username>qp13</username>
-    <password>111111</password>
-    <level>none</level>
-    <importance>1</importance>
-  </account>
-  <account>
-    <username>qp14</username>
-    <password>111111</password>
-    <level>none</level>
-    <importance>1</importance>
-  </account>
-  <account>
-    <username>qp15</username>
-    <password>111111</password>
-    <level>none</level>
-    <importance>1</importance>
-  </account>
-  <account>
-    <username>qp16</username>
-    <password>111111</password>
-    <level>none</level>
-    <importance>1</importance>
-  </account>
-  <account>
-    <username>qp17</username>
-    <password>111111</password>
-    <level>none</level>
-    <importance>1</importance>
-  </account>
-  <account>
-    <username>qp18</username>
-    <password>111111</password>
-    <level>none</level>
-    <importance>1</importance>
-  </account>
-  <account>
-    <username>qp19</username>
-    <password>111111</password>
-    <level>none</level>
-    <importance>1</importance>
-  </account>
-  <account>
-    <username>qp20</username>
-    <password>111111</password>
-    <level>none</level>
+    <username>影视演员</username>
+    <password>yinshiyanyuan</password>
+    <tel>18601548545</tel>
     <importance>1</importance>
   </account>
 </accounts> 

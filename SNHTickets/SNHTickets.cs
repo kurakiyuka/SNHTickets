@@ -31,7 +31,14 @@ namespace SNHTickets
                 Account account = new Account();
                 account.username = node.SelectSingleNode("username").InnerText.ToString();
                 account.password = node.SelectSingleNode("password").InnerText.ToString();
-                account.level = node.SelectSingleNode("level").InnerText.ToString();
+                if (node.SelectSingleNode("level") != null)
+                {
+                    account.level = node.SelectSingleNode("level").InnerText.ToString();
+                }
+                if (node.SelectSingleNode("tel") != null)
+                {
+                    account.tel = node.SelectSingleNode("tel").InnerText.ToString();
+                }
                 account.importance = Int32.Parse(node.SelectSingleNode("importance").InnerText);
                 accountsList.Add(account);
             }

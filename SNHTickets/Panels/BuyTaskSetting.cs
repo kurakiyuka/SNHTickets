@@ -8,8 +8,8 @@ namespace SNHTickets.Panels
 {
     public partial class BuyTaskSetting : Form
     {
-        //商品URL前缀，加上id就是商品完整的URL
-        String snh_goods_url_prefix = "http://shop.snh48.com/goods.php?id=";
+        //商品URL前缀，加上id.html就是商品完整的URL，伪静态
+        String snh_goods_url_prefix = "http://shop.snh48.com/goods-";
 
         List<Task> taskList;
         public List<Account> accountsList { get; set; }
@@ -17,9 +17,14 @@ namespace SNHTickets.Panels
         public BuyTaskSetting()
         {
             InitializeComponent();
+            //一些默认配置
+            //捡漏模式
             cb_mode.SelectedIndex = 0;
+            //门票
             cb_type.SelectedIndex = 0;
-            //默认是捡漏模式，延时1000ms
+            //单次1张
+            cb_onetime.SelectedIndex = 0;
+            //延时1000ms
             cb_delay.SelectedIndex = 3;
             taskList = new List<Task>();
         }
@@ -45,7 +50,7 @@ namespace SNHTickets.Panels
             if (tb_id.Text != "")
             {
                 btn_addTask.Enabled = false;
-                String url = snh_goods_url_prefix + tb_id.Text;
+                String url = snh_goods_url_prefix + tb_id.Text + ".html";
                 GetUrlTitle getURLTitle = new GetUrlTitle();
                 getURLTitle.GetURLTitleFinEvent += showTaskInWindow;
                 //这里取回的是某个URL的完整Title
@@ -60,7 +65,7 @@ namespace SNHTickets.Panels
         //得到商品标题后再拼装数据，并且把内容显示在窗口里面
         private void showTaskInWindow(object sender, GetUrlTitle.GetUrlTitleEventArgs e)
         {
-            //Task类所需要的参数：id，goodsName，type，mode，modeName，accountUserName，accountsNum，delayTime, accountsList，status
+            //Task类所需要的参数：id，goodsName，type，mode，modeName，accountUserName，accountsNum，onetimeNum，delayTime, accountsList，status
             Task task = new Task();
             task.id = tb_id.Text;
             //返回的完整Title是“星梦剧院5月11日N队公演普通站票_剧场公演票务_SNH48官方周边商品商城”这样的，组成结构是“商品名字_二级分类_一级分类_”，只取商品名字即可
@@ -93,6 +98,7 @@ namespace SNHTickets.Panels
                 return;
             }
             task.totalNum = Int32.Parse(tb_totalNum.Text.ToString());
+            task.onetimeNum = Int32.Parse(cb_onetime.SelectedItem.ToString());
             task.delayTime = Int32.Parse(cb_delay.SelectedItem.ToString());
             task.accountsList = accountsList;
             task.status = false;
