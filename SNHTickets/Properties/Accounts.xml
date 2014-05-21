@@ -55,12 +55,6 @@
     <importance>99</importance>
   </account>
   <account>
-    <username>qp03</username>
-    <password>111111</password>
-    <level>none</level>
-    <importance>1</importance>
-  </account>
-  <account>
     <username>影视演员</username>
     <password>yinshiyanyuan</password>
     <tel>18601548545</tel>
@@ -88,30 +82,6 @@
     <username>hiumgrx93</username>
     <password>hiumgrx</password>
     <tel>15821329601</tel>
-    <importance>1</importance>
-  </account>
-  <account>
-    <username>影视演员</username>
-    <password>yinshiyanyuan</password>
-    <tel>18601548545</tel>
-    <importance>1</importance>
-  </account>
-  <account>
-    <username>影视演员</username>
-    <password>yinshiyanyuan</password>
-    <tel>18601548545</tel>
-    <importance>1</importance>
-  </account>
-  <account>
-    <username>影视演员</username>
-    <password>yinshiyanyuan</password>
-    <tel>18601548545</tel>
-    <importance>1</importance>
-  </account>
-  <account>
-    <username>影视演员</username>
-    <password>yinshiyanyuan</password>
-    <tel>18601548545</tel>
     <importance>1</importance>
   </account>
 </accounts> 

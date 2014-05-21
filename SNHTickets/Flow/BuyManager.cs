@@ -13,6 +13,8 @@ namespace SNHTickets.Flow
         String snh_add_to_cart_url = "http://shop.snh48.com/flow.php?step=add_to_cart";
         //最后提交订单的URL
         String snh_commit_url = "http://shop.snh48.com/flow.php?step=done";
+        //清空购物车的URL
+        String snh_clear_url = "http://shop.snh48.com/flow.php?step=clear";
 
         CookieContainer cookieCon;
         Int32 errorCode;
@@ -66,7 +68,17 @@ namespace SNHTickets.Flow
             }
 
             //获取错误代码
-            errorCode = Int32.Parse(resultHTML.Substring(resultHTML.IndexOf(":") + 1, resultHTML.IndexOf(",") - resultHTML.IndexOf(":") - 1));
+            try
+            {
+                errorCode = Int32.Parse(resultHTML.Substring(resultHTML.IndexOf(":") + 1, resultHTML.IndexOf(",") - resultHTML.IndexOf(":") - 1));
+            }
+            catch (Exception ex)
+            {
+                ex.ToString();
+                clearCart();
+                //自定义的一个errorCode，表示未知错误
+                return 1002;
+            }
             
             /* 
              * 错误代码类型
@@ -98,6 +110,7 @@ namespace SNHTickets.Flow
                 catch (Exception ex)
                 {
                     ex.ToString();
+                    clearCart();
                     return 1001;
                 }
 
@@ -111,6 +124,7 @@ namespace SNHTickets.Flow
                 catch (Exception ex)
                 {
                     ex.ToString();
+                    clearCart();
                     return 1001;
                 }
                 
@@ -121,11 +135,20 @@ namespace SNHTickets.Flow
                 }
                 else
                 {
-                    //自定义的一个errorCode，表示因为其他原因而加入购物车成功，但是提交订单不成功的
-                    errorCode = 1000;
-                    return errorCode;
+                    clearCart();
+                    //自定义的一个errorCode，表示因为其他原因而加入购物车成功，但是提交订单不成功的                    
+                    return 1000;
                 }
             }
+        }
+
+        private void clearCart()
+        {
+            HttpWebRequest hwReq = (HttpWebRequest)WebRequest.Create(snh_clear_url);
+            HWRMaker.makeGetHeader(hwReq, cookieCon);
+            HttpWebResponse hwResp = (HttpWebResponse)hwReq.GetResponse();
+            StreamReader sr = new StreamReader(hwResp.GetResponseStream());
+            String resultHtml = sr.ReadToEnd();
         }
     }
 }

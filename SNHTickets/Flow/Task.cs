@@ -35,6 +35,7 @@ namespace SNHTickets.Flow
         Dictionary<Int32, String> errorCodeList = new Dictionary<int, string>()
         {
             { 999995, "帐号被禁" },
+            { 1002, "未知错误" },
             { 1001, "网络错误" },
             { 1000, "购买失败" },
             { 999, "未登录"},
@@ -129,7 +130,7 @@ namespace SNHTickets.Flow
                     break;
 
                 case 2:
-                    //大号购买模式，一般用在开票的时候，指定一定数量的大号参与购买，一张一张买，买到上限为止
+                    //大号购买模式，一般用在开票的时候，指定一定数量的大号参与购买，买到上限为止
                     foreach (Account account in accountsList)
                     {
                         if (account.username == this.accountUserName && status)
