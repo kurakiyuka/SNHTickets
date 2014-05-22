@@ -50,6 +50,8 @@ namespace SNHTickets.Panels
             if (tb_id.Text != "")
             {
                 btn_addTask.Enabled = false;
+                btn_fin.Enabled = false;
+
                 String url = snh_goods_url_prefix + tb_id.Text + ".html";
                 GetUrlTitle getURLTitle = new GetUrlTitle();
                 getURLTitle.GetURLTitleFinEvent += showTaskInWindow;
@@ -69,7 +71,14 @@ namespace SNHTickets.Panels
             Task task = new Task();
             task.id = tb_id.Text;
             //返回的完整Title是“星梦剧院5月11日N队公演普通站票_剧场公演票务_SNH48官方周边商品商城”这样的，组成结构是“商品名字_二级分类_一级分类_”，只取商品名字即可
-            task.goodsName = e.title.Substring(0, e.title.IndexOf("_"));
+            if (e.title.IndexOf("_") > 0)
+            {
+                task.goodsName = e.title.Substring(0, e.title.IndexOf("_"));
+            }
+            else
+            {
+                task.goodsName = "商品名获取失败";
+            }
             //如果商品标题里含有星梦剧院，说明是门票，type是-1，否则是实物，type为5，据此自动修改类型下拉框，防止输入错误会导致后面购买失败，type在购物时影响所选择的运送方式，-1表示无需物流，5表示快递
             if (e.title.IndexOf("星梦剧院") < 0)
             {
@@ -105,7 +114,9 @@ namespace SNHTickets.Panels
            
             rtb_taskList.AppendText(task.goodsName + '，' + task.modeName + '，' + task.accountUserName + '，' + task.accountsNum.ToString() + "个帐号抢" + '\n');
             taskList.Add(task);
+
             btn_addTask.Enabled = true;
+            btn_fin.Enabled = true;
         }
 
         private void btn_fin_Click(object sender, EventArgs e)

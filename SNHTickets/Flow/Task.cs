@@ -35,6 +35,7 @@ namespace SNHTickets.Flow
         Dictionary<Int32, String> errorCodeList = new Dictionary<int, string>()
         {
             { 999995, "帐号被禁" },
+            { 1003, "登录失败" },
             { 1002, "未知错误" },
             { 1001, "网络错误" },
             { 1000, "购买失败" },
@@ -93,6 +94,11 @@ namespace SNHTickets.Flow
                                 }
                                 continue;
                             }
+                            else
+                            {
+                                OrderResultEventArgs ev = new OrderResultEventArgs(account.username, 1003, errorCodeList[1003]);
+                                DispatchOrderCompleteEvent(ev);
+                            }
                         }
                     }
                     break;
@@ -147,6 +153,11 @@ namespace SNHTickets.Flow
                                     delay(this.delayTime);
                                 }
                                 continue;
+                            }
+                            else
+                            {
+                                OrderResultEventArgs ev = new OrderResultEventArgs(account.username, 1003, errorCodeList[1003]);
+                                DispatchOrderCompleteEvent(ev);
                             }
                         }
                     }

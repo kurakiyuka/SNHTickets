@@ -72,9 +72,9 @@ namespace SNHTickets
             }
         }
 
-
         private void btn_stop_Click(object sender, EventArgs e)
         {
+            th.OrderResultEvent -= onOrderResultEvent;
             th.status = false;
         }
 

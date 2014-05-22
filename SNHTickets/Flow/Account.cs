@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Net;
+using System.Windows.Forms;
 using SNHTickets.Util;
 
 namespace SNHTickets.Flow
@@ -20,16 +21,28 @@ namespace SNHTickets.Flow
         {
             LoginManager loginManager = new LoginManager();
 
-            //登录成功则取回cookies
-            if (loginManager.Login(username, password))
+            //登录失败则重试10次，登录成功则取回cookies
+            for (Byte i = 1; i < 10; i++)
             {
-                cookieCon = loginManager.cookieCon;
+                if (loginManager.Login(username, password))
+                {
+                    cookieCon = loginManager.cookieCon;
+                    break;
+                }
+                else
+                {
+                    //每次登录失败都延迟一段时间
+                    delay(100 * i);
+                    continue;
+                }
+            }
+            //cookies不为空则说明登录成功，否则说明登录10次失败
+            if (cookieCon != null)
+            {
                 return true;
             }
             else
-            {
                 return false;
-            }
         }
 
         public Int32 Buy(String id, Int32 amount, String type, CookieContainer cookieCon = null)
@@ -60,6 +73,15 @@ namespace SNHTickets.Flow
             }
             SNHWebInteraction wi = new SNHWebInteraction(cookieCon);
             wi.ChangeOrderInfo(orderName, orderTel, orderID);
+        }
+
+        private void delay(Int32 millisecends)
+        {
+            DateTime tempTime = DateTime.Now;
+            while (tempTime.AddMilliseconds(millisecends).CompareTo(DateTime.Now) > 0)
+            {
+                Application.DoEvents();
+            }
         }
     }
 }

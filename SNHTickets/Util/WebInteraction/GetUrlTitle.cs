@@ -45,7 +45,7 @@ namespace SNHTickets.Util.WebInteraction
         {
             webTimeOut.Start();
             WebBrowser webBrowser = new WebBrowser();
-            webBrowser.Navigate("http://www.youtube.com");
+            webBrowser.Navigate(url);
             //异步获取网页内容
             webBrowser.DocumentCompleted += web_DocumentCompleted;
         }
