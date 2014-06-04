@@ -88,16 +88,17 @@ namespace SNHTickets.Flow
                                 while (errorCode != 888 && status)
                                 {
                                     errorCode = account.Buy(id, this.onetimeNum, type);
+                                    if (errorCode == 0)
+                                    {
+                                        totalNum--;
+                                        if (totalNum == 0)
+                                        {
+                                            return;
+                                        }
+                                    }
 
                                     OrderResultEventArgs ev = new OrderResultEventArgs(account.username, errorCode, errorCodeList[errorCode]);
                                     DispatchOrderCompleteEvent(ev);
-
-                                    totalNum--;
-                                    if (totalNum == 0)
-                                    {
-                                        return;
-                                    }
-
                                     delay(this.delayTime);
                                 }
                                 continue;
