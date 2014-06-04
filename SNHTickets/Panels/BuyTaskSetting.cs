@@ -18,8 +18,8 @@ namespace SNHTickets.Panels
         {
             InitializeComponent();
             //一些默认配置
-            //捡漏模式
-            cb_mode.SelectedIndex = 0;
+            //随机小号模式
+            cb_mode.SelectedIndex = 1;
             //门票
             cb_type.SelectedIndex = 0;
             //单次1张
