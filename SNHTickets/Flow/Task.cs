@@ -76,24 +76,33 @@ namespace SNHTickets.Flow
             switch (mode)
             {
                 case 0:
-                    //捡漏模式，只有小号参与捡漏，而且每次固定只使用一个号，一张一张抢
+                    //随机小号模式，只有小号按照Accounts.xml中的排列顺序参与抢票
                     foreach (Account account in accountsList)
                     {
                         if (account.importance == 1 && status)
                         {
                             if (account.Login())
                             {
-                                Int32 errorCode = 0;
+                                Int32 errorCode = 0;                               
                                 //只要不是帐号已经买满了数量，就循环不断的买
                                 while (errorCode != 888 && status)
                                 {
                                     errorCode = account.Buy(id, this.onetimeNum, type);
+
                                     OrderResultEventArgs ev = new OrderResultEventArgs(account.username, errorCode, errorCodeList[errorCode]);
                                     DispatchOrderCompleteEvent(ev);
+
+                                    totalNum--;
+                                    if (totalNum == 0)
+                                    {
+                                        return;
+                                    }
+
                                     delay(this.delayTime);
                                 }
                                 continue;
                             }
+                            //登录失败，返回1003错误
                             else
                             {
                                 OrderResultEventArgs ev = new OrderResultEventArgs(account.username, 1003, errorCodeList[1003]);

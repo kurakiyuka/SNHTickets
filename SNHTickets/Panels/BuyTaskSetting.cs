@@ -19,7 +19,7 @@ namespace SNHTickets.Panels
             InitializeComponent();
             //一些默认配置
             //随机小号模式
-            cb_mode.SelectedIndex = 1;
+            cb_mode.SelectedIndex = 0;
             //门票
             cb_type.SelectedIndex = 0;
             //单次1张
@@ -94,7 +94,7 @@ namespace SNHTickets.Panels
             task.mode = cb_mode.SelectedIndex;
             task.modeName = cb_mode.SelectedItem.ToString();
             task.accountUserName = cb_accounts.SelectedItem.ToString();
-            //帐号数量保证是一个非0的数字
+            //帐号数保证是一个非0的数字
             try
             {
                 task.accountsNum = Int32.Parse(tb_accountsNum.Text);
@@ -102,11 +102,24 @@ namespace SNHTickets.Panels
             catch (FormatException ex)
             {
                 ex.ToString();
-                MessageBox.Show("请输入正确的帐号数量", "提示");
+                MessageBox.Show("请输入正确的帐号数", "提示");
                 btn_addTask.Enabled = true;
+                btn_fin.Enabled = true;
                 return;
             }
-            task.totalNum = Int32.Parse(tb_totalNum.Text.ToString());
+            //购买总数保证是一个非0的数字
+            try
+            {
+                task.totalNum = Int32.Parse(tb_totalNum.Text.ToString());
+            }
+            catch (FormatException ex)
+            {
+                ex.ToString();
+                MessageBox.Show("请输入正确的购买总数", "提示");
+                btn_addTask.Enabled = true;
+                btn_fin.Enabled = true;
+                return;
+            }
             task.onetimeNum = Int32.Parse(cb_onetime.SelectedItem.ToString());
             task.delayTime = Int32.Parse(cb_delay.SelectedItem.ToString());
             task.accountsList = accountsList;
