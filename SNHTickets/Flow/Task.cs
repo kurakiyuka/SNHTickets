@@ -84,22 +84,24 @@ namespace SNHTickets.Flow
                             if (account.Login())
                             {
                                 Int32 errorCode = 0;                               
-                                //只要不是帐号已经买满了数量，就循环不断的买
+                                //如果帐号购买数量已经到了上限（888错误），那么更换帐号，否则就反复买
                                 while (errorCode != 888 && status)
                                 {
-                                    errorCode = account.Buy(id, this.onetimeNum, type);
-                                    if (errorCode == 0)
-                                    {
-                                        totalNum--;
-                                        if (totalNum == 0)
-                                        {
-                                            return;
-                                        }
-                                    }
+                                    errorCode = account.Buy(id, this.onetimeNum, type);                                   
 
                                     OrderResultEventArgs ev = new OrderResultEventArgs(account.username, errorCode, errorCodeList[errorCode]);
                                     DispatchOrderCompleteEvent(ev);
                                     delay(this.delayTime);
+
+                                    //errorCode为0说明购买成功，在需要购买的总量上减单次购买的量
+                                    if (errorCode == 0)
+                                    {
+                                        totalNum -= this.onetimeNum;
+                                        if (totalNum <= 0)
+                                        {
+                                            return;
+                                        }
+                                    }
                                 }
                                 continue;
                             }
@@ -114,39 +116,7 @@ namespace SNHTickets.Flow
                     break;
 
                 case 1:
-                    //定量模式，一般用在开票的时候，指定一定数量的小号参与购买，限购多少就买多少
-                    foreach (Account account in accountsList)
-                    {
-                        if (account.importance == 1 && status)
-                        {
-                            if (account.Login())
-                            {
-                                Int32 errorCode = 0;
-                                //一次性抢限购数量上限的数量
-                                while (errorCode != 888 && status)
-                                {
-                                    errorCode = account.Buy(id, this.onetimeNum, type);
-                                    OrderResultEventArgs ev = new OrderResultEventArgs(account.username, errorCode, errorCodeList[errorCode]);
-                                    DispatchOrderCompleteEvent(ev);
-                                    delay(this.delayTime);
-                                }
-                                //这里有BUG
-                                accountsNum--;
-                                if (accountsNum > 0)
-                                {
-                                    continue;
-                                }
-                                else
-                                {
-                                    return;
-                                }
-                            }
-                        }
-                    }
-                    break;
-
-                case 2:
-                    //大号购买模式，一般用在开票的时候，指定一定数量的大号参与购买，买到上限为止
+                    //指定帐号模式
                     foreach (Account account in accountsList)
                     {
                         if (account.username == this.accountUserName && status)

@@ -228,7 +228,10 @@
             this.cb_onetime.Items.AddRange(new object[] {
             "1",
             "2",
-            "3"});
+            "3",
+            "7",
+            "10",
+            "20"});
             this.cb_onetime.Location = new System.Drawing.Point(95, 148);
             this.cb_onetime.Name = "cb_onetime";
             this.cb_onetime.Size = new System.Drawing.Size(121, 27);
