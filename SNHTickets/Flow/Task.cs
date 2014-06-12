@@ -87,7 +87,7 @@ namespace SNHTickets.Flow
                                 //如果帐号购买数量已经到了上限（888错误），那么更换帐号，否则就反复买
                                 while (errorCode != 888 && status)
                                 {
-                                    errorCode = account.Buy(id, this.onetimeNum, type);                                   
+                                    errorCode = account.Buy(id, this.onetimeNum, type);
 
                                     OrderResultEventArgs ev = new OrderResultEventArgs(account.username, errorCode, errorCodeList[errorCode]);
                                     DispatchOrderCompleteEvent(ev);
