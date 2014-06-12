@@ -1,9 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Text;
 using System.Web;
-using System.Windows.Forms;
 using SNHTickets.Util.WebInteraction;
 
 namespace SNHTickets.Util
@@ -64,6 +64,33 @@ namespace SNHTickets.Util
             }
 
             return resultString;
+        }
+
+        public List<String> getOrderList(Byte pageNum = 1)
+        {
+            //如果是第1页，URL后面可以不加“&page=x”的参数
+            if (pageNum != 1)
+            {
+                snh_order_list_url = snh_order_list_url + "&page=" + pageNum.ToString();
+            }
+
+            //获取页面完整的HTML内容
+            GetUrlHtml getUrl = new GetUrlHtml(cookieCon);
+            String resultHTML = getUrl.getUrlHtml(snh_order_list_url);
+
+            //一页最多10个订单，使用一个长度为10的数组可以保证够用，只需要下单没付款的订单
+            List<String> orderList = new List<String>();
+            Int32 position = resultHTML.IndexOf("未确认,未付款,未发货");
+            while (position > 0)
+            {
+                resultHTML = resultHTML.Substring(position - 230);
+                String orderNum = resultHTML.Substring(resultHTML.IndexOf("f6") + 4, 13);
+                orderList.Add(orderNum);
+                resultHTML = resultHTML.Substring(resultHTML.IndexOf("未确认,未付款,未发货") + 50);
+                position = resultHTML.IndexOf("未确认,未付款,未发货");
+            }
+                
+            return orderList;
         }
 
         public Array getOrderInfo(String orderNo)

@@ -83,7 +83,7 @@ namespace SNHTickets.Flow
                         {
                             if (account.Login())
                             {
-                                Int32 errorCode = 0;                               
+                                Int32 errorCode = 0;
                                 //如果帐号购买数量已经到了上限（888错误），那么更换帐号，否则就反复买
                                 while (errorCode != 888 && status)
                                 {
@@ -124,13 +124,24 @@ namespace SNHTickets.Flow
                             if (account.Login())
                             {
                                 Int32 errorCode = 0;
-                                //一次性抢限购数量上限的数量
+                                //如果帐号购买数量已经到了上限（888错误），那么更换帐号，否则就反复买
                                 while (errorCode != 888 && status)
                                 {
                                     errorCode = account.Buy(id, this.onetimeNum, type);
+
                                     OrderResultEventArgs ev = new OrderResultEventArgs(account.username, errorCode, errorCodeList[errorCode]);
                                     DispatchOrderCompleteEvent(ev);
                                     delay(this.delayTime);
+
+                                    //errorCode为0说明购买成功，在需要购买的总量上减单次购买的量
+                                    if (errorCode == 0)
+                                    {
+                                        totalNum -= this.onetimeNum;
+                                        if (totalNum <= 0)
+                                        {
+                                            return;
+                                        }
+                                    }
                                 }
                                 continue;
                             }

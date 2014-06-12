@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Windows.Forms;
 using SNHTickets.Util;
@@ -53,6 +54,12 @@ namespace SNHTickets.Flow
             }
             BuyManager buyManager = new BuyManager(cookieCon);
             return buyManager.Buy(id, amount, type);
+        }
+
+        public List<String> getOrderList()
+        {
+            SNHWebInteraction wi = new SNHWebInteraction(cookieCon);
+            return wi.getOrderList();
         }
 
         public Array getOrderInfo(String orderNo, CookieContainer cookieCon = null)

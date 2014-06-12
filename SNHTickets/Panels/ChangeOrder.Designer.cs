@@ -37,8 +37,9 @@
             this.tb_name = new System.Windows.Forms.TextBox();
             this.tb_tel = new System.Windows.Forms.TextBox();
             this.btn_change = new System.Windows.Forms.Button();
-            this.tb_order = new System.Windows.Forms.TextBox();
             this.ll_getOrder = new System.Windows.Forms.LinkLabel();
+            this.ll_getOrderList = new System.Windows.Forms.LinkLabel();
+            this.cb_orderList = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // label1
@@ -54,7 +55,7 @@
             // 
             this.cb_accounts.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cb_accounts.FormattingEnabled = true;
-            this.cb_accounts.Location = new System.Drawing.Point(80, 15);
+            this.cb_accounts.Location = new System.Drawing.Point(80, 13);
             this.cb_accounts.Name = "cb_accounts";
             this.cb_accounts.Size = new System.Drawing.Size(121, 27);
             this.cb_accounts.TabIndex = 1;
@@ -88,45 +89,57 @@
             // 
             // tb_name
             // 
-            this.tb_name.Location = new System.Drawing.Point(80, 105);
+            this.tb_name.Location = new System.Drawing.Point(80, 103);
             this.tb_name.Name = "tb_name";
             this.tb_name.Size = new System.Drawing.Size(100, 25);
-            this.tb_name.TabIndex = 6;
+            this.tb_name.TabIndex = 5;
             // 
             // tb_tel
             // 
-            this.tb_tel.Location = new System.Drawing.Point(272, 105);
+            this.tb_tel.Location = new System.Drawing.Point(272, 103);
             this.tb_tel.Name = "tb_tel";
             this.tb_tel.Size = new System.Drawing.Size(100, 25);
-            this.tb_tel.TabIndex = 7;
+            this.tb_tel.TabIndex = 6;
             // 
             // btn_change
             // 
             this.btn_change.Location = new System.Drawing.Point(155, 151);
             this.btn_change.Name = "btn_change";
             this.btn_change.Size = new System.Drawing.Size(75, 34);
-            this.btn_change.TabIndex = 8;
+            this.btn_change.TabIndex = 7;
             this.btn_change.Text = "修改";
             this.btn_change.UseVisualStyleBackColor = true;
             this.btn_change.Click += new System.EventHandler(this.btn_change_Click);
             // 
-            // tb_order
-            // 
-            this.tb_order.Location = new System.Drawing.Point(80, 60);
-            this.tb_order.Name = "tb_order";
-            this.tb_order.Size = new System.Drawing.Size(120, 25);
-            this.tb_order.TabIndex = 9;
-            // 
             // ll_getOrder
             // 
             this.ll_getOrder.AutoSize = true;
-            this.ll_getOrder.Location = new System.Drawing.Point(217, 66);
+            this.ll_getOrder.Location = new System.Drawing.Point(250, 61);
             this.ll_getOrder.Name = "ll_getOrder";
             this.ll_getOrder.Size = new System.Drawing.Size(87, 19);
-            this.ll_getOrder.TabIndex = 10;
+            this.ll_getOrder.TabIndex = 4;
             this.ll_getOrder.TabStop = true;
             this.ll_getOrder.Text = "获取订单信息";
             this.ll_getOrder.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ll_getOrder_LinkClicked);
+            // 
+            // ll_getOrderList
+            // 
+            this.ll_getOrderList.AutoSize = true;
+            this.ll_getOrderList.Location = new System.Drawing.Point(250, 16);
+            this.ll_getOrderList.Name = "ll_getOrderList";
+            this.ll_getOrderList.Size = new System.Drawing.Size(87, 19);
+            this.ll_getOrderList.TabIndex = 2;
+            this.ll_getOrderList.TabStop = true;
+            this.ll_getOrderList.Text = "获取帐号订单";
+            this.ll_getOrderList.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ll_getOrderList_LinkClicked);
+            // 
+            // cb_orderList
+            // 
+            this.cb_orderList.FormattingEnabled = true;
+            this.cb_orderList.Location = new System.Drawing.Point(80, 58);
+            this.cb_orderList.Name = "cb_orderList";
+            this.cb_orderList.Size = new System.Drawing.Size(148, 27);
+            this.cb_orderList.TabIndex = 8;
             // 
             // ChangeOrder
             // 
@@ -134,8 +147,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(395, 206);
+            this.Controls.Add(this.cb_orderList);
+            this.Controls.Add(this.ll_getOrderList);
             this.Controls.Add(this.ll_getOrder);
-            this.Controls.Add(this.tb_order);
             this.Controls.Add(this.btn_change);
             this.Controls.Add(this.tb_tel);
             this.Controls.Add(this.tb_name);
@@ -167,7 +181,8 @@
         private System.Windows.Forms.TextBox tb_name;
         private System.Windows.Forms.TextBox tb_tel;
         private System.Windows.Forms.Button btn_change;
-        private System.Windows.Forms.TextBox tb_order;
         private System.Windows.Forms.LinkLabel ll_getOrder;
+        private System.Windows.Forms.LinkLabel ll_getOrderList;
+        private System.Windows.Forms.ComboBox cb_orderList;
     }
 }

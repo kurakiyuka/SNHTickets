@@ -31,6 +31,31 @@ namespace SNHTickets.Panels
             cb_accounts.SelectedIndex = 0;
         }
 
+        private void ll_getOrderList_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            cb_orderList.Items.Clear();
+            cb_orderList.Text = "";
+            foreach (Account account in accountsList)
+            {
+                if (account.username == cb_accounts.SelectedItem.ToString())
+                {
+                    this.account = account;
+                    if (account.Login())
+                    {
+                        this.cookieCon = account.cookieCon;
+                        foreach (String orderNum in account.getOrderList())
+                        {
+                            cb_orderList.Items.Add(orderNum);
+                        }
+                        if (cb_orderList.Items.Count > 0)
+                        {
+                            cb_orderList.SelectedIndex = 0;
+                        }
+                    }
+                }
+            }
+        }
+
         private void ll_getOrder_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             //登录选中的帐号，获取相应的订单信息显示在输入框内
@@ -42,7 +67,7 @@ namespace SNHTickets.Panels
                     if (account.Login())
                     {
                         this.cookieCon = account.cookieCon;
-                        Array arr = account.getOrderInfo(tb_order.Text);
+                        Array arr = account.getOrderInfo(cb_orderList.Text);
                         tb_name.Text = arr.GetValue(0).ToString();
                         tb_tel.Text = arr.GetValue(1).ToString();
                         orderID = arr.GetValue(2).ToString();
@@ -54,6 +79,6 @@ namespace SNHTickets.Panels
         private void btn_change_Click(object sender, EventArgs e)
         {
             account.ChangeOrderInfo(tb_name.Text, tb_tel.Text, orderID, cookieCon);
-        }       
+        }         
     }
 }
