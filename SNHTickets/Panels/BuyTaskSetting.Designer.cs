@@ -82,6 +82,7 @@
             this.cb_mode.FormattingEnabled = true;
             this.cb_mode.Items.AddRange(new object[] {
             "随机小号",
+            "随机大号",
             "指定帐号"});
             this.cb_mode.Location = new System.Drawing.Point(95, 58);
             this.cb_mode.Name = "cb_mode";

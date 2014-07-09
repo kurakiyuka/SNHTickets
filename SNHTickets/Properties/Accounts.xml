@@ -1,6 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <accounts>
   <account>
+    <username>教练的渣渣</username>
+    <password>wu58440316lu</password>
+    <level>gold</level>
+    <importance>10002</importance>
+  </account>
+  <account>
     <username>第七项修炼</username>
     <password>qwert123</password>
     <level>gold</level>
@@ -15,19 +21,19 @@
   <account>
     <username>helena</username>
     <password>qwert123</password>
-    <level>gold</level>
+    <level>none</level>
     <importance>1001</importance>
   </account>
   <account>
     <username>usahana</username>
     <password>000000</password>
-    <level>none</level>
+    <level>gold</level>
     <importance>103</importance>
   </account>
   <account>
     <username>kurin</username>
     <password>000000</password>
-    <level>none</level>
+    <level>gold</level>
     <importance>102</importance>
   </account>
   <account>

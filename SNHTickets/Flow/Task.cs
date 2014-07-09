@@ -116,6 +116,46 @@ namespace SNHTickets.Flow
                     break;
 
                 case 1:
+                    //随机大号模式，只有大号按照Accounts.xml中的排列顺序参与抢票
+                    foreach (Account account in accountsList)
+                    {
+                        if (account.level == "gold" && status)
+                        {
+                            if (account.Login())
+                            {
+                                Int32 errorCode = 0;
+                                //如果帐号购买数量已经到了上限（888错误），那么更换帐号，否则就反复买
+                                while (errorCode != 888 && status)
+                                {
+                                    errorCode = account.Buy(id, this.onetimeNum, type);
+
+                                    OrderResultEventArgs ev = new OrderResultEventArgs(account.username, errorCode, errorCodeList[errorCode]);
+                                    DispatchOrderCompleteEvent(ev);
+                                    delay(this.delayTime);
+
+                                    //errorCode为0说明购买成功，在需要购买的总量上减单次购买的量
+                                    if (errorCode == 0)
+                                    {
+                                        totalNum -= this.onetimeNum;
+                                        if (totalNum <= 0)
+                                        {
+                                            return;
+                                        }
+                                    }
+                                }
+                                continue;
+                            }
+                            //登录失败，返回1003错误
+                            else
+                            {
+                                OrderResultEventArgs ev = new OrderResultEventArgs(account.username, 1003, errorCodeList[1003]);
+                                DispatchOrderCompleteEvent(ev);
+                            }
+                        }
+                    }
+                    break;
+
+                case 2:
                     //指定帐号模式
                     foreach (Account account in accountsList)
                     {
