@@ -230,7 +230,12 @@
             "1",
             "2",
             "3",
+            "4",
+            "5",
+            "6",
             "7",
+            "8",
+            "9",
             "10",
             "20"});
             this.cb_onetime.Location = new System.Drawing.Point(95, 148);
