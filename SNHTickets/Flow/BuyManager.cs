@@ -35,7 +35,7 @@ namespace SNHTickets.Flow
         {
             //加入购物车
             HttpWebRequest req_buy = (HttpWebRequest)WebRequest.Create(snh_add_to_cart_url);
-            String postData = "goods={\"quick\":1,\"spec\":[],\"goods_id\":" + id + ",\"number\":\"" + amount.ToString() + "\",\"parent\":0}";
+            String postData = "goods={\"quick\":1,\"spec\":[],\"goods_id\":" + id + ",\"captcha\":\"abcd\"" + ",\"number\":\"" + amount.ToString() + "\",\"parent\":0}";
             ASCIIEncoding encoder = new ASCIIEncoding();
             Byte[] postBytes = encoder.GetBytes(postData);
 
@@ -79,12 +79,13 @@ namespace SNHTickets.Flow
                 //自定义的一个errorCode，表示未知错误
                 return 1002;
             }
-            
+
             /* 
              * 错误代码类型
              * 999：未登录
-             * 888：已经购买达到上限
-             * 3：商品已经下架
+             * 888：购买达到上限
+             * 301：验证码错误
+             * 3：商品下架
              * 2：库存不足
              * 0：加入购物车成功
              */
