@@ -4,11 +4,14 @@ using System.IO;
 using System.Net;
 using System.Text;
 using SNHTickets.Util;
+using System.Drawing;
 
 namespace SNHTickets.Flow
 {
     class BuyManager
     {
+        //获取验证码URL
+        String snh_captcha_url = "http://shop.snh48.com/captcha.php?is_login=1&t=1";
         //把商品加入购物车使用的URL
         String snh_add_to_cart_url = "http://shop.snh48.com/flow.php?step=add_to_cart";
         //最后提交订单的URL
@@ -33,9 +36,25 @@ namespace SNHTickets.Flow
          */
         public Int32 Buy(String id, Int32 amount, String type)
         {
+            //获取验证码
+            HttpWebRequest req_captcha = (HttpWebRequest)WebRequest.Create(snh_captcha_url);
+            HWRMaker.makeGetHeader(req_captcha, cookieCon);
+            WebResponse resp_captcha = req_captcha.GetResponse();
+            if (((HttpWebResponse)resp_captcha).StatusCode != HttpStatusCode.OK)
+            {
+                return 1001;
+            }
+
+            Stream dataStream = resp_captcha.GetResponseStream();
+            Image captchaImg = Image.FromStream(dataStream);
+            Bitmap captchaBitmap = new Bitmap(captchaImg);
+
+            Captcha.InitCaptchaDict();
+            string captchaText = Captcha.CaptchaToText(captchaBitmap);
+
             //加入购物车
             HttpWebRequest req_buy = (HttpWebRequest)WebRequest.Create(snh_add_to_cart_url);
-            String postData = "goods={\"quick\":1,\"spec\":[],\"goods_id\":" + id + ",\"captcha\":\"abcd\"" + ",\"number\":\"" + amount.ToString() + "\",\"parent\":0}";
+            String postData = "goods={\"quick\":1,\"spec\":[],\"goods_id\":" + id + ",\"captcha\":\"" + captchaText + "\",\"number\":\"" + amount.ToString() + "\",\"parent\":0}";
             ASCIIEncoding encoder = new ASCIIEncoding();
             Byte[] postBytes = encoder.GetBytes(postData);
 

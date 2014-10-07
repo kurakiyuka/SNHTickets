@@ -114,21 +114,21 @@
             // RegisterToolStripMenuItem
             // 
             this.RegisterToolStripMenuItem.Name = "RegisterToolStripMenuItem";
-            this.RegisterToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
+            this.RegisterToolStripMenuItem.Size = new System.Drawing.Size(130, 24);
             this.RegisterToolStripMenuItem.Text = "注册帐号";
             this.RegisterToolStripMenuItem.Click += new System.EventHandler(this.RegisterToolStripMenuItem_Click);
             // 
             // AddAccoutToolStripMenuItem
             // 
             this.AddAccoutToolStripMenuItem.Name = "AddAccoutToolStripMenuItem";
-            this.AddAccoutToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
+            this.AddAccoutToolStripMenuItem.Size = new System.Drawing.Size(130, 24);
             this.AddAccoutToolStripMenuItem.Text = "添加帐号";
             this.AddAccoutToolStripMenuItem.Click += new System.EventHandler(this.AddAccoutToolStripMenuItem_Click);
             // 
             // ClearAccoutToolStripMenuItem
             // 
             this.ClearAccoutToolStripMenuItem.Name = "ClearAccoutToolStripMenuItem";
-            this.ClearAccoutToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
+            this.ClearAccoutToolStripMenuItem.Size = new System.Drawing.Size(130, 24);
             this.ClearAccoutToolStripMenuItem.Text = "清空帐号";
             // 
             // TaskToolStripMenuItem

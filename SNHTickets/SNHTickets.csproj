@@ -119,6 +119,7 @@
       <DependentUpon>GlobalSetting.cs</DependentUpon>
     </Compile>
     <Compile Include="Settings.cs" />
+    <Compile Include="Util\Captcha.cs" />
     <Compile Include="Util\HWRMaker.cs" />
     <Compile Include="Util\QuoteParaser.cs" />
     <Compile Include="SNHTickets.cs">
