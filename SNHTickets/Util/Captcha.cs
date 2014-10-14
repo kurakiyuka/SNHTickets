@@ -6,13 +6,12 @@ namespace SNHTickets.Util
 {
     public class Captcha
     {
+        Hashtable captchaDict;
         public Captcha()
         {
-
-        }
-
-        static Hashtable captchaDict = new Hashtable();
-        public static void InitCaptchaDict()
+            captchaDict = new Hashtable();
+        } 
+        public void InitCaptchaDict()
         {
             // --1111--
             // -11--11-
@@ -476,9 +475,9 @@ namespace SNHTickets.Util
 
         }
 
-        public static string BinaryChar(Bitmap captchaBitmap, int x_start, int x_end)
+        public String BinaryChar(Bitmap captchaBitmap, Int32 x_start, Int32 x_end)
         {
-            string retVal = "";
+            String retVal = "";
             if ((captchaBitmap.Height <= 5)
                 || (x_start >= x_end)
                 || (captchaBitmap.Width <= x_end))
@@ -486,9 +485,9 @@ namespace SNHTickets.Util
                 return retVal;
             }
 
-            for (int y = 5; y < captchaBitmap.Height - 5; y++)
+            for (Int32 y = 5; y < captchaBitmap.Height - 5; y++)
             {
-                for (int x = x_start; x <= x_end; x++)
+                for (Int32 x = x_start; x <= x_end; x++)
                 {
                     Color c = captchaBitmap.GetPixel(x, y);
                     if ((c.R >= 250 && c.G >= 250 && c.B >= 250)
@@ -506,20 +505,20 @@ namespace SNHTickets.Util
             return retVal;
         }
 
-        public static string CaptchaToText(Bitmap captchaBitmap)
+        public String CaptchaToText(Bitmap captchaBitmap)
         {
-            string retVal = "";
-            string c1 = BinaryChar(captchaBitmap, 32, 39);
-            string c2 = BinaryChar(captchaBitmap, 41, 48);
-            string c3 = BinaryChar(captchaBitmap, 50, 57);
-            string c4 = BinaryChar(captchaBitmap, 59, 66);
+            String retVal = "";
+            String c1 = BinaryChar(captchaBitmap, 32, 39);
+            String c2 = BinaryChar(captchaBitmap, 41, 48);
+            String c3 = BinaryChar(captchaBitmap, 50, 57);
+            String c4 = BinaryChar(captchaBitmap, 59, 66);
 
             if (captchaDict.Contains(c1)
                 && captchaDict.Contains(c2)
                 && captchaDict.Contains(c3)
                 && captchaDict.Contains(c4))
             {
-                retVal = (string)captchaDict[c1] + (string)captchaDict[c2] + (string)captchaDict[c3] + (string)captchaDict[c4];
+                retVal = (String)captchaDict[c1] + (String)captchaDict[c2] + (String)captchaDict[c3] + (String)captchaDict[c4];
             }
 
             return retVal;

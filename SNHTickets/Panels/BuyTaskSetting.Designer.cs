@@ -83,7 +83,8 @@
             this.cb_mode.Items.AddRange(new object[] {
             "随机小号",
             "随机大号",
-            "指定帐号"});
+            "指定帐号",
+            "实名帐号"});
             this.cb_mode.Location = new System.Drawing.Point(95, 58);
             this.cb_mode.Name = "cb_mode";
             this.cb_mode.Size = new System.Drawing.Size(121, 27);
@@ -191,7 +192,8 @@
             "0",
             "100",
             "300",
-            "1000"});
+            "1000",
+            "3000"});
             this.cb_delay.Location = new System.Drawing.Point(320, 148);
             this.cb_delay.Name = "cb_delay";
             this.cb_delay.Size = new System.Drawing.Size(121, 27);
@@ -237,7 +239,8 @@
             "8",
             "9",
             "10",
-            "20"});
+            "20",
+            "42"});
             this.cb_onetime.Location = new System.Drawing.Point(95, 148);
             this.cb_onetime.Name = "cb_onetime";
             this.cb_onetime.Size = new System.Drawing.Size(121, 27);

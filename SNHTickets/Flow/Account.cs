@@ -12,6 +12,8 @@ namespace SNHTickets.Flow
         public String password { get; set; }
         //丝瓜等级
         public String level { get; set; }
+        //实名认证
+        public String realname { get; set; }
         //手机号
         public String tel { get; set; }
         //重要程度，也即大号还是小号

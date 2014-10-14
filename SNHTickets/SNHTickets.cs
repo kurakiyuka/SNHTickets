@@ -35,6 +35,10 @@ namespace SNHTickets
                 {
                     account.level = node.SelectSingleNode("level").InnerText.ToString();
                 }
+                if (node.SelectSingleNode("realname") != null)
+                {
+                    account.realname = node.SelectSingleNode("realname").InnerText.ToString();
+                }
                 if (node.SelectSingleNode("tel") != null)
                 {
                     account.tel = node.SelectSingleNode("tel").InnerText.ToString();

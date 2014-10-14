@@ -25,7 +25,7 @@ namespace SNHTickets.Flow
 
         public BuyManager(CookieContainer cookieCon)
         {
-            this.cookieCon = cookieCon;
+            this.cookieCon = cookieCon;          
         }
 
         /*
@@ -48,9 +48,10 @@ namespace SNHTickets.Flow
             Stream dataStream = resp_captcha.GetResponseStream();
             Image captchaImg = Image.FromStream(dataStream);
             Bitmap captchaBitmap = new Bitmap(captchaImg);
-
-            Captcha.InitCaptchaDict();
-            string captchaText = Captcha.CaptchaToText(captchaBitmap);
+            
+            Captcha captcha = new Captcha();
+            captcha.InitCaptchaDict();
+            String captchaText = captcha.CaptchaToText(captchaBitmap);
 
             //加入购物车
             HttpWebRequest req_buy = (HttpWebRequest)WebRequest.Create(snh_add_to_cart_url);
