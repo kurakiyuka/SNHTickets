@@ -8,8 +8,8 @@ namespace SNHTickets.Panels
 {
     public partial class BuyTaskSetting : Form
     {
-        //商品URL前缀，加上id.html就是商品完整的URL，伪静态
-        String snh_goods_url_prefix = "http://shop.snh48.com/goods-";
+        //商品URL前缀
+        String snh_goods_url_prefix = "http://shop.snh48.com/goods.php?id=";
 
         List<Task> taskList;
         public List<Account> accountsList { get; set; }
@@ -18,12 +18,12 @@ namespace SNHTickets.Panels
         {
             InitializeComponent();
             //一些默认配置
-            //随机小号模式
+            //实名账号模式
             cb_mode.SelectedIndex = 0;
             //门票
             cb_type.SelectedIndex = 0;
-            //单次1张
-            cb_onetime.SelectedIndex = 0;
+            //单次3张
+            cb_onetime.SelectedIndex = 2;
             //延时1000ms
             cb_delay.SelectedIndex = 3;
             taskList = new List<Task>();
@@ -52,7 +52,7 @@ namespace SNHTickets.Panels
                 btn_addTask.Enabled = false;
                 btn_fin.Enabled = false;
 
-                String url = snh_goods_url_prefix + tb_id.Text + ".html";
+                String url = snh_goods_url_prefix + tb_id.Text;
                 GetUrlTitle getURLTitle = new GetUrlTitle();
                 getURLTitle.GetURLTitleFinEvent += showTaskInWindow;
                 //这里取回的是某个URL的完整Title
