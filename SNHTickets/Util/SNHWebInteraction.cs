@@ -83,7 +83,7 @@ namespace SNHTickets.Util
             Int32 position = resultHTML.IndexOf("未确认,未付款,未发货");
             while (position > 0)
             {
-                resultHTML = resultHTML.Substring(position - 230);
+                resultHTML = resultHTML.Substring(position - 280);
                 String orderNum = resultHTML.Substring(resultHTML.IndexOf("f6") + 4, 13);
                 orderList.Add(orderNum);
                 resultHTML = resultHTML.Substring(resultHTML.IndexOf("未确认,未付款,未发货") + 50);

@@ -193,7 +193,8 @@
             "100",
             "300",
             "1000",
-            "3000"});
+            "3000",
+            "8000"});
             this.cb_delay.Location = new System.Drawing.Point(320, 148);
             this.cb_delay.Name = "cb_delay";
             this.cb_delay.Size = new System.Drawing.Size(121, 27);
@@ -239,6 +240,7 @@
             "8",
             "9",
             "10",
+            "14",
             "20",
             "42"});
             this.cb_onetime.Location = new System.Drawing.Point(95, 148);
