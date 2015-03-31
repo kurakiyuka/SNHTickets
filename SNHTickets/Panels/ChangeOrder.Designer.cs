@@ -40,6 +40,8 @@
             this.ll_getOrder = new System.Windows.Forms.LinkLabel();
             this.ll_getOrderList = new System.Windows.Forms.LinkLabel();
             this.cb_orderList = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.tb_addr = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -103,7 +105,7 @@
             // 
             // btn_change
             // 
-            this.btn_change.Location = new System.Drawing.Point(155, 151);
+            this.btn_change.Location = new System.Drawing.Point(155, 193);
             this.btn_change.Name = "btn_change";
             this.btn_change.Size = new System.Drawing.Size(75, 34);
             this.btn_change.TabIndex = 7;
@@ -141,12 +143,30 @@
             this.cb_orderList.Size = new System.Drawing.Size(148, 27);
             this.cb_orderList.TabIndex = 8;
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(15, 150);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(35, 19);
+            this.label5.TabIndex = 9;
+            this.label5.Text = "地址";
+            // 
+            // tb_addr
+            // 
+            this.tb_addr.Location = new System.Drawing.Point(80, 148);
+            this.tb_addr.Name = "tb_addr";
+            this.tb_addr.Size = new System.Drawing.Size(292, 25);
+            this.tb_addr.TabIndex = 10;
+            // 
             // ChangeOrder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(395, 206);
+            this.ClientSize = new System.Drawing.Size(395, 250);
+            this.Controls.Add(this.tb_addr);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.cb_orderList);
             this.Controls.Add(this.ll_getOrderList);
             this.Controls.Add(this.ll_getOrder);
@@ -158,7 +178,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.cb_accounts);
             this.Controls.Add(this.label1);
-            this.Font = new System.Drawing.Font("Microsoft YaHei", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
@@ -184,5 +204,7 @@
         private System.Windows.Forms.LinkLabel ll_getOrder;
         private System.Windows.Forms.LinkLabel ll_getOrderList;
         private System.Windows.Forms.ComboBox cb_orderList;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox tb_addr;
     }
 }
