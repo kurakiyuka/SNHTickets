@@ -74,14 +74,14 @@ namespace SNHTickets.Flow
             return wi.getOrderInfo(orderNo);
         }
 
-        public void ChangeOrderInfo(String orderName, String orderTel, String orderID, CookieContainer cookieCon = null)
+        public void ChangeOrderInfo(String orderName, String orderTel, String orderAddr, String orderID, CookieContainer cookieCon = null)
         {
             if (cookieCon == null)
             {
                 cookieCon = this.cookieCon;
             }
             SNHWebInteraction wi = new SNHWebInteraction(cookieCon);
-            wi.ChangeOrderInfo(orderName, orderTel, orderID);
+            wi.ChangeOrderInfo(orderName, orderTel, orderAddr, orderID);
         }
 
         private void delay(Int32 millisecends)

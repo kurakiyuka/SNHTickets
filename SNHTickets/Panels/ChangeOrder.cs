@@ -78,7 +78,7 @@ namespace SNHTickets.Panels
 
         private void btn_change_Click(object sender, EventArgs e)
         {
-            account.ChangeOrderInfo(tb_name.Text, tb_tel.Text, orderID, cookieCon);
-        }         
+            account.ChangeOrderInfo(tb_name.Text, tb_tel.Text, tb_addr.Text, orderID, cookieCon);
+        }      
     }
 }

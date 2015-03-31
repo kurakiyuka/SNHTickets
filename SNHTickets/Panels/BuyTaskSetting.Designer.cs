@@ -81,10 +81,10 @@
             this.cb_mode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cb_mode.FormattingEnabled = true;
             this.cb_mode.Items.AddRange(new object[] {
-            "随机小号",
-            "随机大号",
+            "实名帐号",
             "指定帐号",
-            "实名帐号"});
+            "随机大号",
+            "随机小号"});
             this.cb_mode.Location = new System.Drawing.Point(95, 58);
             this.cb_mode.Name = "cb_mode";
             this.cb_mode.Size = new System.Drawing.Size(121, 27);
@@ -242,6 +242,7 @@
             "10",
             "14",
             "20",
+            "21",
             "42"});
             this.cb_onetime.Location = new System.Drawing.Point(95, 148);
             this.cb_onetime.Name = "cb_onetime";

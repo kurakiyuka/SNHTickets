@@ -22,39 +22,11 @@
     <importance>1001</importance>
   </account>
   <account>
-    <username>usahana</username>
-    <password>000000</password>
-    <level>gold</level>
-    <realname>no</realname>
-    <importance>103</importance>
-  </account>
-  <account>
-    <username>kurin</username>
-    <password>000000</password>
-    <level>gold</level>
-    <realname>no</realname>
-    <importance>102</importance>
-  </account>
-  <account>
     <username>小樱花</username>
     <password>000000</password>
     <level>none</level>
     <realname>yes</realname>
     <importance>101</importance>
-  </account>
-  <account>
-    <username>巧克力狂热</username>
-    <password>111111</password>
-    <level>none</level>
-    <realname>no</realname>
-    <importance>99</importance>
-  </account>
-  <account>
-    <username>巧克力水果</username>
-    <password>111111</password>
-    <level>none</level>
-    <realname>no</realname>
-    <importance>98</importance>
   </account>
   <account>
     <username>巧克力饼干</username>
@@ -63,4 +35,4 @@
     <realname>no</realname>
     <importance>99</importance>
   </account>
-</accounts> 
+</accounts>

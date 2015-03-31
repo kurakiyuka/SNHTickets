@@ -12,9 +12,9 @@ namespace SNHTickets.Util
     {
         //官店地址
         String snh_shop_url = "http://shop.snh48.com/";              
-        //订单列表RUL
+        //订单列表URL
         String snh_order_list_url = "http://shop.snh48.com/user.php?act=order_list";
-        //更新订单
+        //更新订单URL
         String snh_order_update = "http://shop.snh48.com/user.php";
         //编码器
         ASCIIEncoding encoding;
@@ -83,7 +83,11 @@ namespace SNHTickets.Util
             Int32 position = resultHTML.IndexOf("未确认,未付款,未发货");
             while (position > 0)
             {
+<<<<<<< HEAD
                 resultHTML = resultHTML.Substring(position - 280);
+=======
+                resultHTML = resultHTML.Substring(position - 330);
+>>>>>>> origin/master
                 String orderNum = resultHTML.Substring(resultHTML.IndexOf("f6") + 4, 13);
                 orderList.Add(orderNum);
                 resultHTML = resultHTML.Substring(resultHTML.IndexOf("未确认,未付款,未发货") + 50);
@@ -113,10 +117,10 @@ namespace SNHTickets.Util
             return new String[] { orderName, orderTel, orderID };
         }
 
-        public void ChangeOrderInfo(String orderName, String orderTel, String orderID)
+        public void ChangeOrderInfo(String orderName, String orderTel, String orderAddr, String orderID)
         {
             HttpWebRequest hwReq = (HttpWebRequest)WebRequest.Create(snh_order_update);
-            String strPostData = "address=1&consignee=" + HttpUtility.UrlPathEncode(orderName) + "&email=1907361882%40qq.com&tel=" + orderTel + "&act=save_order_address&order_id=" + orderID;
+            String strPostData = "address=" + HttpUtility.UrlPathEncode(orderAddr) + "&consignee=" + HttpUtility.UrlPathEncode(orderName) + "&email=1907361882%40qq.com&tel=" + orderTel + "&act=save_order_address&order_id=" + orderID;
             byte[] postBytes = encoding.GetBytes(strPostData);
             HWRMaker.makePostHeader(hwReq, cookieCon, postBytes.Length);
             Stream stream_login = hwReq.GetRequestStream();
