@@ -19,7 +19,7 @@
     <password>qwert123</password>
     <level>gold</level>
     <realname>yes</realname>
-    <importance>1001</importance>
+    <importance>10001</importance>
   </account>
   <account>
     <username>小樱花</username>
@@ -34,5 +34,26 @@
     <level>none</level>
     <realname>no</realname>
     <importance>99</importance>
+  </account>
+  <account>
+    <username>minghua</username>
+    <password>111111</password>
+    <level>none</level>
+    <realname>yes</realname>
+    <importance>100</importance>
+  </account>
+  <account>
+    <username>ydxh001</username>
+    <password>qwert123</password>
+    <level>none</level>
+    <realname>no</realname>
+    <importance>2</importance>
+  </account>
+  <account>
+    <username>ydxh002</username>
+    <password>qwert123</password>
+    <level>none</level>
+    <realname>no</realname>
+    <importance>2</importance>
   </account>
 </accounts>

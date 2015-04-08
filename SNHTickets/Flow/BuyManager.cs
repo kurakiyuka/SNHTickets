@@ -55,7 +55,7 @@ namespace SNHTickets.Flow
 
             //加入购物车
             HttpWebRequest req_buy = (HttpWebRequest)WebRequest.Create(snh_add_to_cart_url);
-            String postData = "goods={\"quick\":1,\"spec\":[],\"goods_id\":" + id + ",\"captcha\":\"" + captchaText + "\",\"number\":\"" + amount.ToString() + "\",\"parent\":0}";
+            String postData = "goods={\"quick\":1,\"spec\":[],\"goods_id\":" + id + ",\"captcha\":\"" + captchaText + "\",\"is_donation\":\"0\",\"is_real\":1,\"priceid\":0,\"number\":\"" + amount.ToString() + "\",\"donation_number\":\"0\",\"parent\":0}";
             ASCIIEncoding encoder = new ASCIIEncoding();
             Byte[] postBytes = encoder.GetBytes(postData);
 

@@ -49,6 +49,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.rtb_tasklist = new System.Windows.Forms.RichTextBox();
             this.btn_stop = new System.Windows.Forms.Button();
+            this.btn_login = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -56,7 +57,7 @@
             // 
             this.rtb_process.BackColor = System.Drawing.SystemColors.Info;
             this.rtb_process.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.rtb_process.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.rtb_process.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.rtb_process.Location = new System.Drawing.Point(12, 206);
             this.rtb_process.Name = "rtb_process";
             this.rtb_process.ReadOnly = true;
@@ -68,7 +69,7 @@
             // 
             this.rtb_success.BackColor = System.Drawing.SystemColors.Info;
             this.rtb_success.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.rtb_success.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.rtb_success.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.rtb_success.Location = new System.Drawing.Point(396, 206);
             this.rtb_success.Name = "rtb_success";
             this.rtb_success.ReadOnly = true;
@@ -78,7 +79,7 @@
             // 
             // btn_buy
             // 
-            this.btn_buy.Location = new System.Drawing.Point(462, 101);
+            this.btn_buy.Location = new System.Drawing.Point(471, 125);
             this.btn_buy.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btn_buy.Name = "btn_buy";
             this.btn_buy.Size = new System.Drawing.Size(100, 33);
@@ -89,7 +90,7 @@
             // 
             // menuStrip1
             // 
-            this.menuStrip1.Font = new System.Drawing.Font("Microsoft YaHei", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.menuStrip1.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.AccountsToolStripMenuItem,
             this.TaskToolStripMenuItem,
@@ -226,7 +227,7 @@
             // 
             // btn_stop
             // 
-            this.btn_stop.Location = new System.Drawing.Point(613, 101);
+            this.btn_stop.Location = new System.Drawing.Point(604, 125);
             this.btn_stop.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btn_stop.Name = "btn_stop";
             this.btn_stop.Size = new System.Drawing.Size(100, 33);
@@ -235,12 +236,23 @@
             this.btn_stop.UseVisualStyleBackColor = true;
             this.btn_stop.Click += new System.EventHandler(this.btn_stop_Click);
             // 
+            // btn_login
+            // 
+            this.btn_login.Location = new System.Drawing.Point(537, 67);
+            this.btn_login.Name = "btn_login";
+            this.btn_login.Size = new System.Drawing.Size(100, 33);
+            this.btn_login.TabIndex = 18;
+            this.btn_login.Text = "登录";
+            this.btn_login.UseVisualStyleBackColor = true;
+            this.btn_login.Click += new System.EventHandler(this.accountsLogin);
+            // 
             // SNHTickets
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(784, 562);
+            this.Controls.Add(this.btn_login);
             this.Controls.Add(this.btn_stop);
             this.Controls.Add(this.rtb_tasklist);
             this.Controls.Add(this.label4);
@@ -252,7 +264,7 @@
             this.Controls.Add(this.rtb_success);
             this.Controls.Add(this.rtb_process);
             this.Controls.Add(this.menuStrip1);
-            this.Font = new System.Drawing.Font("Microsoft YaHei", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.ForeColor = System.Drawing.SystemColors.ControlText;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
@@ -291,6 +303,7 @@
         private System.Windows.Forms.ToolStripMenuItem UsageToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ChangeOrderToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem RegisterToolStripMenuItem;
+        private System.Windows.Forms.Button btn_login;
     }
 }
 

@@ -48,6 +48,24 @@ namespace SNHTickets
             }
         }
 
+        private void accountsLogin(object sender, EventArgs e)
+        {
+            foreach (Account account in accountsList)
+            {
+                if (account.importance == 1)
+                {
+                    if (account.Login())
+                    {
+                        logToSuccess(DateTime.Now.ToString() + ' ' + account.username.ToString() + ' ' + "登录成功");
+                    }
+                    else
+                    {
+                        logToProcess(DateTime.Now.ToString() + ' ' + account.username.ToString() + ' ' + "登录失败");
+                    }
+                }
+            }
+        }
+
         private void buy_loop(object sender, EventArgs e)
         {
             if (taskList == null || taskList.Count == 0)

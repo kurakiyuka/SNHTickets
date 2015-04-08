@@ -81,10 +81,10 @@
             this.cb_mode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cb_mode.FormattingEnabled = true;
             this.cb_mode.Items.AddRange(new object[] {
-            "实名帐号",
-            "指定帐号",
+            "随机小号",
             "随机大号",
-            "随机小号"});
+            "指定帐号",
+            "实名帐号"});
             this.cb_mode.Location = new System.Drawing.Point(95, 58);
             this.cb_mode.Name = "cb_mode";
             this.cb_mode.Size = new System.Drawing.Size(121, 27);
@@ -243,7 +243,7 @@
             "14",
             "20",
             "21",
-            "42"});
+            "48"});
             this.cb_onetime.Location = new System.Drawing.Point(95, 148);
             this.cb_onetime.Name = "cb_onetime";
             this.cb_onetime.Size = new System.Drawing.Size(121, 27);
@@ -274,7 +274,7 @@
             this.Controls.Add(this.lb_mode);
             this.Controls.Add(this.tb_id);
             this.Controls.Add(this.lb_id);
-            this.Font = new System.Drawing.Font("Microsoft YaHei", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
