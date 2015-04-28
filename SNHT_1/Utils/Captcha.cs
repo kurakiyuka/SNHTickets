@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Drawing;
 
-namespace SNHTickets.Util
+namespace SNHT_1.Util
 {
     public class Captcha
     {
