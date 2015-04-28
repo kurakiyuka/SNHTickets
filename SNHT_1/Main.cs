@@ -55,7 +55,7 @@ namespace SNHT_1
         {
             foreach (Account account in accountsList)
             {
-                if (account.importance == 2)
+                if (account.importance > 1000)
                 {
                     if (account.Login())
                     {
@@ -74,7 +74,7 @@ namespace SNHT_1
             status = true;
             foreach (Account account in accountsList)
             {
-                if (account.importance == 2 && status)
+                if (account.importance > 1000 && status)
                 {
                     Int32 errorCode = 0;
                     //如果帐号购买数量已经到了上限（888错误），那么更换帐号，否则就反复买
