@@ -25,7 +25,7 @@ namespace SNHT_1.Flow
 
         public BuyManager(CookieContainer cookieCon)
         {
-            this.cookieCon = cookieCon;          
+            this.cookieCon = cookieCon;
         }
 
         /*
@@ -37,22 +37,31 @@ namespace SNHT_1.Flow
         public Int32 Buy(String id, Int32 amount, String type)
         {
             //获取验证码
-            HttpWebRequest req_captcha = (HttpWebRequest)WebRequest.Create(snh_captcha_url);
+            HttpWebRequest req_captcha = (HttpWebRequest)WebRequest.Create("http://101.226.6.79/");
             HWRMaker.makeGetHeader(req_captcha, cookieCon);
-            WebResponse resp_captcha = req_captcha.GetResponse();
-            if (((HttpWebResponse)resp_captcha).StatusCode != HttpStatusCode.OK)
+            String captchaText;
+
+            try
             {
+                WebResponse resp_captcha = req_captcha.GetResponse();
+                if (((HttpWebResponse)resp_captcha).StatusCode != HttpStatusCode.OK)
+                {
+                    return 1001;
+                }
+
+                Stream dataStream = resp_captcha.GetResponseStream();
+                Image captchaImg = Image.FromStream(dataStream);
+                Bitmap captchaBitmap = new Bitmap(captchaImg);
+
+                Captcha captcha = new Captcha();
+                captcha.InitCaptchaDict();
+                captchaText = captcha.CaptchaToText(captchaBitmap);
+            }
+            catch (WebException ex)
+            {
+                ex.ToString();
                 return 1001;
             }
-
-            Stream dataStream = resp_captcha.GetResponseStream();
-            Image captchaImg = Image.FromStream(dataStream);
-            Bitmap captchaBitmap = new Bitmap(captchaImg);
-            
-            Captcha captcha = new Captcha();
-            captcha.InitCaptchaDict();
-            String captchaText = captcha.CaptchaToText(captchaBitmap);
-
             //加入购物车
             HttpWebRequest req_buy = (HttpWebRequest)WebRequest.Create(snh_add_to_cart_url);
             String postData = "goods={\"quick\":1,\"spec\":[],\"goods_id\":" + id + ",\"captcha\":\"" + captchaText + "\",\"is_donation\":\"0\",\"is_real\":1,\"priceid\":0,\"number\":\"" + amount.ToString() + "\",\"donation_number\":\"0\",\"parent\":0}";
@@ -148,7 +157,7 @@ namespace SNHT_1.Flow
                     clearCart();
                     return 1001;
                 }
-                
+
                 //如果网页里面有“您的订单已提交成功，请记住您的订单号”文字，说明订单提交成功
                 if (resultHTML.IndexOf("您的订单已提交成功") > 0)
                 {
