@@ -37,7 +37,7 @@ namespace SNHT_1.Flow
         public Int32 Buy(String id, Int32 amount, String type)
         {
             //获取验证码
-            HttpWebRequest req_captcha = (HttpWebRequest)WebRequest.Create("http://101.226.6.79/");
+            HttpWebRequest req_captcha = (HttpWebRequest)WebRequest.Create(snh_captcha_url);
             HWRMaker.makeGetHeader(req_captcha, cookieCon);
             String captchaText;
 

@@ -12,17 +12,19 @@ namespace SNHT_1.Flow
         public String password { get; set; }
         //丝瓜等级
         public String level { get; set; }
-        //实名认证
-        public String realname { get; set; }
+        //是否已经实名认证
+        public Boolean isRealname { get; set; }
         //手机号
         public String tel { get; set; }
-        //重要程度，也即大号还是小号
+        public Boolean isLogin { get; set; }
+        //重要程度，也即大号还是小号，后面要废弃使用
         public Int32 importance { get; set; }
         public CookieContainer cookieCon { get; set; }
 
         public Boolean Login()
         {
             LoginManager loginManager = new LoginManager();
+            isLogin = false;
 
             //登录失败则重试10次，登录成功则取回cookies
             for (Byte i = 1; i < 10; i++)
@@ -42,10 +44,14 @@ namespace SNHT_1.Flow
             //cookies不为空则说明登录成功，否则说明登录10次失败
             if (cookieCon != null)
             {
+                isLogin = true;
                 return true;
             }
             else
+            {
+                isLogin = false;
                 return false;
+            }             
         }
 
         public Int32 Buy(String id, Int32 amount, String type, CookieContainer cookieCon = null)

@@ -40,7 +40,12 @@ namespace SNHT_1
                 }
                 if (node.SelectSingleNode("realname") != null)
                 {
-                    account.realname = node.SelectSingleNode("realname").InnerText.ToString();
+                    if (node.SelectSingleNode("realname").InnerText.ToString() == "yes")
+                    {
+                        account.isRealname = true;
+                    }
+                    else
+                        account.isRealname = false;
                 }
                 if (node.SelectSingleNode("tel") != null)
                 {
@@ -55,7 +60,7 @@ namespace SNHT_1
         {
             foreach (Account account in accountsList)
             {
-                if (account.importance > 1000)
+                if (account.importance > 10000)
                 {
                     if (account.Login())
                     {
@@ -74,14 +79,19 @@ namespace SNHT_1
             status = true;
             foreach (Account account in accountsList)
             {
-                if (account.importance > 1000 && status)
+                if (account.importance > 10000 && status)
                 {
                     Int32 errorCode = 0;
                     //如果帐号购买数量已经到了上限（888错误），那么更换帐号，否则就反复买
                     while (errorCode != 888 && status)
                     {
-                        errorCode = account.Buy(textBox1.Text, 1, "-1", account.cookieCon);
+                        errorCode = account.Buy(textBox1.Text, 6, "5", account.cookieCon);
                         delay(100);
+
+                        if (errorCode == 1001)
+                        {
+                            richTextBox1.AppendText(account.username + " 网络问题\n");
+                        }
 
                         if (errorCode == 0)
                         {
