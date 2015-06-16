@@ -3,7 +3,6 @@ using System.Drawing;
 using System.IO;
 using System.Net;
 using System.Text;
-using System.Windows.Forms;
 using SNHT_1.Util;
 
 namespace SNHT_1.Flow
@@ -36,35 +35,35 @@ namespace SNHT_1.Flow
          */
         public Int32 Buy(String id, Int32 amount, String type)
         {
-            //获取验证码
-            HttpWebRequest req_captcha = (HttpWebRequest)WebRequest.Create(snh_captcha_url);
-            HWRMaker.makeGetHeader(req_captcha, cookieCon);
-            String captchaText;
+            ////获取验证码
+            //HttpWebRequest req_captcha = (HttpWebRequest)WebRequest.Create(snh_captcha_url);
+            //HWRMaker.makeGetHeader(req_captcha, cookieCon);
+            //String captchaText;
 
-            try
-            {
-                WebResponse resp_captcha = req_captcha.GetResponse();
-                if (((HttpWebResponse)resp_captcha).StatusCode != HttpStatusCode.OK)
-                {
-                    return 1001;
-                }
+            //try
+            //{
+            //    WebResponse resp_captcha = req_captcha.GetResponse();
+            //    if (((HttpWebResponse)resp_captcha).StatusCode != HttpStatusCode.OK)
+            //    {
+            //        return 1001;
+            //    }
 
-                Stream dataStream = resp_captcha.GetResponseStream();
-                Image captchaImg = Image.FromStream(dataStream);
-                Bitmap captchaBitmap = new Bitmap(captchaImg);
+            //    Stream dataStream = resp_captcha.GetResponseStream();
+            //    Image captchaImg = Image.FromStream(dataStream);
+            //    Bitmap captchaBitmap = new Bitmap(captchaImg);
 
-                Captcha captcha = new Captcha();
-                captcha.InitCaptchaDict();
-                captchaText = captcha.CaptchaToText(captchaBitmap);
-            }
-            catch (WebException ex)
-            {
-                ex.ToString();
-                return 1001;
-            }
+            //    Captcha captcha = new Captcha();
+            //    captcha.InitCaptchaDict();
+            //    captchaText = captcha.CaptchaToText(captchaBitmap);
+            //}
+            //catch (WebException ex)
+            //{
+            //    ex.ToString();
+            //    return 1001;
+            //}
             //加入购物车
             HttpWebRequest req_buy = (HttpWebRequest)WebRequest.Create(snh_add_to_cart_url);
-            String postData = "goods={\"quick\":1,\"spec\":[],\"goods_id\":" + id + ",\"captcha\":\"" + captchaText + "\",\"is_donation\":\"0\",\"is_real\":1,\"priceid\":0,\"number\":\"" + amount.ToString() + "\",\"donation_number\":\"0\",\"parent\":0}";
+            String postData = "goods={\"quick\":1,\"spec\":[],\"goods_id\":" + id + ",\"captcha\":\"" + "0" + "\",\"is_donation\":\"0\",\"is_real\":1,\"priceid\":0,\"number\":\"" + amount.ToString() + "\",\"donation_number\":\"0\",\"parent\":0}";
             ASCIIEncoding encoder = new ASCIIEncoding();
             Byte[] postBytes = encoder.GetBytes(postData);
 
@@ -104,7 +103,8 @@ namespace SNHT_1.Flow
             catch (Exception ex)
             {
                 ex.ToString();
-                clearCart();
+                while (clearCart())
+                { }
                 //自定义的一个errorCode，表示未知错误
                 return 1002;
             }
@@ -140,7 +140,8 @@ namespace SNHT_1.Flow
                 catch (Exception ex)
                 {
                     ex.ToString();
-                    clearCart();
+                    while (clearCart())
+                    { }
                     return 1001;
                 }
 
@@ -154,7 +155,8 @@ namespace SNHT_1.Flow
                 catch (Exception ex)
                 {
                     ex.ToString();
-                    clearCart();
+                    while (clearCart())
+                    { }
                     return 1001;
                 }
 
@@ -165,20 +167,30 @@ namespace SNHT_1.Flow
                 }
                 else
                 {
-                    clearCart();
+                    while (clearCart())
+                    { }
                     //自定义的一个errorCode，表示因为其他原因而加入购物车成功，但是提交订单不成功的                    
                     return 1000;
                 }
             }
         }
 
-        private void clearCart()
+        private Boolean clearCart()
         {
             HttpWebRequest hwReq = (HttpWebRequest)WebRequest.Create(snh_clear_url);
             HWRMaker.makeGetHeader(hwReq, cookieCon);
-            HttpWebResponse hwResp = (HttpWebResponse)hwReq.GetResponse();
-            StreamReader sr = new StreamReader(hwResp.GetResponseStream());
-            String resultHtml = sr.ReadToEnd();
+            try
+            {
+                HttpWebResponse hwResp = (HttpWebResponse)hwReq.GetResponse();
+                StreamReader sr = new StreamReader(hwResp.GetResponseStream());
+                String resultHtml = sr.ReadToEnd();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                ex.ToString();
+                return false;
+            }
         }
     }
 }

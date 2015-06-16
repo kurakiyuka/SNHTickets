@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using SNHT_1.Util;
 
 namespace SNHT_1.Flow
 {
@@ -231,7 +230,7 @@ namespace SNHT_1.Flow
                     //实名帐号模式
                     foreach (Account account in accountsList)
                     {
-                        if (account.realname == "yes" && status)
+                        if (account.isRealname == true && status)
                         {
                             if (account.Login())
                             {

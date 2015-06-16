@@ -82,7 +82,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(158, 127);
+            this.button1.Location = new System.Drawing.Point(122, 46);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 33);
             this.button1.TabIndex = 1;
@@ -92,7 +92,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(293, 127);
+            this.button2.Location = new System.Drawing.Point(257, 46);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 33);
             this.button2.TabIndex = 2;
@@ -102,22 +102,22 @@
             // 
             // richTextBox1
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(122, 191);
+            this.richTextBox1.Location = new System.Drawing.Point(122, 101);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(523, 293);
+            this.richTextBox1.Size = new System.Drawing.Size(523, 383);
             this.richTextBox1.TabIndex = 3;
             this.richTextBox1.Text = "";
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(449, 131);
+            this.textBox1.Location = new System.Drawing.Point(413, 50);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(100, 25);
             this.textBox1.TabIndex = 4;
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(633, 127);
+            this.button3.Location = new System.Drawing.Point(597, 46);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 29);
             this.button3.TabIndex = 5;

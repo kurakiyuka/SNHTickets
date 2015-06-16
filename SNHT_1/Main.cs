@@ -1,11 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
 using SNHT_1.Flow;
@@ -31,27 +25,7 @@ namespace SNHT_1
             accountsXMLDoc.Load(@"..\..\Properties\Accounts.xml");
             foreach (XmlNode node in accountsXMLDoc.GetElementsByTagName("account"))
             {
-                Account account = new Account();
-                account.username = node.SelectSingleNode("username").InnerText.ToString();
-                account.password = node.SelectSingleNode("password").InnerText.ToString();
-                if (node.SelectSingleNode("level") != null)
-                {
-                    account.level = node.SelectSingleNode("level").InnerText.ToString();
-                }
-                if (node.SelectSingleNode("realname") != null)
-                {
-                    if (node.SelectSingleNode("realname").InnerText.ToString() == "yes")
-                    {
-                        account.isRealname = true;
-                    }
-                    else
-                        account.isRealname = false;
-                }
-                if (node.SelectSingleNode("tel") != null)
-                {
-                    account.tel = node.SelectSingleNode("tel").InnerText.ToString();
-                }
-                account.importance = Int32.Parse(node.SelectSingleNode("importance").InnerText);
+                Account account = new Account(node);             
                 accountsList.Add(account);
             }
         }
@@ -60,7 +34,7 @@ namespace SNHT_1
         {
             foreach (Account account in accountsList)
             {
-                if (account.importance > 10000)
+                if (account.importance > 100)
                 {
                     if (account.Login())
                     {
@@ -79,14 +53,14 @@ namespace SNHT_1
             status = true;
             foreach (Account account in accountsList)
             {
-                if (account.importance > 10000 && status)
+                if (account.isLogin == true && status)
                 {
                     Int32 errorCode = 0;
                     //如果帐号购买数量已经到了上限（888错误），那么更换帐号，否则就反复买
                     while (errorCode != 888 && status)
                     {
-                        errorCode = account.Buy(textBox1.Text, 6, "5", account.cookieCon);
-                        delay(100);
+                        errorCode = account.Buy(textBox1.Text, 1, "-1", account.cookieCon);
+                        delay(200);
 
                         if (errorCode == 1001)
                         {

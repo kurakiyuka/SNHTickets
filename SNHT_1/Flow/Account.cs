@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Net;
 using System.Windows.Forms;
+using System.Xml;
 using SNHT_1.Util;
 
 namespace SNHT_1.Flow
@@ -14,17 +15,46 @@ namespace SNHT_1.Flow
         public String level { get; set; }
         //是否已经实名认证
         public Boolean isRealname { get; set; }
-        //手机号
-        public String tel { get; set; }
         public Boolean isLogin { get; set; }
         //重要程度，也即大号还是小号，后面要废弃使用
         public Int32 importance { get; set; }
         public CookieContainer cookieCon { get; set; }
 
+        public Account(XmlNode node)
+        {
+            if (node.SelectSingleNode("username") != null)
+            {
+                this.username = node.SelectSingleNode("username").InnerText.ToString();
+            }
+            if (node.SelectSingleNode("password") != null)
+            {
+                this.password = node.SelectSingleNode("password").InnerText.ToString();
+            }
+            if (node.SelectSingleNode("level") != null)
+            {
+                this.level = node.SelectSingleNode("level").InnerText.ToString();
+            }
+            if (node.SelectSingleNode("realname") != null)
+            {
+                if (node.SelectSingleNode("realname").InnerText.ToString() == "yes")
+                {
+                    this.isRealname = true;
+                }
+                else
+                {
+                    this.isRealname = false;
+                }
+            }
+            if (node.SelectSingleNode("importance") != null)
+            {
+                this.importance = Int32.Parse(node.SelectSingleNode("importance").InnerText);
+            }
+            this.isLogin = false;
+        }
+
         public Boolean Login()
         {
             LoginManager loginManager = new LoginManager();
-            isLogin = false;
 
             //登录失败则重试10次，登录成功则取回cookies
             for (Byte i = 1; i < 10; i++)
@@ -51,7 +81,7 @@ namespace SNHT_1.Flow
             {
                 isLogin = false;
                 return false;
-            }             
+            }
         }
 
         public Int32 Buy(String id, Int32 amount, String type, CookieContainer cookieCon = null)
