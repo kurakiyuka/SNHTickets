@@ -10,13 +10,13 @@ namespace SNHT_1.Flow
     class BuyManager
     {
         //获取验证码URL
-        String snh_captcha_url = "http://101.226.6.78/captcha.php?is_login=1&t=1";
+        //String snh_captcha_url = "http://101.226.6.243/captcha.php?is_login=1&t=1";
         //把商品加入购物车使用的URL
-        String snh_add_to_cart_url = "http://101.226.6.78/flow.php?step=add_to_cart";
+        String snh_add_to_cart_url = "http://101.226.6.243/flow.php?step=add_to_cart";
         //最后提交订单的URL
-        String snh_commit_url = "http://101.226.6.78/flow.php?step=done";
+        String snh_commit_url = "http://101.226.6.243/flow.php?step=done";
         //清空购物车的URL
-        String snh_clear_url = "http://101.226.6.78/flow.php?step=clear";
+        String snh_clear_url = "http://101.226.6.243/flow.php?step=clear";
 
         CookieContainer cookieCon;
         Int32 errorCode;
@@ -63,7 +63,7 @@ namespace SNHT_1.Flow
             //}
             //加入购物车
             HttpWebRequest req_buy = (HttpWebRequest)WebRequest.Create(snh_add_to_cart_url);
-            String postData = "goods={\"quick\":1,\"spec\":[],\"goods_id\":" + id + ",\"captcha\":\"" + "0" + "\",\"is_donation\":\"0\",\"is_real\":1,\"priceid\":0,\"number\":\"" + amount.ToString() + "\",\"donation_number\":\"0\",\"parent\":0}";
+            String postData = "goods={\"quick\":1,\"spec\":[],\"goods_id\":" + id + ",\"captcha\":\"" + "0" + "\",\"number\":\"" + amount.ToString() + "\",\"donation_number\":\"0\",\"parent\":0}";
             ASCIIEncoding encoder = new ASCIIEncoding();
             Byte[] postBytes = encoder.GetBytes(postData);
 

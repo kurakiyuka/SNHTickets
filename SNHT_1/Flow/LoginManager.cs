@@ -10,9 +10,9 @@ namespace SNHT_1.Flow
     public class LoginManager
     {
         //登录使用的URL
-        String snh_login_url = "http://101.226.6.78/user.php";
+        String snh_login_url = "http://101.226.6.243/user.php";
         //登录时需要提交的返回URL
-        String snh_login_back_act_url = "http://101.226.6.78/index.php&submit=";
+        String snh_login_back_act_url = "http://101.226.6.243/index.php&submit=";
 
         //用于提交的数据字典
         Dictionary<String, String> dirPostData;

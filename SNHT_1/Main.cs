@@ -34,7 +34,7 @@ namespace SNHT_1
         {
             foreach (Account account in accountsList)
             {
-                if (account.importance > 100)
+                if (account.importance == 99)
                 {
                     if (account.Login())
                     {
